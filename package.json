@@ -1,0 +1,19 @@
+{
+  "name": "fullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass public/styles/scss/global.scss public/styles/css/raw/main.css --watch",
+    "purgecss": "purgecss -css public/styles/css/raw/main.css --content views/backend/*.php views/frontend/*.php public/scripts/*.js -o public/styles/css/cleaned/main.css",
+    "typescript": "tsc -w"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.1.3",
+    "purgecss": "^4.1.3",
+    "sass": "^1.50.0",
+    "typescript": "^4.6.3"
+  }
+}
