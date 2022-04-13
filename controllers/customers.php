@@ -1,4 +1,4 @@
-<?php require('models/customers.php');
+<?php require('models/Customers.php');
 
 function listCustomers()
 {

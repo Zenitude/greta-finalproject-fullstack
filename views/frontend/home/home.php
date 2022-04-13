@@ -12,7 +12,7 @@
         <div id="presentation">
             <h2>Nôtre Hôtel</h2>
             <div  class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                <div></div>
+                <div><p>Hello</p></div>
                 <div></div>
                 <div></div>
             </div>
@@ -46,4 +46,4 @@
 <!-- End of content / Fin du contenu -->
 
 <!-- Template call / Appel du template -->
-<?php require('template.php');
+<?php require('views/template.php'); ?>

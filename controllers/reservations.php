@@ -1,4 +1,4 @@
-<?php require('models/reservations.php');
+<?php require('models/Reservations.php');
 
 function listReservations()
 {

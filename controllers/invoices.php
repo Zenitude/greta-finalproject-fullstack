@@ -1,4 +1,4 @@
-<?php require('models/invoices.php');
+<?php require('models/Invoices.php');
 
 function listInvoices()
 {
@@ -17,7 +17,7 @@ function readInvoice()
 
 function updateInvoice()
 {
-    require('views/backend/reservationh/invoices/updateInvoice.php')
+    require('views/backend/reservationh/invoices/updateInvoice.php');
 }
 
 function deleteInvoice()

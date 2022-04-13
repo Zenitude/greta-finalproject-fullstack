@@ -1,3 +1,6 @@
-<?php require('models/adminHotel.php');
+<?php require('models/AdminHotel.php');
 
-require('views/frontend/reservation/adminHotel.php');
+function adminHotel()
+{
+    require('views/frontend/reservation/adminHotel.php');
+}

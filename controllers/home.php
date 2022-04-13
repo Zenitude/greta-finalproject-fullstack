@@ -1,3 +1,6 @@
-<?php require('models/home.php');
+<?php 
 
-require('views/frontend/home/home.php');
+function home()
+{
+    require('views/frontend/home/home.php');
+}
