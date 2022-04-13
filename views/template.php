@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="../public/styles/css/raw/main.css">
         <title><?= 'Le Montagnard | '.$title ?></title>
     </head>
-    <body>
+    <body class="w-100 h-100">
         
         <div class="container-fluid">
 
