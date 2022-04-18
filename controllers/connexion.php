@@ -33,23 +33,25 @@ function login()
                 $mail = htmlspecialchars($_POST['mailConnection']);
                 $password = htmlspecialchars($_POST['passwordConnection']);
                 $password = md5($password);
-
+                
                 $loginSite = new Connexion;
                 $allUsers = $loginSite->loginSite($mail, $password);
                 $countUser = count($allUsers);
+                
     
-                if($countUser > 0)
+                if($countUser <= 0)
                 {   
+                    header('Location: index.php?page=connexion&err=wronguser');
+                }
+                else
+                {
+                    
                     foreach ($allUsers as $user)
                     {
                         $_SESSION['userAdmin'] = $user['firstname'];
                         $_SESSION['typeAdmin'] = $user['typeAdmin'];
                     }
                     header('Location: index.php?page=administration&section=gestion');
-                }
-                else
-                {
-                    header('Location: index.php?page=connexion&err=wronguser');
                 }
             }
            

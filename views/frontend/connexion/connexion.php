@@ -37,8 +37,8 @@
 <?php if(isset($errorUser) && $errorUser != ''){ echo $errorUser; } ?>
 
 <div class="container w-100">
-
-    <form id="formConnection" action="index.php?page=connexion&action=login" method="post" class="w-50 mx-auto">
+    <?php if(isset($_SESSION['userAdmin'])){ echo $_SESSION['userAdmin'];} ?>
+    <form id="formConnection" action="index.php?page=connexion&action=login" method="POST" class="w-50 mx-auto">
         
         <div class="form-floating mt-5 rounded-pill">
             <label for="mailConnection" class="input-group-text rounded-pill border bg-beige text-darkness fw-bold">Email</label>

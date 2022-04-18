@@ -8,16 +8,11 @@ class Connexion extends DataBase
     {
         $db = $this->dbConnect();
 
-        $requestConnexion = "SELECT * FROM users WHERE mail = ? AND password = ?";
+        $requestConnexion = "SELECT * FROM users WHERE mail = $identify AND password = $password";
         
         $verifConnexion = $db->prepare($requestConnexion);
 
-        $verifConnexion->execute(array(
-
-            $identify, 
-            $password
-
-        )) or die(print_r($db->errorInfo()));
+        $verifConnexion->execute() or die(print_r($db->errorInfo()));
 
         $connexion = $verifConnexion->fetchAll();
 
