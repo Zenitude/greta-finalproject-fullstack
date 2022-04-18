@@ -7,48 +7,39 @@ function connexion()
 }
 
 function login()
-{
-    $errorUser = '';
-    $errorIdentify = '';
-    $errorPassword = '';
-    
+{    
     if(isset($_POST['mailConnection']))
     {
-        if(empty($_POST['mailConnection']))
-        {
-            $errorIdentify = '<span class="text-danger"> Veuillez saisir votre identifiant !</span>';
-            require_once('views/frontend/connexion/connexion.php');
+        if(empty($_POST['mailConnection']) && empty($_POST['passwordConnection']))
+        { 
+            header('Location: index.php?page=connexion&err=both');
         }
         elseif(empty($_POST['passwordConnection']))
         {
-            $errorPassword = '<span class="text-danger"> Veuillez saisir votre mot de passe ! </span>';
-            require_once('views/frontend/connexion/connexion.php');
+            header('Location: index.php?page=connexion&err=password');
         }
-        elseif(empty($_POST['mailConnection']) && empty($_POST['passwordConnection']))
+        elseif(empty($_POST['mailConnection']) )
         {
-            $errorIdentify = '<span class="text-danger"> Veuillez saisir votre identifiant ! </span>';
-            $errorPassword = '<span class="text-danger"> Veuillez saisir votre mot de passe ! </span>';
-            require_once('views/frontend/connexion/connexion.php');
+            header('Location: index.php?page=connexion&err=mail');
         }
         else
         {
             if (!filter_var($_POST["mailConnection"], FILTER_VALIDATE_EMAIL)) 
             {
-                $errorIdentify = '<span class="text-danger"> Email invalide !</span>';
-                
+                header('Location: index.php?page=connexion&err=wrongmail');
             }
             else
             {
+                $mail = htmlspecialchars($_POST['mailConnection']);
+                $password = htmlspecialchars($_POST['passwordConnection']);
+                $password = md5($password);
+
                 $loginSite = new Connexion;
-                $allUsers = $loginSite->loginSite($_POST['mailConnection'], $_POST['passwordConnection']);
+                $allUsers = $loginSite->loginSite($mail, $password);
                 $countUser = count($allUsers);
     
                 if($countUser > 0)
-                {
-                    $errorUser = '';
-                    $errorIdentify = '';
-                    $errorPassword = '';
-    
+                {   
                     foreach ($allUsers as $user)
                     {
                         $_SESSION['userAdmin'] = $user['firstname'];
@@ -58,12 +49,15 @@ function login()
                 }
                 else
                 {
-                    $errorUser = '<p class="bg-warning text-light text-center"> Utilisateur introuvable ! </p>';
-                    require_once('views/frontend/connexion/connexion.php');
-                   
+                    header('Location: index.php?page=connexion&err=wronguser');
                 }
             }
            
         }
     }
+}
+
+function gestion()
+{
+    require('views/frontend/administration/gestion.php');
 }

@@ -14,8 +14,8 @@ class Connexion extends DataBase
 
         $verifConnexion->execute(array(
 
-            htmlspecialchars($identify), 
-            htmlspecialchars(md5($password))
+            $identify, 
+            $password
 
         )) or die(print_r($db->errorInfo()));
 
