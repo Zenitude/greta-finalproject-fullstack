@@ -1,8 +1,6 @@
 <?php 
 
-//require_once('controllers/mainController.php');
-require('controllers/home.php');
-
+require_once('controllers/mainController.php');
 
 try
 {
@@ -12,17 +10,26 @@ try
         {
             home();
         }
-        /*elseif($_GET['page'] == 'reservationHotel')
-        {
-            if(isset($_GET['section']))
+        elseif($_GET['page'] == 'connexion')
+        {       
+            connexion();
+
+            if($_GET['action'] == 'login')
             {
-                if($_GET['section'] == 'admin')
+                login();
+            }
+        }
+        elseif(isset($_SESSION['userAdmin']))
+        {
+            if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel')
+            {
+                if($_GET['page'] == 'administration')
                 {
-                    adminHotel();    
-                }
-                elseif($_GET['section'] == 'customers')
-                {
-                    if(isset($_GET['action']))
+                    if($_GET['section'] == 'gestion')
+                    {
+                        gestion();
+                    }
+                    elseif($_GET['section'] == 'customers')
                     {
                         if($_GET['action'] == 'listCustomers')
                         {
@@ -52,50 +59,12 @@ try
                         {
                             deleteCustomer();
                         }
+                        else
+                        {
+                            gestion();
+                        }
                     }
-                    else
-                    {
-                        listCustomers();
-                    }
-                }
-                elseif($_GET['section'] == 'reservations')
-                {
-                    if($_GET['action'] == 'listReservations')
-                    {
-                        listReservations();
-                    }
-                    elseif($_GET['action'] == 'reservationRoom')
-                    {
-                        reservationRoom();
-                    }
-                    elseif($_GET['action'] == 'reservationCustomer')
-                    {
-                        reservationCustomer();
-                    }
-                    elseif($_GET['action'] == 'reservationFinal')
-                    {
-                        reservationFinal();
-                    }
-                    elseif($_GET['action'] == 'readReservation')
-                    {
-                        readReservation();
-                    }
-                    elseif($_GET['action'] == 'updateReservation')
-                    {
-                        updateReservation();
-                    }
-                    elseif($_GET['action'] == 'deleteReservation')
-                    {
-                        deleteReservation();
-                    }
-                    else
-                    {
-                        listReservations();
-                    }
-                }
-                elseif($_GET['section'] == 'invoices')
-                {
-                    if(isset($_GET['action']))
+                    elseif($_GET['section'] == 'invoices')
                     {
                         if($_GET['action'] == 'listInvoices')
                         {
@@ -117,18 +86,54 @@ try
                         {
                             deleteInvoice();
                         }
+                        else
+                        {
+                            gestion();
+                        }
                     }
-                    else
+                    elseif($_GET['section'] == 'reservations')
                     {
-                        listInvoices();
+
+                        if($_GET['action'] == 'listReservations')
+                        {
+                            listReservations();
+                        }
+                        elseif($_GET['action'] == 'reservationRoom')
+                        {
+                            reservationRoom();
+                        }
+                        elseif($_GET['action'] == 'reservationCustomer')
+                        {
+                            reservationCustomer();
+                        }
+                        elseif($_GET['action'] == 'reservationFinal')
+                        {
+                            reservationFinal();
+                        }
+                        elseif($_GET['action'] == 'readReservation')
+                        {
+                            readReservation();
+                        }
+                        elseif($_GET['action'] == 'updateReservation')
+                        {
+                            updateReservation();
+                        }
+                        elseif($_GET['action'] == 'deleteReservation')
+                        {
+                            deleteReservation();
+                        }
+                        else
+                        {
+                            gestion();
+                        }
                     }
                 }
             }
-            else
-            {
-                adminHotel();
-            }
-        }*/
+        }
+        else
+        {
+            home();
+        }
     }
     else
     {

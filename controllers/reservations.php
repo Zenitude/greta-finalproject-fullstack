@@ -2,35 +2,35 @@
 
 function listReservations()
 {
-  require('views/frontend/reservationh/reservations/listReservations.php');
+  require('views/frontend/administration/reservations/listReservations.php');
 }
 
 function reservationRoom()
 {
-    require('views/backend/reservationh/reservations/reservationRoom.php');
+    require('views/backend/administration/reservations/reservationRoom.php');
 }
 
 function reservationCustomer()
 {
-    require('views/backend/reservationh/reservations/reservationCustomer.php');
+    require('views/backend/administration/reservations/reservationCustomer.php');
 }
 
 function reservationFinal()
 {
-    require('views/backend/reservationh/reservations/reservationFinal.php');
+    require('views/backend/administration/reservations/reservationFinal.php');
 }
 
 function readReservation()
 {
-    require('views/frontend/reservationh/reservations/readReservation.php');
+    require('views/frontend/administration/reservations/readReservation.php');
 }
 
 function updateReservation()
 {
-    require('views/backend/reservationh/reservations/updateReservation.php');
+    require('views/backend/administration/reservations/updateReservation.php');
 }
 
 function deleteReservation()
 {
-    require('views/frontend/reservationh/reservations/listReservations.php');
+    require('views/frontend/administration/reservations/listReservations.php');
 }

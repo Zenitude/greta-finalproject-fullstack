@@ -2,25 +2,25 @@
 
 function listInvoices()
 {
-  require('views/frontend/reservationh/listInvoices.php');
+  require('views/frontend/administration/listInvoices.php');
 }
 
 function createInvoice()
 {
-    require('views/backend/reservationh/invoices/createInvoice.php');
+    require('views/backend/administration/invoices/createInvoice.php');
 }
 
 function readInvoice()
 {
-    require('views/frontend/reservationh/invoices/readInvoice.php');
+    require('views/frontend/administration/invoices/readInvoice.php');
 }
 
 function updateInvoice()
 {
-    require('views/backend/reservationh/invoices/updateInvoice.php');
+    require('views/backend/administration/invoices/updateInvoice.php');
 }
 
 function deleteInvoice()
 {
-    require('views/frontend/reservationh/invoices/listInvoices.php');
+    require('views/frontend/administration/invoices/listInvoices.php');
 }

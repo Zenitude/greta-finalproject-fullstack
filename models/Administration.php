@@ -2,9 +2,9 @@
 
 require('models/DataBase.php');
 
-class Customers extends DataBase
+class Administration extends DataBase
 {
-    public function readCustomers()
+    public function readGestion()
     {
         $db = $this->dbConnect();
         return $db;

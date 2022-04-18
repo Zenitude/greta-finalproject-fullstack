@@ -5,8 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass public/styles/scss/global.scss public/styles/css/raw/main.css --watch",
-    "purgecss": "purgecss -css public/styles/css/raw/main.css --content views/backend/*.php views/frontend/*.php public/scripts/*.js -o public/styles/css/cleaned/main.css",
-    "typescript": "tsc -w"
+    "purgecss": "purgecss -css public/styles/css/raw/main.css --content views/backend/*.php views/frontend/*.php public/scripts/*.js -o public/styles/css/cleaned/main.css"
   },
   "author": "",
   "license": "ISC",
