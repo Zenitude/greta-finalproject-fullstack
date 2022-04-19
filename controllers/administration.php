@@ -1,4 +1,4 @@
-<?php require('models/Administration.php');
+<?php
 
 function gestion()
 {

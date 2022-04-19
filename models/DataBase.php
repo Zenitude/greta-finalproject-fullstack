@@ -3,10 +3,10 @@
 class DataBase
 {
     private $host = 'localhost';
-    private $database = 'fullstack';
+    private $database = 'lemontagnard';
     private $charset = 'utf8';
-    private $user = 'root';
-    private $password = 'root';
+    private $user = 'phpmyadmin';
+    private $password = 'Tuning75008';
 
     protected function dbConnect()
     {
@@ -14,7 +14,7 @@ class DataBase
         {
             $db = new PDO('mysql:host='.$this->host.';dbname='.$this->database.';charset='.$this->charset, $this->user, $this->password);
             $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
+            
             return $db;
         }
         catch(PDOException $e)

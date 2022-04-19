@@ -1,5 +1,8 @@
 <!-- Page title / Titre de la page -->
-<?php $title = 'Accueil'; ?>
+<?php 
+    session_start();
+    $title = 'Accueil'; 
+?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>

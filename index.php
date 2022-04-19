@@ -1,5 +1,4 @@
 <?php 
-
 require_once('controllers/mainController.php');
 
 try
@@ -11,7 +10,7 @@ try
             home();
         }
         elseif($_GET['page'] == 'connexion')
-        {       
+        {     
             connexion();
 
             if($_GET['action'] == 'login')
@@ -123,17 +122,17 @@ try
                     gestion();
                 }
             }
+            else
+            {
+                gestion();
+            }
         }
         else
         {
             home();
         }
     }
-    else
-    {
-        home();
-    }
-    
+ 
 }
 catch(Exception $e) 
 {

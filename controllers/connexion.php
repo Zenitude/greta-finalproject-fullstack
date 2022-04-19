@@ -1,6 +1,5 @@
 <?php require('models/Connexion.php');
 
-
 function connexion()
 {
     require_once('views/frontend/connexion/connexion.php');
@@ -9,7 +8,7 @@ function connexion()
 function login()
 {    
     if(isset($_POST['mailConnection']))
-    {
+    {   
         if(empty($_POST['mailConnection']) && empty($_POST['passwordConnection']))
         { 
             header('Location: index.php?page=connexion&err=both');
@@ -30,36 +29,52 @@ function login()
             }
             else
             {
-                $mail = htmlspecialchars($_POST['mailConnection']);
-                $password = htmlspecialchars($_POST['passwordConnection']);
-                $password = md5($password);
-                
-                $loginSite = new Connexion;
-                $allUsers = $loginSite->loginSite($mail, $password);
-                $countUser = count($allUsers);
-                
-    
-                if($countUser <= 0)
-                {   
-                    header('Location: index.php?page=connexion&err=wronguser');
-                }
-                else
-                {
+                try{
                     
-                    foreach ($allUsers as $user)
-                    {
-                        $_SESSION['userAdmin'] = $user['firstname'];
-                        $_SESSION['typeAdmin'] = $user['typeAdmin'];
+                    $mail = htmlspecialchars($_POST['mailConnection']);
+                    $password = htmlspecialchars($_POST['passwordConnection']);
+                    $password = md5($password);
+                    
+                    $loginSite = new Connexion;
+                    $allUsers = $loginSite->loginSite($mail, $password);
+                    $countUser = count($allUsers);
+                    echo $countUser;
+
+                    if($countUser <= 0)
+                    {   
+                        header('Location: index.php?page=connexion&err=wronguser');
                     }
-                    header('Location: index.php?page=administration&section=gestion');
+                    else
+                    {           
+                                
+                        foreach ($allUsers as $user)
+                        {
+                            $_SESSION['userAdmin'] = $user['firstname'];
+                            $_SESSION['typeAdmin'] = $user['typeAdmin'];
+                        }
+                        
+                        try 
+                        {
+
+                            if(isset($_SESSION['userAdmin']))
+                            {
+                                header('Location: index.php?page=administration&section=gestion');
+                            }
+                        }
+                        catch(Exception $error)
+                        {
+                            echo 'Erreur = '.$error;
+                        }
+
+                    }
+                }
+                catch(Exception $e)
+                {
+                    throw new Exception('Erreur = '.$e->getMessage());
                 }
             }
            
         }
     }
-}
-
-function gestion()
-{
-    require('views/frontend/administration/gestion.php');
+    
 }

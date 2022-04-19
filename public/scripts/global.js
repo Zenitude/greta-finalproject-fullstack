@@ -1,5 +1,3 @@
-const { type } = require("jquery");
-
 // Sélection du bâtiment
 const headHotel = document.querySelector('#head img:nth-child(2)');
 
@@ -91,3 +89,9 @@ timeLine
 }
 
 formulaire();*/
+
+let phr = 'blabla';
+phr = phr.split('');
+phr[0] = phr[0].toUpperCase();
+phr = phr.join('');
+console.log(phr);

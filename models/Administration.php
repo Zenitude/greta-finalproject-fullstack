@@ -1,12 +1,6 @@
 <?php
 
-require('models/DataBase.php');
-
-class Administration extends DataBase
+class Administration 
 {
-    public function readGestion()
-    {
-        $db = $this->dbConnect();
-        return $db;
-    }
+
 }

@@ -1,7 +1,15 @@
 <!-- Page title / Titre de la page -->
-<?php $title = 'Connexion'; ?>
+<?php 
+    session_start();
+    $title = 'Connexion'; 
+?>
 
 <!-- Start of content / Début du contenu -->
+<?php if(isset($_SESSION['userAdmin'])): ?>
+<?php 
+    header('Location: index.php?page=administration&section=gestion');
+    else: 
+?>
 <?php ob_start(); ?>
 
 <?php 
@@ -36,6 +44,7 @@
 
 <?php if(isset($errorUser) && $errorUser != ''){ echo $errorUser; } ?>
 
+
 <div class="container w-100">
     <?php if(isset($_SESSION['userAdmin'])){ echo $_SESSION['userAdmin'];} ?>
     <form id="formConnection" action="index.php?page=connexion&action=login" method="POST" class="w-50 mx-auto">
@@ -62,4 +71,6 @@
 <!-- End of content / Fin du contenu -->
 
 <!-- Template call / Appel du template -->
-<?php require('views/template.php');
+<?php 
+    require('views/template.php');
+    endif; ?>

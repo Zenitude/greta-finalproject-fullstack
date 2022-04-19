@@ -6,16 +6,32 @@ class Connexion extends DataBase
 {
     public function loginSite($identify, $password)
     {
-        $db = $this->dbConnect();
+        try{
+            
+            $db = $this->dbConnect();
 
-        $requestConnexion = "SELECT * FROM users WHERE mail = $identify AND password = $password";
-        
-        $verifConnexion = $db->prepare($requestConnexion);
+            $requestConnexion = "SELECT * FROM users WHERE mail = :mail AND pass = :pass";
+            
+            $loginSite = $db->prepare($requestConnexion);
 
-        $verifConnexion->execute() or die(print_r($db->errorInfo()));
+            $loginSite->bindValue(':mail', $identify);
+            $loginSite->bindValue(':pass',$password);
 
-        $connexion = $verifConnexion->fetchAll();
-
-        return $connexion;
+            try{
+                if($loginSite->execute())
+                {
+                    $connexion = $loginSite->fetchAll();
+                }
+                return $connexion;
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur = '.$e->getMessage());
+            }
+        }
+        catch(Exception $e)
+        {
+            throw new Exception('Erreur = '.$e->getMessage());
+        }
     }
 }
