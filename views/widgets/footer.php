@@ -36,7 +36,7 @@
                     <?php if(isset($_SESSION['userAdmin'])): ?>
                         <li><a href="<?php session_destroy(); ?>">Déconnexion</a></li>
                     <?php else: ?>
-                        <li><a href="index.php?page=connexion">Connexion Admin</a></li>
+                        <li><a href="index.php?page=connexion&action=login">Connexion Admin</a></li>
                     <?php endif; ?>
                     <?php if(isset($_SESSION['userAdmin'])): ?>
                         <li><a href="index.php?page=administration&section=gestion">Gestion</a></li>

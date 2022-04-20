@@ -173,6 +173,6 @@
 <!-- Template call / Appel du template -->
 <?php 
     require('views/template.php');
-    else: header('Location: index.php?page=connexion');
+    else: header('Location: index.php?page=connexion&action=login');
     endif;
     

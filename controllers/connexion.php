@@ -75,6 +75,8 @@ function login()
             }
            
         }
+        
     }
+    require_once('views/frontend/connexion/connexion.php');
     
 }

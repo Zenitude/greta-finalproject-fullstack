@@ -13,8 +13,7 @@ try
         }
         elseif($_GET['page'] == 'connexion')
         {     
-            connexion();
-
+            login();
             if($_GET['action'] == 'login')
             {
                 login();
