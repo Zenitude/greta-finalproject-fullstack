@@ -1,6 +1,6 @@
 <!-- Page title / Titre de la page -->
 <?php 
-    session_start();
+
     $title = 'Accueil'; 
 ?>
 
@@ -53,4 +53,4 @@
 <!-- End of content / Fin du contenu -->
 
 <!-- Template call / Appel du template -->
-<?php require('views/template.php'); ?>
+<?php require('views/template.php');?>

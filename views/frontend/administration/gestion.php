@@ -1,12 +1,12 @@
 <!-- Page title / Titre de la page -->
 <?php 
-    session_start();
+    
     $title = 'Réservation Hôtel | Administration'; 
 ?>
-
 <?php 
     if(isset($_SESSION['userAdmin'])):
 ?>
+
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 

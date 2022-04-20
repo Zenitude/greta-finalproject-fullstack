@@ -1,6 +1,8 @@
 <?php 
 require_once('controllers/mainController.php');
 
+
+
 try
 {
     if(isset($_GET['page']))

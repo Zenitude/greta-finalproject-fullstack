@@ -33,11 +33,6 @@
             <nav>
                 <ul>
                     <li><a href="index.php?page=home">Accueil</a></li>
-                    <ul>
-                        <li><a href="">Home</a></li>
-                        <li><a href="">Hotel</a></li>
-                        <li><a href="">Restaurant</a></li>
-                    </ul>
                     <?php if(isset($_SESSION['userAdmin'])): ?>
                         <li><a href="<?php session_destroy(); ?>">Déconnexion</a></li>
                     <?php else: ?>
@@ -47,26 +42,31 @@
                         <li><a href="index.php?page=administration&section=gestion">Gestion</a></li>
                         <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel'): ?>
                         <ul>
-                            <li><a href="index.php?page=administration&section=customers&action=createCustomer">Créer un client</a></li>
+                            <li><a href="index.php?page=administration&section=customers&action=listCustomers">Liste des clients</a></li>
                             <ul>
-                                <li><a href="">Ajouter un conjoint</a></li>
-                                <li><a href="">Ajouter un enfant</a></li>
+                                <li><a href="index.php?page=administration&section=customers&action=createCustomer">Créer un client</a></li>
+                                <li><a href="index.php?page=administration&section=customers&action=addSpouse">Ajouter un conjoint</a></li>
+                                <li><a href="index.php?page)administration&section=customers&action=addChild">Ajouter un enfant</a></li>
                             </ul>
-                            <li><a href="">Créer une réservation</a></li>
-                            <li><a href="">Facturer</a></li>
-                            <li><a href="">Liste des clients</a></li>
-                            <li><a href="">Liste des commandes</a></li>
-                            <li><a href="">Liste des factures</a></li>
-                        </ul>
+                            <li><a href="index.php?page=administration&section=reservations&action=listReservations">Liste des réservations</a></li>
+                            <ul>
+                                <li><a href="index.php?page=administration&section=reservations&action=createReservation">Créer une réservation</a></li>
+                            </ul>
+                            <li><a href="index.php?page=administration&section=invoices&action=listinvoices">Liste des factures</a></li>
+                            <ul>
+                                <li><a href="index.php?page=administration&section=reservations&action=createInvoice">Créer une facture</a></li>
+                            </ul>
+                        
+
                         <?php elseif($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminRestaurant'): ?>
-                        <ul>
-                            <li><a href="">Réserver une table</a></li>
-                            <li><a href="">Menus</a></li>
+                            <li><a href="index.php?page=administration&section=reservations&action=reserveTable">Réserver une table</a></li>
+                            <li><a href="index.php?page=administration&section=reservations&action=chooseMenus">Menus</a></li>
                         </ul>
-                            
                         <?php endif; ?>
+                                
+                    </ul>
                     <?php endif; ?>
-                    <li><a href="">Mentions légales</a></li>
+                    <li><a href="index.php?page=legalNotices">Mentions légales</a></li>
                 </ul>
             </nav>
         </div>

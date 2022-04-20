@@ -40,21 +40,21 @@ function login()
                     $countUser = count($allUsers);
                     echo $countUser;
 
+
                     if($countUser <= 0)
                     {   
                         header('Location: index.php?page=connexion&err=wronguser');
                     }
                     else
                     {           
-                                
-                        foreach ($allUsers as $user)
-                        {
-                            $_SESSION['userAdmin'] = $user['firstname'];
-                            $_SESSION['typeAdmin'] = $user['typeAdmin'];
-                        }
-                        
+                            
                         try 
                         {
+                            foreach ($allUsers as $user)
+                            {
+                                $_SESSION['userAdmin'] = $user['firstname'];
+                                $_SESSION['typeAdmin'] = $user['typeAdmin'];
+                            }
 
                             if(isset($_SESSION['userAdmin']))
                             {
@@ -63,7 +63,7 @@ function login()
                         }
                         catch(Exception $error)
                         {
-                            echo 'Erreur = '.$error;
+                            throw new Exception('Erreur = '.$error->getMessage());
                         }
 
                     }

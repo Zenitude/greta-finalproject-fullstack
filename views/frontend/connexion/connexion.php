@@ -1,16 +1,16 @@
 <!-- Page title / Titre de la page -->
 <?php 
-    session_start();
     $title = 'Connexion'; 
 ?>
-
-<!-- Start of content / Début du contenu -->
 <?php if(isset($_SESSION['userAdmin'])): ?>
 <?php 
     header('Location: index.php?page=administration&section=gestion');
     else: 
 ?>
+<!-- Start of content / Début du contenu -->
+
 <?php ob_start(); ?>
+
 
 <?php 
 
