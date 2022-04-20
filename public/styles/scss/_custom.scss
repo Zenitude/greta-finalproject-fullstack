@@ -1,9 +1,12 @@
+/* Global */
+
 .bodySize
 {
     max-width: 1980px;
     margin: 0 auto;
 }
 
+/* Home first section*/
 #head
 {
     height: 100vh;
@@ -14,6 +17,7 @@
     width: 100%;
 }
 
+/* Flag for translate */
 #translate img
 {
     width: 55px;
@@ -32,3 +36,112 @@ div.skiptranslate
 {
     width: 250px;
 }
+
+/* Gestion */
+
+    /* Global */
+
+    section
+    {
+        width: 95%;
+        background: rgb(255, 255, 255);
+        border: 1px solid #2e5b89;
+        border-radius: 15px;
+        -webkit-border-radius: 15px;
+        -moz-border-radius: 15px;
+        -ms-border-radius: 15px;
+        -o-border-radius: 15px;
+        margin: 15px auto;
+        color: rgb(0, 0, 0);
+    }
+
+    .containerGestion
+    {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    /* Headers section */
+
+    .containerGesiton header
+    {
+        font-size: 1em;
+        margin-bottom: 10px;
+        border: none;
+    }
+
+    /* Content */
+
+    .containerContent
+    {
+        display: flex;
+    }
+
+    /* Action buttons */
+
+    .containerBtns
+    {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .containerBtns a
+    {
+      text-align: center;
+      margin: 5px 15px;
+      text-decoration: none;
+      color: #000000;
+      font-weight: 700;
+    }
+
+    .containerBtns a:hover
+    {
+      color: #340068;
+    }
+
+    .containerBtns img
+    {
+      width: 75px;
+      height: 75px;
+    }
+
+    .containerBtns a:hover img
+    {
+      margin-bottom: 5px;
+      transform: scale(1.2);
+      -webkit-transform: scale(1.2);
+      -moz-transform: scale(1.2);
+      -ms-transform: scale(1.2);
+      -o-transform: scale(1.2);
+    }
+
+    /* Separator */
+
+    .containerContent hr
+    {
+      margin-left: auto;
+    }
+
+    /* Compteurs */
+
+    .containerCount
+    {
+      width: 200px;
+      text-align: center;
+    }
+
+    .containerCount p
+    {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      margin-top: -5px;
+      justify-content: center;
+      align-items: center;
+      font-size: 3rem;
+    }
