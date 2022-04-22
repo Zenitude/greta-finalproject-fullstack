@@ -4,14 +4,14 @@
     $title = 'Réservation Hôtel | Administration'; 
 ?>
 <?php 
-    if(isset($_SESSION['userAdmin'])):
+    if(($_SESSION['userAdmin'] != NULL)):
 ?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
 <h1>Vous êtes connecté !</h1>
-<a href="<?php session_destroy(); header('Location: index.php?page=home');?>">Détruire session</a>
+
 
 <section id="customers">
 
@@ -48,10 +48,19 @@
                 <?php
                     $sqlqueryCountCustomers = "SELECT * FROM `customers`";
                     $queryCountCustomers = $db->prepare($sqlqueryCountCustomers);
-                    $queryCountCustomers->execute();
-                    $CountCustomers = $queryCountCustomers->fetchAll();
-                    $numberCustomers = count($CountCustomers);
-                    echo '<p>'.$numberCustomers.'</p>'; 
+                    
+                    try{
+                        if($queryCountCustomers->execute())
+                        {
+                            $CountCustomers = $queryCountCustomers->fetchAll();
+                            $numberCustomers = count($CountCustomers);
+                            echo '<p>'.$numberCustomers.'</p>'; 
+                        }
+                    }
+                    catch(Exception $e)
+                    {
+                        throw new Exception('Erreur = '.$e->getMessage());
+                    }
                 ?>
             </div>
 
@@ -102,12 +111,21 @@
             <div class="containerCount">
                 <h3>Nombre de Réservations</h3>
                 <?php
-                    $sqlqueryCountReservations = "SELECT * FROM `reservations`";
+                    $sqlqueryCountReservations = "SELECT * FROM `reservationshotel`";
                     $queryCountReservations = $db->prepare($sqlqueryCountReservations);
-                    $queryCountReservations->execute();
-                    $CountReservations = $queryCountReservations->fetchAll();
-                    $numberReservations = count($CountReservations);
-                    echo '<p>'.$numberReservations.'</p>'; 
+                    
+                    try{
+                        if($queryCountReservations->execute())
+                        {
+                            $CountReservations = $queryCountReservations->fetchAll();
+                            $numberReservations = count($CountReservations);
+                            echo '<p>'.$numberReservations.'</p>'; 
+                        }
+                    }
+                    catch(Exception $e)
+                    {
+                        throw new Exception('Erreur = '.$e->getMessage());
+                    }
                 ?>
             </div>
 
@@ -153,9 +171,19 @@
                     $sqlqueryCountInvoices = "SELECT * FROM `invoices`";
                     $queryCountInvoices = $db->prepare($sqlqueryCountInvoices);
                     $queryCountInvoices->execute();
-                    $CountInvoices = $queryCountInvoices->fetchAll();
-                    $numberInvoices = count($CountInvoices);
-                    echo '<p>'.$numberInvoices.'</p>'; 
+                    
+                    try{
+                        if($queryCountInvoices->execute())
+                        {
+                            $CountInvoices = $queryCountInvoices->fetchAll();
+                            $numberInvoices = count($CountInvoices);
+                            echo '<p>'.$numberInvoices.'</p>'; 
+                        }
+                    }
+                    catch(Exception $e)
+                    {
+                        throw new Exception('Erreur = '.$e->getMessage());
+                    }
                 ?>
             </div>
 

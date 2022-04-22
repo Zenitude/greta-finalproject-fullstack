@@ -32,7 +32,7 @@
                 $errorIdentify = '<span class="text-danger ps-3"> Email invalide !</span>';
                 break;
             case 'wronguser':
-                $errorUser = '<p class="bg-warning text-light text-center"> Utilisateur introuvable ! </p>';
+                $errorUser = '<p class="bg-danger text-light text-center"> Utilisateur introuvable ! </p>';
                 break;
             default :
                 $errorIdentify = '';

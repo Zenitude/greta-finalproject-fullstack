@@ -1,7 +1,7 @@
 /* Création de la table users */
 CREATE TABLE `lemontagnard`.`users`
 (
-    `id` INT NOT NULL AUTO_INCREMENT,
+    `id` INT AUTO_INCREMENT,
     `lastname` VARCHAR(255) NOT NULL,
     `firstname` VARCHAR(255) NOT NULL,
     `mail` VARCHAR(255) NOT NULL,

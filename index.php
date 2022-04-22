@@ -1,4 +1,5 @@
 <?php 
+session_start();
 require_once('controllers/mainController.php');
 
 
@@ -133,9 +134,17 @@ try
             home();
         }
     }
+    if(isset($_GET['action']))
+    {
+        if($_GET['action'] == 'deconnexion')
+        {
+            deconnexion();
+        }
+    }
  
 }
 catch(Exception $e) 
 {
     echo 'Erreur : ' . $e->getMessage();
 }
+

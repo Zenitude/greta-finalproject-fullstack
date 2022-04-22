@@ -1,5 +1,3 @@
-<?php session_start(); ?>
-
 <!DOCTYPE html>
 <html lang="fr">
     <head>
@@ -14,8 +12,6 @@
         <div class="container-fluid bodySize m-0 p-0 bg-white">
 
             <?php require('widgets/navbar.php'); ?>
-
-<?php var_dump($_SESSION);?>
 
             <?= $content ?>
 

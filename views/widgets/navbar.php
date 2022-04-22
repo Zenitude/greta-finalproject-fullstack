@@ -4,7 +4,7 @@
             <li class="nav-item <?php echo $activeHome; ?>"><a href="index.php?page=home#home" class="nav-link fw-bold text-darkness">Home</a></li>
             <li class="nav-item <?php echo $activeHotel; ?>"><a href="index.php?page=home#hotel" class="nav-link fw-bold text-darkness">Hôtel</a></li>
             <li class="nav-item <?php echo $activeRestaurant; ?>"><a href="index.php?page=home#restaurant" class="nav-link fw-bold text-darkness">Restaurant</a></li>
-                <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel'): ?>
+                <?php if(isset($_SESSION['typeAdmin']) && ($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel')): ?>
                     <li class="nav-item"><a href="index.php?page=administration&section=gestion" class="nav-link fw-bold text-darkness">Gestion</a></li>
             <?php endif; ?>
         </ul>

@@ -34,30 +34,24 @@ function login()
                     $mail = htmlspecialchars($_POST['mailConnection']);
                     $password = htmlspecialchars($_POST['passwordConnection']);
                     $password = md5($password);
-                    
-                    $loginSite = new Connexion;
-                    $allUsers = $loginSite->loginSite($mail, $password);
-                    $countUser = count($allUsers);
-                    echo $countUser;
-
+   
+                    $loginBD = new Connexion;
+                    $user = $loginBD->loginSite($mail, $password);
+                    $countUser = count($user);                   
 
                     if($countUser <= 0)
                     {   
                         header('Location: index.php?page=connexion&err=wronguser');
                     }
                     else
-                    {           
+                    {         
                             
                         try 
                         {
-                            foreach ($allUsers as $user)
+                            if($user)
                             {
                                 $_SESSION['userAdmin'] = $user['firstname'];
                                 $_SESSION['typeAdmin'] = $user['typeAdmin'];
-                            }
-
-                            if(isset($_SESSION['userAdmin']))
-                            {
                                 header('Location: index.php?page=administration&section=gestion');
                             }
                         }
@@ -65,7 +59,6 @@ function login()
                         {
                             throw new Exception('Erreur = '.$error->getMessage());
                         }
-
                     }
                 }
                 catch(Exception $e)
@@ -79,4 +72,11 @@ function login()
     }
     require_once('views/frontend/connexion/connexion.php');
     
+}
+
+function deconnexion()
+{
+    $deco = new Connexion;
+    $decoSite = $deco->deconnectSite();
+    return $decoSite;
 }
