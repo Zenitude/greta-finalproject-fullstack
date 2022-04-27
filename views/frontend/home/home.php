@@ -13,8 +13,8 @@
     </section>
 
     <section id="hotel" class="container">
-        <div id="presentation">
-            <h2 class="text-center">Nôtre Hôtel</h2>
+        <div id="presentation" class="pt-5">
+            <h2 class="text-center display-5 fw-bold">Nôtre Hôtel</h2>
             <div  class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
                 <div><img src="public/resources/images/home/head/hotel.jpg" class="w-50 h-100" alt=""></div>
                 <div>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam, blanditiis?</div>
@@ -24,22 +24,58 @@
                 <div>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quod, cupiditate.</div>
             </div>
         </div>
-        <div id="activities" >
-            <h2 class="text-center">Activités</h2>
-            <div class="row row-cols-1 row-cols-md-2 g-3">
-                <div></div>
-                <div></div>
+        <div id="activities" class="pt-4">
+            <h2 class="text-center display-5 fw-bold">Activités</h2>
+            <div class="row row-cols-1 row-cols-md-2 g-5 mt-1 mb-5">
+                <div>
+                    <div class="card">
+                        <h4 class="text-center bg-beige">Internes</h4>
+                        <div></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="card">
+                        <h4 class="text-center bg-beige">Externes</h4>
+                        <div></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <section id="restaurant">
-        <div id="chefs" class="bg-beige">
-        <h2 class="text-center">Nôtre Restaurant</h2>
-            <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
-                <div></div>
-                <div></div>
-                <div></div>
+        <div id="chefs" class="bg-beige pt-4">
+        <h2 class="text-center display-5 fw-bold">Nôtre Restaurant</h2>
+        <div class="container py-5">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-3">
+                    <div>
+                        <div class="card">
+                            <img src="public/resources/images/home/restaurant/chefSavoyard.jpg" alt="le chef savoyard">
+                            <div class="p-5">
+                                <h4 class="mb-4">Chef Savoyard</h4>
+                                <p class="text-justify">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus recusandae inventore non ipsum ullam at dolorem harum accusamus nisi! Doloribus.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <img src="public/resources/images/home/restaurant/chefGastronomique.jpg" alt="le chef gastronomique">
+                            <div class="p-5">
+                                <h4 class="mb-4">Chef Gastronomique</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Delectus dolorum distinctio, vel fuga eveniet vero vitae? Officiis molestiae explicabo dolorem!</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="card">
+                            <img src="public/resources/images/home/restaurant/chefPatissier.png" alt="le chef patissier">
+                            <div class="p-5">
+                                <h4 class="mb-4">Chef pâtissier</h4>
+                                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa nam dolorum vero beatae accusantium debitis modi, ut incidunt tempore? Suscipit.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div id="carouselHome" class="carousel slide position-relative" data-bs-ride="carousel" data-bs-pause="false" data-bs-interval="4000">
