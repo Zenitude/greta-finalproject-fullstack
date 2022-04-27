@@ -5,7 +5,7 @@ const headHotel = document.querySelector('#head img:nth-child(2)');
 const timeLine = gsap.timeline();
 
 // Création de l'animation
-timeLine
+/*timeLine
     .to(headHotel,
     {
         y: 100,
@@ -14,7 +14,7 @@ timeLine
             trigger: 'head',
             scrub: true
         }
-    })
+    })*/
 
 // Formulaires
 /*function formulaire()

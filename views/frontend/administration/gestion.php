@@ -1,6 +1,6 @@
 <!-- Page title / Titre de la page -->
-<?php 
-    
+<?php
+
     $title = 'Réservation Hôtel | Administration'; 
 ?>
 <?php 
@@ -10,10 +10,10 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
-<h1>Vous êtes connecté !</h1>
+<h1 class="text-center my-3">Bonjour <?= $_SESSION['userAdmin'] ?> !</h1>
 
 
-<section id="customers">
+<section id="customers" class="sectionGestion">
 
     <div class="containerGestion">
 
@@ -25,19 +25,19 @@
         <div class="containerContent">
 
             <div class="containerBtns">
-                <a href="" class="btn-listing">
-                    <img src="" alt="Lister les clients">
+                <a href="index.php?page=gestion&section=customers&action=listCustomers" class="btn-listing">
+                    <img src="public/resources/images/gestion/lister.png" alt="Lister les clients" class="">
                 <br>Lister</a>
 
-                <a href="" class="btn-create">
-                    <img src="" alt="Créer un client">
+                <a href="index.php?page=gestion&section=customers&action=createCustomer" class="btn-create">
+                    <img src="public/resources/images/gestion/ajouter.png" alt="Créer un client">
                 <br>Créer</a>
 
-                <a href="" class="btn-update">
-                    <img src="" alt="Modifier un client">
+                <a href="index.php?page=gestion&section=customers&action=updateCustomer" class="btn-update">
+                    <img src="public/resources/images/gestion/modifier.png" alt="Modifier un client">
                 <br>Modifier</a>
-                <a href="" class="btn-delete">
-                    <img src="" alt="supprimer un client">
+                <a href="index.php?page=gestion&section=customers&action=deleteCustomer" class="btn-delete">
+                    <img src="public/resources/images/gestion/supprimer.png" alt="supprimer un client">
                 <br>Supprimer</a>
             </div>
 
@@ -46,6 +46,8 @@
             <div class="containerCount">
                 <h3>Nombre de clients</h3>
                 <?php
+                
+                    /*
                     $sqlqueryCountCustomers = "SELECT * FROM `customers`";
                     $queryCountCustomers = $db->prepare($sqlqueryCountCustomers);
                     
@@ -60,7 +62,7 @@
                     catch(Exception $e)
                     {
                         throw new Exception('Erreur = '.$e->getMessage());
-                    }
+                    }*/
                 ?>
             </div>
 
@@ -70,7 +72,7 @@
         
 </section>
 
-<section id="reservations">
+<section id="reservations" class="sectionGestion">
 
     <div class="containerGestion">
 
@@ -82,27 +84,32 @@
         <div class="containerContent">
 
             <div class="containerBtns">
-                <a href="" class="btn-listing">
-                    <img src="" alt="Lister les réservations">
+                <a href="index.php?page=gestion&section=reservations&action=listReservations" class="btn-listing">
+                    <img src="public/resources/images/gestion/lister.png" alt="Lister les réservations">
                 <br>Lister</a>
 
-                <a href="" class="btn-create">
-                    <img src="" alt="Créer une réservation">
+                <a href="index.php?page=gestion&section=reservations&action=createReservation" class="btn-create">
+                    <img src="public/resources/images/gestion/ajouter.png" alt="Créer une réservation">
                 <br>Créer</a>
 
-                <a href="" class="btn-update">
-                    <img src="" alt="Modifier une réservation">
+                <a href="index.php?page=gestion&section=reservations&action=updateReservation" class="btn-update">
+                    <img src="public/resources/images/gestion/modifier.png" alt="Modifier une réservation">
                 <br>Modifier</a>
-                <a href="" class="btn-delete">
-                    <img src="" alt="supprimer une réservation">
+
+                <a href="index.php?page=gestion&section=reservations&action=deleteReservation" class="btn-delete">
+                    <img src="public/resources/images/gestion/supprimer.png" alt="supprimer une réservation">
                 <br>Supprimer</a>
 
-                <a href="" class="btn-create">
-                    <img src="" alt="Réserver une table">
+                <a href="index.php?page=gestion&section=reservations&action=addExtras" class="btn-create">
+                    <img src="public/resources/images/gestion/ajouter.png" alt="Ajouter des extras">
+                <br>Extras</a>
+
+                <a href="index.php?page=gestion&section=reservations&action=reserveTable" class="btn-create">
+                    <img src="public/resources/images/gestion/table.png" alt="Réserver une table">
                 <br>Tables</a>
 
-                <a href="" class="btn-create">
-                    <img src="" alt="Choisir les menus">
+                <a href="index.php?page=gestion&section=reservations&action=choiceMenus" class="btn-create">
+                    <img src="public/resources/images/gestion/menus.png" alt="Choisir les menus">
                 <br>Menus</a>
             </div>
 
@@ -111,7 +118,7 @@
             <div class="containerCount">
                 <h3>Nombre de Réservations</h3>
                 <?php
-                    $sqlqueryCountReservations = "SELECT * FROM `reservationshotel`";
+                    /*$sqlqueryCountReservations = "SELECT * FROM `reservationshotel`";
                     $queryCountReservations = $db->prepare($sqlqueryCountReservations);
                     
                     try{
@@ -125,7 +132,7 @@
                     catch(Exception $e)
                     {
                         throw new Exception('Erreur = '.$e->getMessage());
-                    }
+                    }*/
                 ?>
             </div>
 
@@ -135,7 +142,7 @@
         
 </section>
 
-<section id="invoices">
+<section id="invoices" class="sectionGestion">
 
     <div class="containerGestion">
 
@@ -147,19 +154,20 @@
         <div class="containerContent">
 
             <div class="containerBtns">
-                <a href="" class="btn-listing">
-                    <img src="" alt="Lister les factures">
+                <a href="index.php?page=gestion&section=invoices&action=listInvoices" class="btn-listing">
+                    <img src="public/resources/images/gestion/lister.png" alt="Lister les factures">
                 <br>Lister</a>
 
-                <a href="" class="btn-create">
-                    <img src="" alt="Créer une facture">
+                <a href="index.php?page=gestion&section=invoices&action=createInvoice" class="btn-create">
+                    <img src="public/resources/images/gestion/ajouter.png" alt="Créer une facture">
                 <br>Créer</a>
 
-                <a href="" class="btn-update">
-                    <img src="" alt="Modifier une facture">
+                <a href="index.php?page=gestion&section=invoices&action=updateInvoice" class="btn-update">
+                    <img src="public/resources/images/gestion/modifier.png" alt="Modifier une facture">
                 <br>Modifier</a>
-                <a href="" class="btn-delete">
-                    <img src="" alt="supprimer une facture">
+
+                <a href="index.php?page=gestion&section=invoices&action=deleteInvoice" class="btn-delete">
+                    <img src="public/resources/images/gestion/supprimer.png" alt="supprimer une facture">
                 <br>Supprimer</a>
             </div>
 
@@ -168,7 +176,7 @@
             <div class="containerCount">
                 <h3>Nombre de Factures</h3>
                 <?php
-                    $sqlqueryCountInvoices = "SELECT * FROM `invoices`";
+                   /* $sqlqueryCountInvoices = "SELECT * FROM `invoices`";
                     $queryCountInvoices = $db->prepare($sqlqueryCountInvoices);
                     $queryCountInvoices->execute();
                     
@@ -183,7 +191,7 @@
                     catch(Exception $e)
                     {
                         throw new Exception('Erreur = '.$e->getMessage());
-                    }
+                    }*/
                 ?>
             </div>
 

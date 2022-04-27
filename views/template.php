@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="public/styles/css/raw/main.css">
         <title><?= 'Le Montagnard | '.$title ?></title>
     </head>
-    <body id="google_translate_element" class="bodySize w-100 h-100 bg-beige">
+    <body id="google_translate_element" class="bodySize w-100 h-100 bg-whiteness">
         
         <div class="container-fluid bodySize m-0 p-0 bg-white">
 
@@ -19,7 +19,6 @@
 
         </div>
         
-        <script src="public/scripts/bootstrap.bundle.js" type="text/javascript"></script>
         <script src="public/scripts/fontawesome.js" type="text/javascript"></script>
         <script src="public/scripts/gsap.min.js" type="text/javascript"></script>
         <script src="public/scripts/scrolltrigger.min.js" type="text/javascript"></script>
@@ -30,7 +29,8 @@
                 e.preventDefault();
                 new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); 
             })
-        </script>
+            </script>
+        <script src="public/scripts/bootstrap.bundle.js" type="text/javascript"></script>
         <script src="public/scripts/global.js" type="text/javascript"></script>
     </body>
 </html>

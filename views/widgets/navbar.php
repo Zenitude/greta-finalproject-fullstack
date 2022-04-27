@@ -9,7 +9,7 @@
             <?php endif; ?>
         </ul>
         <div id="translate" class="position-absolute top-0 end-0 me-1 d-flex justify-content-between">
-            <a id="tradeFr"><img src="public/resources/images/drapeau-francais.png" alt="Translate French - Traduire en français" class="img-fluid"></a>    
+            <a id="tradeFr"><img src="public/resources/images/translate/drapeau-francais.png" alt="Translate French - Traduire en français" class="img-fluid"></a>    
         </div>
     </nav>
 </div>
