@@ -9,4 +9,5 @@ class Home extends DataBase
         $db = $this->dbConnect();
         return $db;
     }
+
 }

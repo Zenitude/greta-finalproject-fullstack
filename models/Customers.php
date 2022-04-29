@@ -1,12 +1,8 @@
 <?php
 
-require('models/DataBase.php');
 
-class Customers extends DataBase
+
+class Customers 
 {
-    public function readCustomers()
-    {
-        $db = $this->dbConnect();
-        return $db;
-    }
+    
 }

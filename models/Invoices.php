@@ -1,12 +1,6 @@
 <?php
 
-require('models/DataBase.php');
-
-class Invoices extends DataBase
+class Invoices
 {
-    public function readInvoices()
-    {
-        $db = $this->dbConnect();
-        return $db;
-    }
+    
 }

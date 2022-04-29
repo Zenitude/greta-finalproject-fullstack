@@ -1,12 +1,6 @@
 <?php
 
-require('models/DataBase.php');
-
-class Reservations extends DataBase
+class Reservations
 {
-    public function readReservations()
-    {
-        $db = $this->dbConnect();
-        return $db;
-    }
+    
 }

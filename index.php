@@ -2,8 +2,6 @@
 session_start();
 require_once('controllers/mainController.php');
 
-
-
 try
 {
     if(isset($_GET['page']))
@@ -19,6 +17,10 @@ try
             {
                 login();
             }
+        }
+        elseif($_GET['page'] == 'legalNotices')
+        {
+            legalNotices();
         }
         elseif($_GET['page'] == 'administration')
         {

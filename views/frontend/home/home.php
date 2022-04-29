@@ -1,8 +1,5 @@
 <!-- Page title / Titre de la page -->
-<?php 
-
-    $title = 'Accueil'; 
-?>
+<?php $title = 'Accueil'; ?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
@@ -149,15 +146,15 @@
                     </div>
                 </div>
             </div>
-  <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Previous</span>
-  </button>
-  <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="visually-hidden">Next</span>
-  </button>
-</div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
     </section>
 
 <?php $content = ob_get_clean(); ?>
