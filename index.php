@@ -141,6 +141,10 @@ try
             deconnexion();
         }
     }
+    else
+    {
+        home();
+    }
  
 }
 catch(Exception $e) 

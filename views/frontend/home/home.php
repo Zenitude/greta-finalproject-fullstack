@@ -14,47 +14,55 @@
 
     <section id="hotel">
         <div id="presentation" class="pt-5 bg-beige">
-            <div class="container">
-                <h2 class="text-center display-5 fw-bold">Nôtre Hôtel</h2>
-                <div  class="row row-cols-1 row-cols-md-2 g-3">
-                    <div><img src="public/resources/images/home/head/hotel.jpg" class="w-75 h-75 img-fluid" alt="vue hotel externe"></div>
-                    <div class="p-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate necessitatibus deserunt nulla libero laudantium, dicta, voluptatem amet ad impedit recusandae quidem expedita. Ullam tenetur eveniet doloribus eos asperiores voluptates expedita dolorum similique ad architecto, fugit voluptate libero temporibus, consequatur nam. Delectus cum quisquam expedita quo rem. Consequuntur enim tempora magnam.</div>
-                    <div class="p-5">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Modi soluta perspiciatis, fugiat nobis dolor, odio corporis minus cum obcaecati repellendus quis possimus illo facilis impedit vel consequuntur necessitatibus consectetur esse ad quisquam excepturi dignissimos saepe cumque atque! Nostrum quidem quaerat fugiat placeat tempora aspernatur eius officia reprehenderit expedita dicta. Doloremque!</div>
-                    <div><img src="public/resources/images/home/hotel/vue-montagne.jpg" class="w-75 h-75 img-fluid" alt="chambre luxe"></div>
-                    <div><img src="public/resources/images/home/hotel/restaurant-vue.jpg" class="w-75 h-75 img-fluid" alt="vue restaurant"></div>
-                    <div class="p-5">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maxime, tempore, aspernatur laborum nihil accusantium voluptatibus vero non pariatur inventore ut quis incidunt maiores. Pariatur et adipisci minus obcaecati velit suscipit quidem quam maxime, tempore eligendi soluta, asperiores consequuntur nemo fuga ad. Accusantium commodi ipsa nesciunt eligendi fugiat ea fugit expedita.</div>
+            <div class="container text-center">
+                <h2 class="text-center display-5 fw-bold mb-5">Nôtre Hôtel</h2>
+                <div  class="row row-cols-1 row-cols-lg-2 g-1 g-lg-4">
+                    <div class="order-first order-lg-first"><img src="public/resources/images/home/hotel/hotel.jpg" class="w-75 h-75" alt="vue hotel externe"></div>
+                    
+                    <div class="order-lg-2 p-5 pt-2 fs-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nulla, quasi ratione tempora officiis, officia, cupiditate maxime quam veniam rem assumenda perferendis excepturi corporis quod est modi? Accusamus ipsam recusandae voluptatibus?</div>
+                    
+                    <div class="order-3 order-lg-4"><img src="public/resources/images/home/hotel/vue-montagne.jpg" class="w-75 h-75" alt="chambre luxe"></div>
+                    
+                    <div class="order-4 order-lg-3 p-5 pt-2 fs-5">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias aut tempore expedita consectetur aliquid asperiores, repudiandae dolor adipisci iure incidunt sapiente maxime. Cum sapiente impedit suscipit qui nihil quos id.</div>
+                                        
+                    <div class="order-5 order-lg-5"><img src="public/resources/images/home/hotel/restaurant-vue.jpg" class="w-75 h-75" alt="vue restaurant"></div>
+                    
+                    <div class="order-last order-lg-last p-5 pt-2 fs-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos consequatur ipsam tempore sit dolorum in, totam facere corrupti, dolores iure a id fugit possimus molestiae iste ducimus. Odio, laboriosam alias?</div>
                 </div>
             </div>
         </div>
-        <div id="activities" class="pt-4 container">
-            <h2 class="text-center display-5 fw-bold">Activités</h2>
-            <div class="row row-cols-1 row-cols-md-2 g-5 mt-1 mb-5">
-                <div>
-                    <div class="card">
-                        <h4 class="text-center bg-beige">Internes</h4>
-                        <ul class="list-group">
-                            <li class="list-group-item">Booling</li>
-                            <li class="list-group-item">Piscine chauffée</li>
-                            <li class="list-group-item">Billard</li>
-                            <li class="list-group-item">Arcade</li>
-                            <li class="list-group-item">Sauna</li>
-                            <li class="list-group-item">Bain nordique</li>
-                            <li class="list-group-item">etc...</li>
-                        </ul>
+        <div id="activities" class="pt-4 pb-5 bg-white">
+            <div class="container">
+                <h2 class="text-center display-5 fw-bold">Activités</h2>
+                <div class="row row-cols-1 row-cols-md-2 g-5 mt-1">
+                    <div>
+                        <div class="card bg-beige">
+                            <h4 class="text-center bg-beige">Internes</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">Booling</li>
+                                <li class="list-group-item">Piscine chauffée</li>
+                                <li class="list-group-item">Billard</li>
+                                <li class="list-group-item">Arcade</li>
+                                <li class="list-group-item">Sauna</li>
+                                <li class="list-group-item">Bain nordique</li>
+                                <li class="list-group-item">etc...</li>
+                            </ul>
+                        </div>
                     </div>
-                </div>
-                <div>
-                    <div class="card">
-                        <h4 class="text-center bg-beige">Externes</h4>
-                        <ul class="list-group">
-                            <li class="list-group-item">Ski</li>
-                            <li class="list-group-item">Snowboard</li>
-                            <li class="list-group-item">Handiski</li>
-                            <li class="list-group-item">Téléphérique</li>
-                            <li class="list-group-item">Randonné</li>
-                            <li class="list-group-item">Ascension</li>
-                            <li class="list-group-item">etc...</li>
-                        </ul>
+                
+                    <div>
+                        <div class="card bg-beige">
+                            <h4 class="text-center bg-beige">Externes</h4>
+                            <ul class="list-group">
+                                <li class="list-group-item">Ski</li>
+                                <li class="list-group-item">Snowboard</li>
+                                <li class="list-group-item">Handiski</li>
+                                <li class="list-group-item">Téléphérique</li>
+                                <li class="list-group-item">Randonné</li>
+                                <li class="list-group-item">Ascension</li>
+                                <li class="list-group-item">etc...</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
