@@ -33,16 +33,19 @@
             <nav>
                 <ul>
                     <li><a href="index.php?page=home">Accueil</a></li>
+
                     <?php if(isset($_SESSION['userAdmin'])): ?>
                         <li><a href="index.php?action=deconnexion">Déconnexion</a></li>
                     <?php else: ?>
                         <li><a href="index.php?page=connexion&action=login">Connexion Admin</a></li>
                     <?php endif; ?>
+
                     <?php if(isset($_SESSION['userAdmin'])): ?>
                         <li><a href="index.php?page=administration&section=gestion">Gestion</a></li>
-                        <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel'): ?>
+                        
                         <ul>
                             <li><a href="index.php?page=administration&section=customers&action=listCustomers">Liste des clients</a></li>
+                            <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel'): ?>
                             <ul>
                                 <li><a href="index.php?page=administration&section=customers&action=createCustomer">Créer un client</a></li>
                                 <li><a href="index.php?page=administration&section=customers&action=addSpouse">Ajouter un conjoint</a></li>
@@ -56,14 +59,16 @@
                             <ul>
                                 <li><a href="index.php?page=administration&section=reservations&action=createInvoice">Créer une facture</a></li>
                             </ul>
-                        
-
-                        <?php elseif($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminRestaurant'): ?>
-                            <li><a href="index.php?page=administration&section=reservations&action=reserveTable">Réserver une table</a></li>
-                            <li><a href="index.php?page=administration&section=reservations&action=chooseMenus">Menus</a></li>
                         </ul>
                         <?php endif; ?>
+                        <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminRestaurant'): ?>
+                            <?php if($_SESSION['typeAdmin'] == 'adminPrincipal'): ?><ul><?php endif; ?>
+                                <li><a href="index.php?page=administration&section=reservations&action=reserveTable">Réserver une table</a></li>
+                                <li><a href="index.php?page=administration&section=reservations&action=chooseMenus">Menus</a></li>
+                            <?php if($_SESSION['typeAdmin'] == 'adminPrincipal'): ?><ul><?php endif; ?>
+                        <?php endif; ?>
                                 
+                    </ul>
                     </ul>
                     <?php endif; ?>
                     <li><a href="index.php?page=legalNotices">Mentions légales</a></li>

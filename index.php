@@ -6,11 +6,7 @@ try
 {
     if(isset($_GET['page']))
     {
-        if($_GET['page'] == 'home')
-        {
-            home();
-        }
-        elseif($_GET['page'] == 'connexion')
+        if($_GET['page'] == 'connexion')
         {     
             login();
             if($_GET['action'] == 'login')
@@ -131,10 +127,7 @@ try
                 gestion();
             }
         }
-        else
-        {
-            home();
-        }
+    
     }
     if(isset($_GET['action']))
     {

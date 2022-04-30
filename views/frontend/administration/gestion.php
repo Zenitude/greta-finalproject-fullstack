@@ -10,8 +10,7 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
-<h1 class="text-center my-3">Bonjour <?= $_SESSION['userAdmin'] ?> !</h1>
-
+<h1 class="text-center my-3">Bonjour <?= $_SESSION['userAdmin']?> !</h1>
 
 <section id="customers" class="sectionGestion">
 
@@ -29,6 +28,7 @@
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les clients" class="">
                 <br>Lister</a>
 
+                <?php if($_SESSION['typeAdmin'] != 'adminRestaurant'): ?>
                 <a href="index.php?page=administration&section=customers&action=createCustomer" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer un client">
                 <br>Créer</a>
@@ -39,6 +39,7 @@
                 <a href="index.php?page=administration&section=customers&action=deleteCustomer" class="btn-delete">
                     <img src="public/resources/images/gestion/supprimer.png" alt="supprimer un client">
                 <br>Supprimer</a>
+                <?php endif; ?>
             </div>
 
             <hr>
@@ -84,6 +85,7 @@
         <div class="containerContent">
 
             <div class="containerBtns">
+                <?php if($_SESSION['typeAdmin'] != 'adminRestaurant'): ?>
                 <a href="index.php?page=administration&section=reservations&action=listReservations" class="btn-listing">
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les réservations">
                 <br>Lister</a>
@@ -103,6 +105,7 @@
                 <a href="index.php?page=administration&section=reservations&action=addExtras" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Ajouter des extras">
                 <br>Extras</a>
+                <?php endif; ?>
 
                 <a href="index.php?page=administration&section=reservations&action=reserveTable" class="btn-create">
                     <img src="public/resources/images/gestion/table.png" alt="Réserver une table">
@@ -142,6 +145,7 @@
         
 </section>
 
+<?php if($_SESSION['typeAdmin'] != 'adminRestaurant'): ?>
 <section id="invoices" class="sectionGestion">
 
     <div class="containerGestion">
@@ -200,6 +204,7 @@
     </div>
         
 </section>
+<?php endif; ?>
 
 
 

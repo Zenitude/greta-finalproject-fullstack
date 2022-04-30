@@ -10,11 +10,32 @@ CREATE TABLE `lemontagnard`.`users`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `users`(lastname, firstname, mail, password, typeAdmin) VALUES
+INSERT INTO `users`(lastname, firstname, mail, pass, typeAdmin) VALUES
 (
     'Mollet',
     'Rudy',
     'mollet.rudy@gmail.com',
     '21232f297a57a5a743894a0e4a801fc3',
     'adminPrincipal'
+),
+(
+    'Admin',
+    'Principale',
+    'admin@gmail.com',
+    '21232f297a57a5a743894a0e4a801fc3',
+    'adminPrincipal'
+),
+(
+    'Admin',
+    'Hotel',
+    'adminHotel@gmail.com',
+    '21232f297a57a5a743894a0e4a801fc3',
+    'adminHotel'
+),
+(
+    'Admin',
+    'Restaurant',
+    'adminRestaurant@gmail.com',
+    '21232f297a57a5a743894a0e4a801fc3',
+    'adminRestaurant'
 );

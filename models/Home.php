@@ -1,13 +1,6 @@
 <?php
 
-require('models/DataBase.php');
-
-class Home extends DataBase
+class Home
 {
-    public function readHome()
-    {
-        $db = $this->dbConnect();
-        return $db;
-    }
 
 }

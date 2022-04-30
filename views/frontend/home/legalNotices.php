@@ -1,5 +1,5 @@
 <!-- Page title / Titre de la page -->
-<?php $title = 'Réservation Hôtel | Liste des réservations'; ?>
+<?php $title = 'Mentions Légales'; ?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
