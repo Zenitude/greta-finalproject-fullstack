@@ -11335,4 +11335,9 @@ div.skiptranslate {
   font-size: 3rem;
 }
 
+/* Tableaux */
+table td {
+  vertical-align: middle;
+}
+
 /*# sourceMappingURL=main.css.map */

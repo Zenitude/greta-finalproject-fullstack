@@ -1,6 +1,6 @@
 <?php
 
-require('models/DataBase.php');
+require_once('models/DataBase.php');
 
 class Connexion extends DataBase
 {

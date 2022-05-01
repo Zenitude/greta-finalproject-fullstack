@@ -34,6 +34,10 @@ try
                 {
                     createCustomer();
                 }
+                elseif($_GET['action'] == 'addCustomer')
+                {
+                    addAnCustomer();
+                }
                 elseif($_GET['action'] == 'addSpouse')
                 {
                     addSpouse();
