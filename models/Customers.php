@@ -30,43 +30,37 @@ class Customers extends DataBase
         $numberReservations = $db->prepare($requestNumberReservations);
         $numberReservations->bindParam(':idCustomer', $id);
         $numberReservations->execute();
+        $reservations = $numberReservations->fetchAll();
 
-        return $numberReservations;
+        return $reservations;
     }
 
     function addCustomer($lastname, $firstname, $mail, $phone, $birthDate, $street, $zipCode, $city, $vip, $idConjoint)
     {
-        var_dump('nom : $lastname');
-        var_dump($firstname);
-        var_dump($mail);
-        var_dump($phone);
-        var_dump($birthDate);
-        var_dump($street);
-        var_dump($zipCode);
-        var_dump($city);
-        var_dump($idConjoint);
 
-        print('nom : $lastname');
-        print($firstname);
-        print($mail);
-        print($phone);
-        print($birthDate);
-        print($street);
-        print($zipCode);
-        print($city);
-        print($idConjoint);
+        /*var_dump('C-nom : '.$lastname);
+        var_dump('C-prenom : '.$firstname);
+        var_dump('C-mail : '.$mail);
+        var_dump('C-phone : '.$phone);
+        var_dump('C-date : '.$birthDate);
+        var_dump('C-rue : '.$street);
+        var_dump('C-cp : '.$zipCode);
+        var_dump('C-ville : '.$city);
+        var_dump('C-conjoint : '.$idConjoint);
+        var_dump('C-vip : '.$vip);*/
 
         try{
+
             $db = $this->dbConnect();
-            $requestSearchCustomer = "SELECT * FROM customers WHERE lastname = :lastname AND firstname = :firstname AND birthDate = :birthDate AND mail = :mail";
+            $requestSearchCustomer = "SELECT * FROM customers WHERE lastname = :lastname AND firstname = :firstname AND birthdate = :birthDate AND mail = :mail";
             $searchCustomer = $db->prepare($requestSearchCustomer);
             $searchCustomer->bindParam(':lastname', $lastname);
             $searchCustomer->bindParam(':firstname', $firstname);
             $searchCustomer->bindParam(':birthDate', $birthDate);
             $searchCustomer->bindParam(':mail', $mail);
             $searchCustomer->execute();
-            $customer = $searchCustomer->fetch();
-            $countCustomer = count($customer);
+            $customerSearch = $searchCustomer->fetchAll();
+            $countCustomer = count($customerSearch);
 
             if($countCustomer > 0)
             {
@@ -74,15 +68,15 @@ class Customers extends DataBase
             }
             else
             {
-                $requestSearchAddress = "SELECT * FROM addresscustomers WHERE street = :street AND zipCode = :zipCode AND city = :city)";
-                $searchAddressCustomers = $db->prepare($requestSearchAddress);
-                $searchAddressCustomers->bindParam(':street', $street);
-                $searchAddressCustomers->bindParam(':zipCode', $zipCode);
-                $searchAddressCustomers->bindParam(':city', $city);
-
-                if($searchAddressCustomers->execute())
+                try
                 {
-                    $searchAddress = $searchAddressCustomers->fetch();
+                    $requestSearchAddress = "SELECT * FROM addresscustomers WHERE street = :street AND zipCode = :zipCode AND city = :city";
+                    $searchAddressCustomers = $db->prepare($requestSearchAddress);
+                    $searchAddressCustomers->bindParam(':street', $street);
+                    $searchAddressCustomers->bindParam(':zipCode', $zipCode);
+                    $searchAddressCustomers->bindParam(':city', $city);
+                    $searchAddressCustomers->execute();
+                    $searchAddress = $searchAddressCustomers->fetchAll();
                     $countAddress = count($searchAddress);
 
                     if($countAddress <= 0)
@@ -93,30 +87,46 @@ class Customers extends DataBase
                         $addAddressCustomers->bindParam(':zipCode', $zipCode);
                         $addAddressCustomers->bindParam(':city', $city);
                         $addAddressCustomers->execute();
+                    }                
+
+                    try
+                    {
+                        $requestSelectAddress = "SELECT * FROM addresscustomers WHERE street = :street AND zipCode = :zipCode AND city = :city";
+                        $selectAddress = $db->prepare($requestSelectAddress);
+                        $selectAddress->bindParam(':street', $street);
+                        $selectAddress->bindParam(':zipCode', $zipCode);
+                        $selectAddress->bindParam(':city', $city);
+                        $selectAddress->execute();
+                        $idAddressSelected = $selectAddress->fetchAll();
+
+                        try
+                        {
+                            $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddress, vip, idConjoint) VALUES(:lastname, :firstname, :mail, :phone, :birthdate, :idAddress, :vip, :idConjoint)";
+                            $addCustomer = $db->prepare($requestAddCustomer);
+                            $addCustomer->bindParam(':lastname', $lastname);
+                            $addCustomer->bindParam(':firstname', $firstname);
+                            $addCustomer->bindParam(':mail', $mail);
+                            $addCustomer->bindParam(':phone', $phone);
+                            $addCustomer->bindParam(':birthDate', $birthDate);
+                            $addCustomer->bindParam(':idAddress', $idAddressSelected[0]['id']);
+                            $addCustomer->bindParam(':vip', $vip);
+                            $addCustomer->bindParam(':idConjoint', $idConjoint);
+                            $addCustomer->execute();
+                            var_dump('error : '.$addCustomer);
+                        }
+                        catch(Exception $e)
+                        {
+                            throw new Exception('ErreurAddCustomer = '.$e->getMessage());
+                        }
+                    }
+                    catch(Exception $e)
+                    {
+                        throw new Exception('ErreurSelectIdAddress = '.$e->getMessage());
                     }
                 }
-
-                $requestSelectAddress = "SELECT id FROM addresscustomers WHERE street = :street AND zipCode = :zipCode AND city = :city";
-                $selectAddress = $db->prepare($requestSelectAddress);
-                $selectAddress->bindParam(':street', $street);
-                $selectAddress->bindParam(':zipCode', $zipCode);
-                $selectAddress->bindParam(':city', $city);
-                $idAddress = $selectAddress->fetch();
-
-                $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddress, vip, idConjoint) VALUES(:lastname, :firstname, :mail, :phone, :birthdate, :idAddress, :vip, :idConjoint)";
-                $addCustomer = $db->prepare($requestAddCustomer);
-                $addCustomer->bindParam(':lastname', $lastname);
-                $addCustomer->bindParam(':firstname', $firstname);
-                $addCustomer->bindParam(':mail', $mail);
-                $addCustomer->bindParam(':phone', $phone);
-                $addCustomer->bindParam(':birthDate', $birthDate);
-                $addCustomer->bindParam(':idAddress', $idAddress);
-                $addCustomer->bindParam(':vip', $vip);
-                $addCustomer->bindParam(':idConjoint', $idConjoint);
-                
-                if($addCustomer->execute())
+                catch(Exception $e)
                 {
-                    header('Location: index.php?page=administration&section=customers&action=createCustomer&err=customerAdd');
+                    throw new Exception('Erreur = '.$e->getMessage());
                 }
             } 
         }
@@ -126,6 +136,73 @@ class Customers extends DataBase
         }
     }
 
+    function selectTheAddress()
+    {
+        $db = $this->dbConnect();
+        $requestSelectAddress = "SELECT * FROM addresscustomers";
+        $selectAddress = $db->prepare($requestSelectAddress);
+        $selectAddress->execute();
+        $address = $selectAddress->fetchAll();
+        return $address;
+    }
+
+    function updateACustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
+    {
+
+        /*var_dump('nom : '.$lastname);
+        var_dump($firstname);
+        var_dump($mail);
+        var_dump($phone);
+        var_dump($birthDate);
+        var_dump($idAddress);
+        var_dump($idConjoint);
+
+        print('nom : '.$lastname);
+        print($firstname);
+        print($mail);
+        print($phone);
+        print($birthDate);
+        print($idAddress);
+        print($idConjoint);*/
+
+        try{
+            
+            $db = $this->dbConnect();
+
+            $requestUpdateCustomer = "UPDATE customers
+                                      SET lastname = :lastname, firstname = :firstname, mail = :mail, 
+                                      phone = :phone, birthdate = :birthdate, vip = :vip, 
+                                      idConjoint = :idConjoint, idAddress = :idAddress
+                                      WHERE customers.id = :idCustomer";
+            $updateCustomer = $db->prepare($requestUpdateCustomer);
+            $updateCustomer->bindParam(':lastname', $lastname);
+            $updateCustomer->bindParam(':firstname', $firstname);
+            $updateCustomer->bindParam(':mail', $mail);
+            $updateCustomer->bindParam(':phone', $phone);
+            $updateCustomer->bindParam(':birthdate', $birthdate);
+            $updateCustomer->bindParam(':vip', $vip);
+            $updateCustomer->bindParam(':idConjoint', $idConjoint);
+            $updateCustomer->bindParam(':idAddress', $idAddress);
+            $updateCustomer->bindParam(':idCustomer', $id);
+            $updateCustomer->execute();
+            
+        }
+        catch(Exception $e)
+        {
+            throw new Exception('Erreur = '.$e->getMessage());
+        }
+    }
+
+    function selectTheCutomers()
+    {
+        $db= $this->dbConnect();
+        $requestSelectCustomers = "SELECT id, lastname, firstname FROM customers";
+        $selectTheCustomers = $db->prepare($requestSelectCustomers);
+        $selectTheCustomers->execute();
+        $selectCustomers = $selectTheCustomers->fetchAll();
+        return $selectCustomers;
+    }
+
     function deleteTheCustomer($id)
     {
         $db = $this->dbConnect();
@@ -133,8 +210,6 @@ class Customers extends DataBase
         $deleteCustomer = $db->prepare($requestDeleteCustomer);
         $deleteCustomer->bindParam(':id', $id);
         $deleteCustomer->execute();
-
-        return $deleteCustomer;
 
     }
 }

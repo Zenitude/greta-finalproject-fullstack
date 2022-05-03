@@ -29,6 +29,11 @@ try
                 if($_GET['action'] == 'listCustomers')
                 {
                     listCustomers();
+
+                    if(isset($_GET['delete']) && $_GET['delete'] == 'confirmed')
+                    {
+                        deleteCustomer();
+                    }
                 }
                 elseif($_GET['action'] == 'createCustomer')
                 {
@@ -36,7 +41,7 @@ try
                 }
                 elseif($_GET['action'] == 'addCustomer')
                 {
-                    addAnCustomer();
+                    addACustomer();
                 }
                 elseif($_GET['action'] == 'addSpouse')
                 {
@@ -56,7 +61,7 @@ try
                 }
                 elseif($_GET['action'] == 'deleteCustomer')
                 {
-                    deleteCustomer();
+                    deleteAnCustomer();
                 }
                 else
                 {

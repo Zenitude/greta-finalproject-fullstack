@@ -46,25 +46,7 @@
 
             <div class="containerCount">
                 <h3>Nombre de clients</h3>
-                <?php
-                
-                    /*
-                    $sqlqueryCountCustomers = "SELECT * FROM `customers`";
-                    $queryCountCustomers = $db->prepare($sqlqueryCountCustomers);
-                    
-                    try{
-                        if($queryCountCustomers->execute())
-                        {
-                            $CountCustomers = $queryCountCustomers->fetchAll();
-                            $numberCustomers = count($CountCustomers);
-                            echo '<p>'.$numberCustomers.'</p>'; 
-                        }
-                    }
-                    catch(Exception $e)
-                    {
-                        throw new Exception('Erreur = '.$e->getMessage());
-                    }*/
-                ?>
+                <span class="fs-3 fw-bold"><?php countCustomers(); ?></span>
             </div>
 
         </div>
@@ -120,23 +102,7 @@
 
             <div class="containerCount">
                 <h3>Nombre de Réservations</h3>
-                <?php
-                    /*$sqlqueryCountReservations = "SELECT * FROM `reservationshotel`";
-                    $queryCountReservations = $db->prepare($sqlqueryCountReservations);
-                    
-                    try{
-                        if($queryCountReservations->execute())
-                        {
-                            $CountReservations = $queryCountReservations->fetchAll();
-                            $numberReservations = count($CountReservations);
-                            echo '<p>'.$numberReservations.'</p>'; 
-                        }
-                    }
-                    catch(Exception $e)
-                    {
-                        throw new Exception('Erreur = '.$e->getMessage());
-                    }*/
-                ?>
+                <span class="fs-3 fw-bold"><?php countReservations(); ?></span>
             </div>
 
         </div>
@@ -179,24 +145,7 @@
 
             <div class="containerCount">
                 <h3>Nombre de Factures</h3>
-                <?php
-                   /* $sqlqueryCountInvoices = "SELECT * FROM `invoices`";
-                    $queryCountInvoices = $db->prepare($sqlqueryCountInvoices);
-                    $queryCountInvoices->execute();
-                    
-                    try{
-                        if($queryCountInvoices->execute())
-                        {
-                            $CountInvoices = $queryCountInvoices->fetchAll();
-                            $numberInvoices = count($CountInvoices);
-                            echo '<p>'.$numberInvoices.'</p>'; 
-                        }
-                    }
-                    catch(Exception $e)
-                    {
-                        throw new Exception('Erreur = '.$e->getMessage());
-                    }*/
-                ?>
+                <span class="fs-3 fw-bold"><?php countInvoices(); ?></span>
             </div>
 
         </div>

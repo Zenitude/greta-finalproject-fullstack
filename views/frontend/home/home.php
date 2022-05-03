@@ -161,4 +161,4 @@
 <!-- End of content / Fin du contenu -->
 
 <!-- Template call / Appel du template -->
-<?php require('views/template.php');?>
+<?php require_once('views/template.php');?>

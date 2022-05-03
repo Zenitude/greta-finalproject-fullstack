@@ -2,5 +2,5 @@
 
 function legalNotices()
 {
-    require('views/frontend/home/legalNotices.php');
+    require_once('views/frontend/home/legalNotices.php');
 }

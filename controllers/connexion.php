@@ -7,6 +7,33 @@ function connexion()
 
 function login()
 {    
+    if(isset($_GET['err']))
+    {
+        switch($_GET['err'])
+        {
+            case 'both':
+                $errorIdentify = '<span class="text-danger ps-3"> Le champ Mail est vide ! </span>';
+                $errorPassword = '<span class="text-danger ps-3"> Le champ Mot de passe est vide ! </span>';
+                break;
+            case 'mail':
+                $errorIdentify = '<span class="text-danger ps-3"> Le champ Mail est vide !</span>';
+                break;
+            case 'password':
+                $errorPassword = '<span class="text-danger ps-3"> Le champ Mot de passe est vide ! </span>';
+                break;
+            case 'wrongmail':
+                $errorIdentify = '<span class="text-danger ps-3"> Email invalide !</span>';
+                break;
+            case 'wronguser':
+                $errorUser = '<p class="bg-danger text-light text-center"> Utilisateur introuvable ! </p>';
+                break;
+            default :
+                $errorIdentify = '';
+                $errorPassword = '';
+                $errorUser = '';
+        }
+    }
+    
     if(isset($_POST['mailConnection']))
     {   
         if(empty($_POST['mailConnection']) && empty($_POST['passwordConnection']))

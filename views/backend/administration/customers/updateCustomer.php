@@ -2,7 +2,12 @@
 <?php $title = 'Réservation Hôtel | Mise à jour client'; ?>
 
 <!-- Start of content / Début du contenu -->
-<?php ob_start(); ?>
+<?php ob_start();?>
+
+<?php
+     if(isset($_GET['id']))
+     { echo 'id = '.$_GET['id'];}
+?>
 
 <div class="container">
     <h1 class="text-center my-5">Modifier un client</h1>
@@ -48,18 +53,12 @@
         <hr>
 
         <div class="input-group mb-3">
-            <label for="streetCustomer" class="form-label w-25">N° et Nom de Voie*</label>
-            <input type="text" name="streetCustomer" id="streetCustomer" class="form-control rounded">
-        </div>
-
-        <div class="input-group mb-3">
-            <label for="zipCodeCustomer" class="form-label w-25">Code Postal*</label>
-            <input type="text" name="zipCodeCustomer" id="zipCodeCustomer" class="form-control rounded">
-        </div class="input-group">
-
-        <div class="input-group mb-3">
-            <label for="cityCustomer" class="form-label w-25">Ville*</label>
-            <input type="text" name="cityCustomer" id="cityCustomer" class="form-control rounded">
+            <label for="selectAddress" class="form-label w-25">Adresse</label>
+            <select name="selectAddress" id="selectAddress" class="form-select rounded">
+                <optgroup label="Sélectionnez une address" selected>
+                    <?php selectAddress(); ?>
+                </optgroup>
+            </select>
         </div>
 
         <hr>

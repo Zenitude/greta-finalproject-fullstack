@@ -4,7 +4,16 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
+<?php
+if(isset($_['delete']) && $_['delete'] = 'confirmed')
+{
+    $deleteCustomer = '<p class="bg-danger text-light text-center"> Client numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
+}
+?>
+
 <div class="container txt-center py-5">
+
+<h1 class="mb-5 text-center">Liste des clients</h1>
 
     <table class="table table-hover table-striped">
 
@@ -16,6 +25,7 @@
                 <th class="text-center">Adresse</th>
                 <th class="text-center">Code Postal</th>
                 <th class="text-center">Ville</th>
+                <th class="text-center">VIP</th>
                 <th class="text-center">Nombre de réservations</th>
             </tr>
         </thead>
@@ -25,22 +35,32 @@
             <?php foreach($customers as $customer): ?>
 
                 <?php 
-                    $numberReservations = $listCustomers->numberReservation($customer['id']);
-                    $numberReservations->execute();
-                    $reservations = $numberReservations->fetchAll();
-                    $countReservations = count($reservations);
+                    if(isset($customer['id'])){ $id = $customer['id'];}
+
+                    if(isset($customer['vip'])){
+                        switch($customer['vip'])
+                        {
+                            case '0':
+                                $vip = 'Non';
+                                break;
+                            case '1': 
+                                $vip = 'Oui';
+                                break;
+                        }
+                    }
                 ?>
                 
                 <tr class="h-50">
-                    <td class="text-center"><?= $customer['id']; ?></td>
+                    <td class="text-center"><?= $id; ?></td>
                     <td class="text-center"><?= $customer['lastname']; ?></td>
                     <td class="text-center"><?= $customer['firstname']; ?></td>
                     <td class="text-center"><?= $customer['street']; ?></td>
-                    <td class="text-center"><?= $customer['zipCode'] ?></td>
-                    <td class="text-center"><?= $customer['city'] ?></td>
-                    <td class="text-center"><?= $countReservations; ?></td>
-                    <td class="text-center" style="width:5%;"><a href="index.php?page=administration&section=customers&action=updateCustomer&id="<?php echo $customer['id']; ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier client" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="index.php?page=administration&section=customers&action=deleteCustomer&id="<?php echo $customer['id']; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer client" class="img-fluid"></a></td>
+                    <td class="text-center"><?= $customer['zipCode']; ?></td>
+                    <td class="text-center"><?= $customer['city']; ?></td>
+                    <td class="text-center"><?= $vip; ?></td>
+                    <td class="text-center"><?= numberOfReservations($id);?></td>
+                    <td class="text-center" style="width:5%;"><a href="index.php?page=administration&section=customers&action=updateCustomer&id="<?php echo $id; ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier client" class="img-fluid"></a></td>
+                    <td class="text-center" style="width:5%;"><a href="index.php?page=administration&section=customers&action=deleteCustomer&id="<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer client" class="img-fluid"></a></td>
                 <tr>
                     
             <?php endforeach; ?>

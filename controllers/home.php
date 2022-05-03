@@ -2,5 +2,5 @@
 
 function home()
 {
-    require('views/frontend/home/home.php');
+    require_once('views/frontend/home/home.php');
 }
