@@ -107,7 +107,7 @@ class Customers extends DataBase
                             $addCustomer->bindParam(':firstname', $firstname);
                             $addCustomer->bindParam(':mail', $mail);
                             $addCustomer->bindParam(':phone', $phone);
-                            $addCustomer->bindParam(':birthDate', $birthDate);
+                            $addCustomer->bindParam(':birthdate', $birthDate);
                             $addCustomer->bindParam(':idAddress', $idAddressSelected[0]['id']);
                             $addCustomer->bindParam(':vip', $vip);
                             $addCustomer->bindParam(':idConjoint', $idConjoint);

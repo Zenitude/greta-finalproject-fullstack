@@ -187,16 +187,16 @@ function addACustomer()
                                 substr($phoneCustomer, 8, 2));
                             /*}*/
             
-                            /*var_dump('c-nom : '.$lastname);
-                            var_dump('c-prenom : '.$firstname);
-                            var_dump('c-mail : '.$mail);
-                            var_dump('c-phone :'.$phone);
-                            var_dump('c-date : '.$birthDate);
-                            var_dump('c-rue : '.$street);
-                            var_dump('c-cp : '.$zipCode);
-                            var_dump('c-ville : '.$city);
-                            var_dump('c-conjoint : '.$idConjoint);
-                            var_dump('c-vip : '.$vip);*/
+                            //var_dump('c-nom : '.$lastname);
+                            //var_dump('c-prenom : '.$firstname);
+                            //var_dump('c-mail : '.$mail);
+                            //var_dump('c-phone :'.$phone);
+                            //var_dump('c-date : '.$birthDate);
+                            //var_dump('c-rue : '.$street);
+                            //var_dump('c-cp : '.$zipCode);
+                            //var_dump('c-ville : '.$city);
+                            //var_dump('c-conjoint : '.$idConjoint);
+                            //var_dump('c-vip : '.$vip);
             
                             $addCustomer = new Customers;
                             $addCustomer->addCustomer($lastname, $firstname, $mail, $phone, $birthDate, $street, $zipCode, $city, $vip, $idConjoint);

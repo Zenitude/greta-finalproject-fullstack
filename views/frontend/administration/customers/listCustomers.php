@@ -32,9 +32,11 @@ if(isset($_['delete']) && $_['delete'] = 'confirmed')
 
         <tbody>
 
+            <?php //print_r($customers); ?>
             <?php foreach($customers as $customer): ?>
 
                 <?php 
+                    //print_r($customer);
                     if(isset($customer['id'])){ $id = $customer['id'];}
 
                     if(isset($customer['vip'])){
