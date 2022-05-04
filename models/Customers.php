@@ -4,12 +4,12 @@ require_once('DataBase.php');
 
 class Customers extends DataBase
 {
-    function listCustomer()
+    function listCustomers()
     {
         try
         {
             $db = $this->dbConnect();
-            $requestListCustomers = "SELECT * FROM customers JOIN addresscustomers ON customers.idAddress = addresscustomers.id";
+            $requestListCustomers = "SELECT * FROM customers LEFT JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress";
             $ListCustomers = $db->prepare($requestListCustomers);
             $ListCustomers->execute();
             $customers = $ListCustomers->fetchAll();
@@ -21,6 +21,17 @@ class Customers extends DataBase
         {
             throw new Exception('Erreur = '.$e->getMessage());
         }
+    }
+
+    function listCustomer($id)
+    {
+        $db = $this->dbConnect();
+        $requestListCustomer = "SELECT lastname, firstname FROM customers WHERE id = :id";
+        $listCustomer = $db->prepare($requestListCustomer);
+        $listCustomer->bindParam(':id', $id);
+        $listCustomer->execute();
+        $customer = $listCustomer->fetch();
+        return $customer;
     }
     
     function numberReservation($id)
@@ -108,11 +119,11 @@ class Customers extends DataBase
                             $addCustomer->bindParam(':mail', $mail);
                             $addCustomer->bindParam(':phone', $phone);
                             $addCustomer->bindParam(':birthdate', $birthDate);
-                            $addCustomer->bindParam(':idAddress', $idAddressSelected[0]['id']);
+                            $addCustomer->bindParam(':idAddress', $idAddressSelected[0]['idAddress']);
                             $addCustomer->bindParam(':vip', $vip);
                             $addCustomer->bindParam(':idConjoint', $idConjoint);
                             $addCustomer->execute();
-                            var_dump('error : '.$addCustomer);
+                            
                         }
                         catch(Exception $e)
                         {
@@ -146,26 +157,35 @@ class Customers extends DataBase
         return $address;
     }
 
-    function updateACustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
+    function updateACustomer()
+    {
+        if(isset($_GET['id']))
+        {
+            $id = $_GET['id'];
+
+            $db = $this->dbConnect();
+            $requestDetailsCustomer = 'SELECT * FROM customers WHERE id = :id';
+            $detailsCustomer = $db->prepare($requestDetailsCustomer);
+            $detailsCustomer->bindParam(':id', $id);
+            $detailsCustomer->execute();
+            $customer = $detailsCustomer->fetch();
+            return $customer;
+        }
+    }
+
+    function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
     {
 
-        /*var_dump('nom : '.$lastname);
-        var_dump($firstname);
-        var_dump($mail);
-        var_dump($phone);
-        var_dump($birthDate);
-        var_dump($idAddress);
-        var_dump($idConjoint);
+        var_dump('id : '.$id);
+        var_dump('nom : '.$lastname);
+        var_dump('prenom : '.$firstname);
+        var_dump('mail : '.$mail);
+        var_dump('telephone : '.$phone);
+        var_dump('date : '.$birthdate);
+        var_dump('idAddress : '.$idAddress);
+        var_dump('idConjoint : '.$idConjoint);
 
-        print('nom : '.$lastname);
-        print($firstname);
-        print($mail);
-        print($phone);
-        print($birthDate);
-        print($idAddress);
-        print($idConjoint);*/
-
-        try{
+        /*try{
             
             $db = $this->dbConnect();
 
@@ -190,7 +210,7 @@ class Customers extends DataBase
         catch(Exception $e)
         {
             throw new Exception('Erreur = '.$e->getMessage());
-        }
+        }*/
     }
 
     function selectTheCutomers()

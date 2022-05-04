@@ -2,14 +2,30 @@
 <?php $title = 'Réservation Hôtel | Ajouter un conjoint'; ?>
 
 <!-- Start of content / Début du contenu -->
-<?php ob_start(); if(isset($_GET['id'])){ $id = $_GET['id'];} ?>
+<?php ob_start(); ?>
 
 <div class="container text-center p-5 my-5">
 
-    <h1 class="mb-5">Supprimer le client <?= $id; ?></h1>
-    <a href="index.php?page=administration&section=customers&action=listCustomers" class="btn btn-lg bg-beige border me-5">Annuler</a> 
-    <a href="index.php?page=administration&section=customers&action=listCustomers&delete=confirmed&id=<?= $id; ?>" class="btn btn-lg btn-danger border text-light">Confirmer</a>
+    <?php if(!isset($_GET['id'])) : ?>
+    <h1 class="mb-5">Supprimer un client</h1>
+    <form action="index.php?page=administration" method="GET" class="mb-4 d-flex flex-column">
+        <div class="input-group mb-3">
+            <label for="selectDeleteCustomer" class="form-label w-25">Sélectionner un client*</label>
+            <select name="selectDeleteCustomer" id="selectDeleteCustomer" class="form-select rounded">
+                <optgroup label="Sélectionnez un client" selected>
+                </optgroup>
+                <?php selectCustomers(); ?>
+            </select>
+        </div>
+        <button class="btn bg-beige fs-4 mx-auto border w-50 h-50">Sélectionner</button>
+    </form>
+    <?php else: ?>
 
+    <h1 class="mb-5">Supprimer le client <?php listCustomer($_GET['id']); ?></h1>
+
+    <a href="index.php?page=administration&section=customers&action=listCustomers" class="btn btn-lg bg-beige border me-5">Annuler</a> 
+    <a href="index.php?page=administration&section=customers&action=listCustomers&delete=confirmed&id=<?= $_GET['id']; ?>" class="btn btn-lg btn-danger border text-light">Confirmer</a>
+    <?php endif; ?>
 </div>
 
 <?php $content = ob_get_clean(); ?>

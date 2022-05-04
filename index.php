@@ -4,6 +4,16 @@ require_once('controllers/mainController.php');
 
 try
 {
+    if(isset($_GET['selectUpdateCustomer']))
+    {
+        header('Location:index.php?page=administration&section=customers&action=updateCustomer&id='.$_GET['selectUpdateCustomer']);
+    }
+
+    if(isset($_GET['selectDeleteCustomer']))
+    {
+        header('Location:index.php?page=administration&section=customers&action=deleteCustomer&id='.$_GET['selectDeleteCustomer']);
+    }
+
     if(isset($_GET['page']))
     {
         if($_GET['page'] == 'connexion')
@@ -52,6 +62,10 @@ try
                     addChild();
                 }
                 elseif($_GET['action'] == 'updateCustomer')
+                {
+                    updateACustomer();
+                }
+                elseif($_GET['action'] == 'updateACustomer')
                 {
                     updateCustomer();
                 }

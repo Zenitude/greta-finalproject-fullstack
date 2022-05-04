@@ -1,15 +1,11 @@
 <!-- Page title / Titre de la page -->
-<?php $title = 'Réservation Hôtel | Liste des clients'; ?>
+<?php 
+$title = 'Réservation Hôtel | Liste des clients'; ?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
-<?php
-if(isset($_['delete']) && $_['delete'] = 'confirmed')
-{
-    $deleteCustomer = '<p class="bg-danger text-light text-center"> Client numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
-}
-?>
+<?php if(isset($deleteCustomer) && $deleteCustomer != ''){ echo $deleteCustomer; } ?>
 
 <div class="container txt-center py-5">
 
@@ -25,6 +21,8 @@ if(isset($_['delete']) && $_['delete'] = 'confirmed')
                 <th class="text-center">Adresse</th>
                 <th class="text-center">Code Postal</th>
                 <th class="text-center">Ville</th>
+                <th class="text-center">Téléphone</th>
+                <th class="text-center">Email</th>
                 <th class="text-center">VIP</th>
                 <th class="text-center">Nombre de réservations</th>
             </tr>
@@ -59,10 +57,12 @@ if(isset($_['delete']) && $_['delete'] = 'confirmed')
                     <td class="text-center"><?= $customer['street']; ?></td>
                     <td class="text-center"><?= $customer['zipCode']; ?></td>
                     <td class="text-center"><?= $customer['city']; ?></td>
+                    <td class="text-center"><?= $customer['phone']; ?></td>
+                    <td class="text-center"><?= $customer['mail']; ?></td>
                     <td class="text-center"><?= $vip; ?></td>
                     <td class="text-center"><?= numberOfReservations($id);?></td>
-                    <td class="text-center" style="width:5%;"><a href="index.php?page=administration&section=customers&action=updateCustomer&id="<?php echo $id; ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier client" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="index.php?page=administration&section=customers&action=deleteCustomer&id="<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer client" class="img-fluid"></a></td>
+                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=customers&action=updateCustomer&id='.$id ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier client" class="img-fluid"></a></td>
+                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=customers&action=deleteCustomer&id='.$id ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer client" class="img-fluid"></a></td>
                 <tr>
                     
             <?php endforeach; ?>
@@ -72,7 +72,8 @@ if(isset($_['delete']) && $_['delete'] = 'confirmed')
 
 </div>
 
-<?php $content = ob_get_clean(); ?>
+<?php 
+$content = ob_get_clean(); ?>
 <!-- End of content / Fin du contenu -->
 
 <!-- Template call / Appel du template -->

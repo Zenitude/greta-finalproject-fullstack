@@ -2,7 +2,7 @@
 const headHotel = document.querySelector('#head img:nth-child(2)');
 
 // Création de la timeline
-const timeLine = gsap.timeline();
+//const timeLine = gsap.timeline();
 
 // Création de l'animation
 /*timeLine

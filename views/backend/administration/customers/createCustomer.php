@@ -7,6 +7,7 @@
 <?php 
     if(isset($errorAll) && $errorAll != ''){ echo $errorAll; }
     elseif(isset($errorCustomerExist) && $errorCustomerExist != ''){ echo $errorCustomerExist; } 
+    elseif(isset($createCustomer) && $createCustomer != ''){ echo $createCustomer; }
 ?>
 
 <div class="container">
@@ -50,7 +51,7 @@
                 <label for="vipNo" checked>Non</label>
             </div>
         </div>
-        <?php if(isset($errorVip) && $errorVip != ''){ echo $errorVip; echo $_GET['value']; } ?>
+        <?php if(isset($errorVip) && $errorVip != ''){ echo $errorVip; } ?>
 
 
         <hr>
@@ -63,7 +64,7 @@
 
         <div class="input-group mb-3">
             <label for="zipCodeCustomer" class="form-label w-25">Code Postal*</label>
-            <input type="text" name="zipCodeCustomer" id="zipCodeCustomer" class="form-control rounded">
+            <input type="number" name="zipCodeCustomer" id="zipCodeCustomer" class="form-control rounded">
         </div class="input-group">
         <?php if(isset($errorZipCode) && $errorZipCode != ''){ echo $errorZipCode; } ?>
 
@@ -77,7 +78,7 @@
 
         <div class="input-group mb-3">
             <label for="phoneCustomer" class="form-label w-25">Téléphone*</label>
-            <input type="text" name="phoneCustomer" id="phoneCustomer" class="form-control rounded">
+            <input type="number" name="phoneCustomer" id="phoneCustomer" class="form-control rounded" placeholder="01.00.00.00.00" maxlength="15">
         </div>
         <?php if(isset($errorPhone) && $errorPhone != ''){ echo $errorPhone; } ?>
 
