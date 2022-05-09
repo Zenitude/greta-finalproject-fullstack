@@ -177,14 +177,14 @@ class Customers extends DataBase
     function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
     {
 
-        var_dump('id : '.$id);
-        var_dump('nom : '.$lastname);
-        var_dump('prenom : '.$firstname);
-        var_dump('mail : '.$mail);
-        var_dump('telephone : '.$phone);
-        var_dump('date : '.$birthdate);
-        var_dump('idAddress : '.$idAddress);
-        var_dump('idConjoint : '.$idConjoint);
+        var_dump('C-id : '.$id);
+        var_dump('C-nom : '.$lastname);
+        var_dump('C-prenom : '.$firstname);
+        var_dump('C-mail : '.$mail);
+        var_dump('C-telephone : '.$phone);
+        var_dump('C-date : '.$birthdate);
+        var_dump('C-idAddress : '.$idAddress);
+        var_dump('C-idConjoint : '.$idConjoint);
 
         try{
             

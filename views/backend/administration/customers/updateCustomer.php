@@ -56,11 +56,11 @@
         <div class="input-group mb-3">
             <span class="w-25">VIP*</span>
             <div>
-                <input type="radio" name="updateVipCustomer" id="vipYes" class="form-check-input me-1" value="1" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 1){ echo 'checked="true"'; }else{ echo 'checked="false"';}} ?>>
+                <input type="radio" name="updateVipCustomer" id="vipYes" class="form-check-input me-1" value="true" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 1){ echo 'checked="true"'; }else{ echo 'checked="false"';}} ?>>
                 <label for="vipYes">Oui</label>
             </div>
             <div>
-                <input type="radio" name="updateVipCustomer" id="vipNo" class="form-check-input ms-2 me-1" value="0" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 0){ echo 'checked="true"'; }else{ echo 'checked="false"';}} ?>>
+                <input type="radio" name="updateVipCustomer" id="vipNo" class="form-check-input ms-2 me-1" value="false" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 0){ echo 'checked="true"'; }else{ echo 'checked="false"';}} ?>>
                 <label for="vipNo">Non</label>
             </div>
         </div>
@@ -68,8 +68,8 @@
         <hr>
 
         <div class="input-group mb-3">
-            <label for="updateSelectAddress" class="form-label w-25">Adresse</label>
-            <select name="updateSelectAddress" id="updateSelectAddress" class="form-select rounded" >
+            <label for="updateIdAddress" class="form-label w-25">Adresse</label>
+            <select name="updateIdAddress" id="updateIdAddress" class="form-select rounded" >
                 <optgroup label="Sélectionnez une address" selected>
                     <?php selectAddress($detailsCustomer['idAddress']); ?>
                 </optgroup>

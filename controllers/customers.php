@@ -310,16 +310,6 @@ function updateCustomer()
         $updateCustomer = '<p class="text-warning ps-3"> Utilisateur mis à jour avec succès !</p>';
     }
 
-        echo $_POST['updateIdCustomer'];
-        echo $_POST['updateLastnameCustomer'];
-        echo $_POST['updateFirstnameCustomer'];
-        echo $_POST['updateBirthDateCustomer'];
-        echo $_POST['updateMailCustomer'];
-        echo $_POST['updatePhoneCustomer'];
-        echo $_POST['updateIdAddress'];
-        echo $_POST['updateVipCustomer'];
-        echo $_POST['updateSelectSpouse'];
-
     if(isset($_GET['err']))
         {
             switch($_GET['err'])
@@ -365,8 +355,8 @@ function updateCustomer()
     
             // Check if the fields are empty by filtering the whitespaces and html tags | On vérifie si les champs sont vide tout en filtrant les espaces blancs et les balises html
             if(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateMailCustomer']))) 
-            && empty(htmlspecialchars(trim($_POST['updatePhoneCustomer']))) && empty(htmlspecialchars(trim($_POST['updateBirthDateCustomer']))) && empty(htmlspecialchars(trim($_POST['updateStreetCustomer'])))
-            && empty(htmlspecialchars(trim($_POST['updateZipCodeCustomer']))) && empty(htmlspecialchars(trim($_POST['updateCityCustomer']))) && empty(htmlspecialchars(trim($_POST['updateVipCustomer']))))
+            && empty(htmlspecialchars(trim($_POST['updatePhoneCustomer']))) && empty(htmlspecialchars(trim($_POST['updateBirthDateCustomer']))) && empty(htmlspecialchars(trim($_POST['updateIdAddress'])))
+            && empty(htmlspecialchars(trim($_POST['updateVipCustomer']))))
             {
                 header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=all');
             }
@@ -381,6 +371,10 @@ function updateCustomer()
             elseif(empty(trim(htmlspecialchars($_POST['updateMailCustomer']))))
             {
                 header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=mail');
+            }
+            elseif(empty(trim(htmlspecialchars($_POST['updateIdAddress']))))
+            {
+                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=address');
             }
             elseif(empty(trim(htmlspecialchars($_POST['updatePhoneCustomer']))))
             {
@@ -419,7 +413,7 @@ function updateCustomer()
                         $updatePhoneCustomer = trim(htmlspecialchars($_POST['updatePhoneCustomer']), " \-_.");
 
                         $updateVip = filter_var($updateVipCustomer, FILTER_VALIDATE_BOOLEAN);
-                        
+
                         if($updateVip)
                         {
                             $updateVip = 1;
@@ -448,14 +442,14 @@ function updateCustomer()
                             substr($updatePhoneCustomer, 8, 2));
                         /*}*/
         
-                        var_dump('c-id : '.$updateId);
-                        var_dump('c-nom : '.$updateLastname);
-                        var_dump('c-prenom : '.$updateFirstname);
-                        var_dump('c-mail : '.$updateMail);
-                        var_dump('c-phone : '.$updatePhone);
-                        var_dump('c-date : '.$updateBirthDate);
-                        var_dump('c-idAddress : '.$updateIdAddress);
-                        var_dump('c-idConjoint : '.$updateIdConjoint);
+                        //var_dump('c-id : '.$updateId);
+                        //var_dump('c-nom : '.$updateLastname);
+                        //var_dump('c-prenom : '.$updateFirstname);
+                        //var_dump('c-mail : '.$updateMail);
+                        //var_dump('c-phone : '.$updatePhone);
+                        //var_dump('c-date : '.$updateBirthDate);
+                        //var_dump('c-idAddress : '.$updateIdAddress);
+                        //var_dump('c-idConjoint : '.$updateIdConjoint);
 
         
                         $updateCustomer = new Customers;
