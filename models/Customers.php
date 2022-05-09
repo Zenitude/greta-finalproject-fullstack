@@ -112,7 +112,8 @@ class Customers extends DataBase
 
                         try
                         {
-                            $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddress, vip, idConjoint) VALUES(:lastname, :firstname, :mail, :phone, :birthdate, :idAddress, :vip, :idConjoint)";
+                            $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddress, vip, idConjoint) 
+                                                   VALUES(:lastname, :firstname, :mail, :phone, :birthdate, :idAddress, :vip, :idConjoint)";
                             $addCustomer = $db->prepare($requestAddCustomer);
                             $addCustomer->bindParam(':lastname', $lastname);
                             $addCustomer->bindParam(':firstname', $firstname);
@@ -150,7 +151,7 @@ class Customers extends DataBase
     function selectTheAddress()
     {
         $db = $this->dbConnect();
-        $requestSelectAddress = "SELECT * FROM addresscustomers";
+        $requestSelectAddress = "SELECT * FROM addresscustomers ORDER BY zipCode, city";
         $selectAddress = $db->prepare($requestSelectAddress);
         $selectAddress->execute();
         $address = $selectAddress->fetchAll();
@@ -185,7 +186,7 @@ class Customers extends DataBase
         var_dump('idAddress : '.$idAddress);
         var_dump('idConjoint : '.$idConjoint);
 
-        /*try{
+        try{
             
             $db = $this->dbConnect();
 
@@ -210,7 +211,7 @@ class Customers extends DataBase
         catch(Exception $e)
         {
             throw new Exception('Erreur = '.$e->getMessage());
-        }*/
+        }
     }
 
     function selectTheCutomers()

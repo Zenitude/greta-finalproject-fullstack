@@ -7,7 +7,7 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
 
 <?php if(isset($deleteCustomer) && $deleteCustomer != ''){ echo $deleteCustomer; } ?>
 
-<div class="container txt-center py-5">
+<div id="listCustomers" class="container txt-center py-5">
 
 <h1 class="mb-5 text-center">Liste des clients</h1>
 

@@ -1,11 +1,11 @@
 /* Création de la table addressCustomers */
 CREATE TABLE `lemontagnard`.`addressCustomers`
 (
-    `id` INT AUTO_INCREMENT,
+    `idAddress` INT AUTO_INCREMENT,
     `street` VARCHAR(255) NOT NULL,
-    `zipCode` VARCHAR(255) NOT NULL,
-    `country` INT NOT NULL,
-    PRIMARY KEY (`id`)
+    `zipCode` INT NOT NULL,
+    `city` VARCHAR(255) NOT NULL,
+    PRIMARY KEY (`idAddress`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* Création de la table customers*/
@@ -21,7 +21,7 @@ CREATE TABLE `lemontagnard`.`customers`
     `vip` BOOLEAN,
     `idConjoint` INT,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`idAddress`) REFERENCES `addressCustomers` (`id`)
+    FOREIGN KEY (`idAddress`) REFERENCES `addressCustomers` (`idAddress`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 /* Création de la table children */

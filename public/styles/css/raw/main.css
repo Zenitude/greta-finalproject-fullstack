@@ -11152,6 +11152,10 @@ textarea.form-control-lg {
   margin: 0 auto;
 }
 
+.container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+  overflow-x: auto;
+}
+
 /* Home first section*/
 #head {
   height: 80vh;
@@ -11201,6 +11205,11 @@ textarea.form-control-lg {
   }
 }
 /* Flag for translate */
+#translate {
+  top: 10px;
+  right: 75px;
+}
+
 #translate img {
   width: 55px;
   margin: 5px 0;
@@ -11336,6 +11345,10 @@ div.skiptranslate {
 }
 
 /* Tableaux */
+table {
+  overflow-x: visible;
+}
+
 table td {
   vertical-align: middle;
 }

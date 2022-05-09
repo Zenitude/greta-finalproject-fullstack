@@ -195,6 +195,14 @@ function addACustomer()
 
                             // convert string value vip to boolean | Conversion du type chaîne de caractère de Vip en booléen
                             $vip = filter_var($vipCustomer, FILTER_VALIDATE_BOOLEAN);
+                            if($vip)
+                            {
+                                $vip = 1;
+                            }
+                            else
+                            {
+                                $vip = 0;
+                            }
 
                             // convert string value zipCode to integer | Conversion du type chaîne de caractère de Code Postal vers nombre entier
                             $zipCode = intval($zipCode, 10);
@@ -302,6 +310,16 @@ function updateCustomer()
         $updateCustomer = '<p class="text-warning ps-3"> Utilisateur mis à jour avec succès !</p>';
     }
 
+        echo $_POST['updateIdCustomer'];
+        echo $_POST['updateLastnameCustomer'];
+        echo $_POST['updateFirstnameCustomer'];
+        echo $_POST['updateBirthDateCustomer'];
+        echo $_POST['updateMailCustomer'];
+        echo $_POST['updatePhoneCustomer'];
+        echo $_POST['updateIdAddress'];
+        echo $_POST['updateVipCustomer'];
+        echo $_POST['updateSelectSpouse'];
+
     if(isset($_GET['err']))
         {
             switch($_GET['err'])
@@ -346,9 +364,9 @@ function updateCustomer()
             print($_POST['updateLastnameCustomer']);
     
             // Check if the fields are empty by filtering the whitespaces and html tags | On vérifie si les champs sont vide tout en filtrant les espaces blancs et les balises html
-            if(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))) || empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))) || empty(trim(htmlspecialchars($_POST['updateMailCustomer']))) 
-            || empty(htmlspecialchars(trim($_POST['updatePhoneCustomer']))) || empty(htmlspecialchars(trim($_POST['updateBirthDateCustomer']))) || empty(htmlspecialchars(trim($_POST['updateStreetCustomer'])))
-            || empty(htmlspecialchars(trim($_POST['updateZipCodeCustomer']))) || empty(htmlspecialchars(trim($_POST['updateCityCustomer']))) || empty(htmlspecialchars(trim($_POST['updateVipCustomer']))))
+            if(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateMailCustomer']))) 
+            && empty(htmlspecialchars(trim($_POST['updatePhoneCustomer']))) && empty(htmlspecialchars(trim($_POST['updateBirthDateCustomer']))) && empty(htmlspecialchars(trim($_POST['updateStreetCustomer'])))
+            && empty(htmlspecialchars(trim($_POST['updateZipCodeCustomer']))) && empty(htmlspecialchars(trim($_POST['updateCityCustomer']))) && empty(htmlspecialchars(trim($_POST['updateVipCustomer']))))
             {
                 header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=all');
             }
@@ -394,12 +412,23 @@ function updateCustomer()
                         $updateMail = trim(htmlspecialchars($_POST['updateMailCustomer']));
                         $updateBirthDate = trim(htmlspecialchars($_POST['updateBirthDateCustomer']));
                         $updateIdAddress = trim(htmlspecialchars($_POST['updateIdAddress']));
-                        $updateVip = trim(htmlspecialchars($_POST['updateVipCustomer']));
+                        $updateVipCustomer = trim(htmlspecialchars($_POST['updateVipCustomer']));
                         $updateIdConjoint = trim(htmlspecialchars($_POST['updateSelectSpouse']));
         
                         // Transfer phone data to a variable by removing unnecessary items | On transfère les données du téléphone dans une variable en supprimant les éléments inutiles
                         $updatePhoneCustomer = trim(htmlspecialchars($_POST['updatePhoneCustomer']), " \-_.");
+
+                        $updateVip = filter_var($updateVipCustomer, FILTER_VALIDATE_BOOLEAN);
                         
+                        if($updateVip)
+                        {
+                            $updateVip = 1;
+                        }
+                        else
+                        {
+                            $updateVip = 0;
+                        }
+
                         // format the phone (01 to 09 + 4 pairs of digits separated by dots) | On formate le téléphone (01 à 09 + 4 paires de chiffres séparés par des points)
                         //$regexPhone = '(0|[1-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])';
         

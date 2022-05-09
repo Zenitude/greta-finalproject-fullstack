@@ -5,19 +5,12 @@ CREATE TABLE `lemontagnard`.`users`
     `lastname` VARCHAR(255) NOT NULL,
     `firstname` VARCHAR(255) NOT NULL,
     `mail` VARCHAR(255) NOT NULL,
-    `password` VARCHAR(255) NOT NULL,
+    `pass` VARCHAR(255) NOT NULL,
     `typeAdmin` VARCHAR(255) NOT NULL,
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 INSERT INTO `users`(lastname, firstname, mail, pass, typeAdmin) VALUES
-(
-    'Mollet',
-    'Rudy',
-    'mollet.rudy@gmail.com',
-    '21232f297a57a5a743894a0e4a801fc3',
-    'adminPrincipal'
-),
 (
     'Admin',
     'Principale',

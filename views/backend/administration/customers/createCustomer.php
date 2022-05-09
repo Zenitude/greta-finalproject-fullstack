@@ -16,7 +16,7 @@
     <form action="index.php?page=administration&section=customers&action=addCustomer" method="post" class="mb-4">
         <div class="input-group mb-3">
             <label for="lastnameCustomer" class="form-label w-25">Nom*</label>
-            <input type="text" name="lastnameCustomer" id="lastnameCustomer" class="form-control rounded">
+            <input type="text" name="lastnameCustomer" id="lastnameCustomer" class="form-control rounded w-25">
         </div>
         <?php if(isset($errorLastname) && $errorLastname != ''){ echo $errorLastname; } ?>
 

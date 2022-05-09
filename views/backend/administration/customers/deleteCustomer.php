@@ -10,21 +10,23 @@
     <h1 class="mb-5">Supprimer un client</h1>
     <form action="index.php?page=administration" method="GET" class="mb-4 d-flex flex-column">
         <div class="input-group mb-3">
-            <label for="selectDeleteCustomer" class="form-label w-25">Sélectionner un client*</label>
+            <label for="selectDeleteCustomer" class="form-label w-25 d-none d-sm-block">Sélectionner un client*</label>
             <select name="selectDeleteCustomer" id="selectDeleteCustomer" class="form-select rounded">
                 <optgroup label="Sélectionnez un client" selected>
                 </optgroup>
                 <?php selectCustomers(); ?>
             </select>
         </div>
-        <button class="btn bg-beige fs-4 mx-auto border w-50 h-50">Sélectionner</button>
+        <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
     </form>
     <?php else: ?>
 
-    <h1 class="mb-5">Supprimer le client <?php listCustomer($_GET['id']); ?></h1>
+    <h1 class="mb-5">Supprimer le client <br><?php listCustomer($_GET['id']); ?></h1>
 
-    <a href="index.php?page=administration&section=customers&action=listCustomers" class="btn btn-lg bg-beige border me-5">Annuler</a> 
-    <a href="index.php?page=administration&section=customers&action=listCustomers&delete=confirmed&id=<?= $_GET['id']; ?>" class="btn btn-lg btn-danger border text-light">Confirmer</a>
+    <div class="d-flex justify-content-center align-items-center">
+        <a href="index.php?page=administration&section=customers&action=listCustomers" class="btn btn-lg bg-beige border me-5">Annuler</a> 
+        <a href="index.php?page=administration&section=customers&action=listCustomers&delete=confirmed&id=<?= $_GET['id']; ?>" class="btn btn-lg btn-danger border text-light">Confirmer</a>
+    </div>
     <?php endif; ?>
 </div>
 

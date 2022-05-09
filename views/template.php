@@ -11,11 +11,11 @@
         
         <div class="container-fluid bodySize m-0 p-0 bg-white">
 
-            <?php require('widgets/navbar.php'); ?>
+            <?php require('views/widgets/navbar.php'); ?>
 
             <?= $content ?>
 
-            <?php require('widgets/footer.php'); ?>
+            <?php require('views/widgets/footer.php'); ?>
 
         </div>
         

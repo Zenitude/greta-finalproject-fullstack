@@ -6,7 +6,7 @@ class DataBase
     private $database = 'lemontagnard';
     private $charset = 'utf8';
     private $user = 'root';
-    private $password = '';
+    private $password = 'root';
 
     protected function dbConnect()
     {

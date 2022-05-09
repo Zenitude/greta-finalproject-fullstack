@@ -153,12 +153,12 @@
     </div>
         
 </section>
-<?php endif; ?>
 
 
 
 <?php $content = ob_get_clean(); ?>
 <!-- End of content / Fin du contenu -->
+<?php endif; ?>
 
 <!-- Template call / Appel du template -->
 <?php 

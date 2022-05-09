@@ -12,14 +12,14 @@
     <?php if(!isset($_GET['id'])) : ?>
     <form action="index.php?page=administration" method="GET" class="mb-4 d-flex flex-column">
         <div class="input-group mb-3">
-            <label for="selectUpdateCustomer" class="form-label w-25">Sélectionner un client*</label>
+            <label for="selectUpdateCustomer" class="form-label w-25 d-none d-sm-block">Sélectionner un client*</label>
             <select name="selectUpdateCustomer" id="selectUpdateCustomer" class="form-select rounded">
                 <optgroup label="Sélectionnez un client" selected>
                 </optgroup>
                 <?php selectCustomers(); ?>
             </select>
         </div>
-        <button class="btn bg-beige fs-4 mx-auto border w-50 h-50">Sélectionner</button>
+        <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
     </form>
     <?php else: ?>
     <form action="index.php?page=administration&section=customers&action=updateACustomer" method="post" class="mb-4">
@@ -29,13 +29,13 @@
         </div>
 
         <div class="input-group mb-3">
-            <label for="updateLastNameCustomer" class="form-label w-25">Nom*</label>
-            <input type="text" name="updateLastNameCustomer" id="updateLastNameCustomer" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['lastname'];} ?>">
+            <label for="updateLastnameCustomer" class="form-label w-25">Nom*</label>
+            <input type="text" name="updateLastnameCustomer" id="updateLastnameCustomer" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['lastname'];} ?>">
         </div>
 
         <div class="input-group mb-3">
-            <label for="updateFirstNameCustomer" class="form-label w-25">Prénom*</label>
-            <input type="text" name="updateFirstNameCustomer" id="updateFirstNameCustomer" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['firstname'];} ?>">
+            <label for="updateFirstnameCustomer" class="form-label w-25">Prénom*</label>
+            <input type="text" name="updateFirstnameCustomer" id="updateFirstnameCustomer" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['firstname'];} ?>">
         </div>
 
         <div class="input-group mb-3">

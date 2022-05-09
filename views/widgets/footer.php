@@ -48,23 +48,28 @@
                             <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel'): ?>
                             <ul>
                                 <li><a href="index.php?page=administration&section=customers&action=createCustomer">Créer un client</a></li>
-                                <li><a href="index.php?page=administration&section=customers&action=addSpouse">Ajouter un conjoint</a></li>
-                                <li><a href="index.php?page)administration&section=customers&action=addChild">Ajouter un enfant</a></li>
+                                <li><a href="index.php?page=administration&section=customers&action=updateCustomer">Modifier un client</a></li>
+                                <li><a href="index.php?page=administration&section=customers&action=deleteCustomer">Supprimer un client</a></li>
+                                <li><a href="">Ajouter un enfant</a></li>
                             </ul>
-                            <li><a href="index.php?page=administration&section=reservations&action=listReservations">Liste des réservations</a></li>
+                            <li><a href="">Liste des réservations</a></li>
                             <ul>
-                                <li><a href="index.php?page=administration&section=reservations&action=createReservation">Créer une réservation</a></li>
+                                <li><a href="">Créer une réservation</a></li>
+                                <li><a href="">Modifier une réservation</a></li>
+                                <li><a href="">Supprimer une réservation</a></li>
                             </ul>
-                            <li><a href="index.php?page=administration&section=invoices&action=listinvoices">Liste des factures</a></li>
+                            <li><a href="">Liste des factures</a></li>
                             <ul>
-                                <li><a href="index.php?page=administration&section=reservations&action=createInvoice">Créer une facture</a></li>
+                                <li><a href="">Créer une facture</a></li>
+                                <li><a href="">Modifier une facture</a></li>
+                                <li><a href="">Supprimer une facture</a></li>
                             </ul>
                         </ul>
                         <?php endif; ?>
                         <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminRestaurant'): ?>
                             <?php if($_SESSION['typeAdmin'] == 'adminPrincipal'): ?><ul><?php endif; ?>
-                                <li><a href="index.php?page=administration&section=reservations&action=reserveTable">Réserver une table</a></li>
-                                <li><a href="index.php?page=administration&section=reservations&action=chooseMenus">Menus</a></li>
+                                <li><a href="">Réserver une table</a></li>
+                                <li><a href="">Menus</a></li>
                             <?php if($_SESSION['typeAdmin'] == 'adminPrincipal'): ?><ul><?php endif; ?>
                         <?php endif; ?>
                                 

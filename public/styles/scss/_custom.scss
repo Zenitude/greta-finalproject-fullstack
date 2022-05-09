@@ -6,6 +6,11 @@
     margin: 0 auto;
 }
 
+.container-fluid
+{
+  overflow-x: auto;
+}
+
 /* Home first section*/
 #head
 {
@@ -73,6 +78,12 @@
 }
 
 /* Flag for translate */
+#translate
+{
+  top: 10px;
+  right: 75px;
+}
+
 #translate img
 {
     width: 55px;
@@ -243,6 +254,11 @@ div.skiptranslate
     }
 
 /* Tableaux */
+table
+{
+  overflow-x:visible;
+}
+
 table td
 {
   vertical-align: middle;
