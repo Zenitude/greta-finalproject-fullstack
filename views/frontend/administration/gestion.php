@@ -72,7 +72,7 @@
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les réservations">
                 <br>Lister</a>
 
-                <a href="index.php?page=administration&section=reservations&action=createReservation" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=reservationRooms" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer une réservation">
                 <br>Créer</a>
 
@@ -89,6 +89,7 @@
                 <br>Extras</a>
                 <?php endif; ?>
 
+                <?php if($_SESSION['typeAdmin'] != 'adminHotel'): ?>
                 <a href="index.php?page=administration&section=reservations&action=reserveTable" class="btn-create">
                     <img src="public/resources/images/gestion/table.png" alt="Réserver une table">
                 <br>Tables</a>
@@ -96,6 +97,7 @@
                 <a href="index.php?page=administration&section=reservations&action=choiceMenus" class="btn-create">
                     <img src="public/resources/images/gestion/menus.png" alt="Choisir les menus">
                 <br>Menus</a>
+                <?php endif; ?>
             </div>
 
             <hr>
@@ -153,16 +155,15 @@
     </div>
         
 </section>
-
-
+<?php endif; ?>
 
 <?php $content = ob_get_clean(); ?>
 <!-- End of content / Fin du contenu -->
-<?php endif; ?>
+
 
 <!-- Template call / Appel du template -->
 <?php 
-    require('views/template.php');
+    require_once('views/template.php');
     else: header('Location: index.php?page=connexion&action=login');
     endif;
     

@@ -116,9 +116,9 @@ try
                 {
                     listReservations();
                 }
-                elseif($_GET['action'] == 'reservationRoom')
+                elseif($_GET['action'] == 'reservationRooms')
                 {
-                    reservationRoom();
+                    reservationRooms();
                 }
                 elseif($_GET['action'] == 'reservationCustomer')
                 {

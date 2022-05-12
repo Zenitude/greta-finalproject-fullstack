@@ -13,7 +13,7 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
 
     <table class="table table-hover table-striped">
 
-        <thead class="table-warning">
+        <thead class="bg-beige">
             <tr>
                 <th class="text-center">Numéro</th>
                 <th class="text-center">Nom</th>

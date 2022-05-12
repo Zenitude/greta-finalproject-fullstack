@@ -2,7 +2,15 @@
 
 function listInvoices()
 {
-  require('views/frontend/administration/listInvoices.php');
+    $listInvoices = new Invoices();
+    $invoices = $listInvoices->listInvoices();
+
+    if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
+    {
+        $deleteInvoice = '<p class="bg-success text-light text-center"> Facture numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
+    }
+
+    require('views/frontend/administration/invoices/listInvoices.php');
 }
 
 function createInvoice()
