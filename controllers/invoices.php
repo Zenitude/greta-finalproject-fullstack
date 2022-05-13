@@ -10,7 +10,25 @@ function listInvoices()
         $deleteInvoice = '<p class="bg-success text-light text-center"> Facture numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
 
-    require('views/frontend/administration/invoices/listInvoices.php');
+    if(isset($_GET['searchInvoice']) && !empty(htmlspecialchars(trim($_GET['searchInvoice']))))
+    {
+        searchInvoice($_GET['searchInvoice']);
+    }
+
+    require_once('views/frontend/administration/invoices/listInvoices.php');
+}
+
+function searchInvoice($search)
+{
+    if(isset($_GET['search']) && empty(htmlspecialchars(trim($_GET['search']))))
+    {
+        header('Location:index.php?page=administration&section=invoices&action=listInvoices');
+    }
+
+    $searchInvoice = new Invoices();
+    $invoices = $searchInvoice->searchInvoice($search);
+    
+    require_once('views/frontend/administration/invoices/listInvoices.php');
 }
 
 function createInvoice()

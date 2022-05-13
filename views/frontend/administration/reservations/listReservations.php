@@ -4,7 +4,19 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
+<h1 class="mb-5 text-center">Liste des Réservations</h1>
+
+
 <div class="container py-5">
+
+    <form method="GET" class="mb-4">
+            <div class="search">
+                <i class="iconSearch fa-search fa-facebook-square fa-2x"></i>
+                <label for="searchBar" class="opacity-0 d-block">Rechercher</label>
+                <input type="search" placeholder="Rechercher" id="searchBar" name="searchReservation" class="rounded w-25 ps-1">
+            </div>
+    </form>
+
     <table class="table table-hover table-striped">
         <thead>
             <tr class="text-center bg-beige">

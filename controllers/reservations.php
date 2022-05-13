@@ -13,6 +13,20 @@ function listReservations()
     require_once('views/frontend/administration/reservations/listReservations.php');
 }
 
+function searchReservation($search)
+{
+    
+    if(isset($_GET['searchReservation']) && empty(htmlspecialchars(trim($_GET['searchReservation']))))
+    {
+        header('Location:index.php?page=administration&section=reservations&action=listReservations');
+    }
+
+    $searchReservation = new Reservations();
+    $reservations = $searchReservation->searchReservation($search);
+    
+    require_once('views/frontend/administration/reservations/listReservations.php');
+}
+
 function reservationRooms()
 {
     require_once('views/backend/administration/reservations/reservationRoom.php');

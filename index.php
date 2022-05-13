@@ -14,6 +14,21 @@ try
         header('Location:index.php?page=administration&section=customers&action=deleteCustomer&id='.$_GET['selectDeleteCustomer']);
     }
 
+    if(isset($_GET['searchCustomer']))
+    {
+        header('Location:index.php?page=administration&section=customers&action=listCustomers&search='.$_GET['searchCustomer']);
+    }
+
+    if(isset($_GET['searchInvoice']))
+    {
+        header('Location:index.php?page=administration&section=invoices&action=listInvoices&search='.$_GET['searchInvoice']);
+    }
+
+    if(isset($_GET['searchReservation']))
+    {
+        header('Location:index.php?page=administration&section=reservations&action=listReservations&search='.$_GET['searchReservation']);
+    }
+
     if(isset($_GET['page']))
     {
         if($_GET['page'] == 'connexion')
@@ -44,6 +59,11 @@ try
                     {
                         deleteCustomer();
                     }
+
+                    /*if(isset($_GET['search']))
+                    {
+                        listCustomers();
+                    }*/
                 }
                 elseif($_GET['action'] == 'createCustomer')
                 {
@@ -158,6 +178,14 @@ try
         {
             deconnexion();
         }
+    }
+    elseif(isset($_GET['searchInvoice']))
+    {
+        searchInvoice($_GET['searchInvoice']);
+    }
+    elseif(isset($_GET['searchReservation']))
+    {
+        searchReservation($_GET['searchReservation']);
     }
     else
     {

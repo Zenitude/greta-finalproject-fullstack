@@ -28,7 +28,7 @@
             {
                 e.preventDefault();
                 new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); 
-            })
+            });
             </script>
         <script src="public/scripts/bootstrap.bundle.js" type="text/javascript"></script>
         <script src="public/scripts/global.js" type="text/javascript"></script>

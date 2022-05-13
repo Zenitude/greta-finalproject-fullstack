@@ -2,14 +2,22 @@
 
 function listCustomers()
 {
-    $listCustomers = new Customers();
-    $customers = $listCustomers->listCustomers();
-
+    if(isset($_GET['search']) && !empty($_GET['search']))
+    {
+        $searchCustomer = new Customers();
+        $customers = $searchCustomer->searchCustomer($_GET['search']);
+    }
+    else
+    {
+        $listCustomers = new Customers();
+        $customers = $listCustomers->listCustomers();
+    }
+    
     if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
     {
         $deleteCustomer = '<p class="bg-success text-light text-center"> Client numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
-
+    
     require_once('views/frontend/administration/customers/listCustomers.php');
 }
 

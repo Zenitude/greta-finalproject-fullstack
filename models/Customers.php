@@ -23,6 +23,18 @@ class Customers extends DataBase
         }
     }
 
+    function searchCustomer($search)
+    {
+        $db = $this->dbConnect();
+        $requestSearchCustomer = "SELECT * FROM customers
+                                 JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress
+                                 WHERE id LIKE $search";
+        $searchCustomer = $db->prepare($requestSearchCustomer);
+        $searchCustomer->execute();
+        $search = $searchCustomer->fetchAll();
+        return $search;
+    }
+
     function listCustomer($id)
     {
         $db = $this->dbConnect();
