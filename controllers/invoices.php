@@ -2,31 +2,21 @@
 
 function listInvoices()
 {
-    $listInvoices = new Invoices();
-    $invoices = $listInvoices->listInvoices();
-
+    if(isset($_GET['search']) && !empty($_GET['search']))
+    {
+        $searchInvoices = new Invoices();
+        $invoices = $searchInvoices->searchInvoice($_GET['search']);
+    }
+    else
+    {
+        $listInvoices = new Invoices();
+        $invoices = $listInvoices->listInvoices();
+    }
+    
     if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
     {
         $deleteInvoice = '<p class="bg-success text-light text-center"> Facture numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
-
-    if(isset($_GET['searchInvoice']) && !empty(htmlspecialchars(trim($_GET['searchInvoice']))))
-    {
-        searchInvoice($_GET['searchInvoice']);
-    }
-
-    require_once('views/frontend/administration/invoices/listInvoices.php');
-}
-
-function searchInvoice($search)
-{
-    if(isset($_GET['search']) && empty(htmlspecialchars(trim($_GET['search']))))
-    {
-        header('Location:index.php?page=administration&section=invoices&action=listInvoices');
-    }
-
-    $searchInvoice = new Invoices();
-    $invoices = $searchInvoice->searchInvoice($search);
     
     require_once('views/frontend/administration/invoices/listInvoices.php');
 }
