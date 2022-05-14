@@ -12,10 +12,10 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
 <h1 class="mb-5 text-center">Liste des clients</h1>
 
     <form method="GET" class="mb-4">
-        <div class="search">
-            <i class="iconSearch fa-search fa-facebook-square fa-2x"></i>
+        <div class="search position-relative w-25">
             <label for="searchBar" class="opacity-0 d-block">Rechercher</label>
-            <input type="search" placeholder="Rechercher" id="searchBar" name="searchCustomer" class="rounded w-25 ps-1">
+            <input type="search" placeholder="Rechercher" id="searchBar" name="searchCustomer" class="rounded w-100 ps-1">
+            <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
 

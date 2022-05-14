@@ -10,11 +10,11 @@
 <div class="container py-5">
 
     <form method="GET" class="mb-4">
-            <div class="search">
-                <i class="iconSearch fa-search fa-facebook-square fa-2x"></i>
-                <label for="searchBar" class="opacity-0 d-block">Rechercher</label>
-                <input type="search" placeholder="Rechercher" id="searchBar" name="searchReservation" class="rounded w-25 ps-1">
-            </div>
+        <div class="search position-relative w-25">
+            <label for="searchBar" class="opacity-0 d-block">Rechercher</label>
+            <input type="search" placeholder="Rechercher" id="searchBar" name="searchReservation" class="rounded w-100 ps-1">
+            <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
+        </div>
     </form>
 
     <table class="table table-hover table-striped">

@@ -2,6 +2,7 @@
 
 function listInvoices()
 {
+
     if(isset($_GET['search']) && !empty($_GET['search']))
     {
         $searchInvoices = new Invoices();
@@ -12,7 +13,7 @@ function listInvoices()
         $listInvoices = new Invoices();
         $invoices = $listInvoices->listInvoices();
     }
-    
+
     if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
     {
         $deleteInvoice = '<p class="bg-success text-light text-center"> Facture numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 

@@ -2,14 +2,23 @@
 
 function listReservations()
 {
-    $listReservations = new Reservations();
-    $reservations = $listReservations->listReservations();
+
+    if(isset($_GET['search']) && !empty($_GET['search']))
+    {
+        $searchReservations = new Reservations();
+        $reservations = $searchReservations->searchReservation($_GET['search']);
+    }
+    else
+    {
+        $listReservations = new Reservations();
+        $reservations = $listReservations->listReservations();
+    }
 
     if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
     {
         $deleteReservation = '<p class="bg-success text-light text-center"> Réservation numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
-
+    
     require_once('views/frontend/administration/reservations/listReservations.php');
 }
 

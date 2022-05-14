@@ -27,8 +27,12 @@ class Customers extends DataBase
     {
         $db = $this->dbConnect();
         $requestSearchCustomer = "SELECT * FROM customers
-                                 JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress
-                                 WHERE id LIKE $search";
+                                  JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress
+                                  WHERE id LIKE $search
+                                  OR lastname LIKE $search
+                                  OR firstname LIKE $search
+                                  OR zipCode LIKE $search
+                                  OR city LIKE $search";
         $searchCustomer = $db->prepare($requestSearchCustomer);
         $searchCustomer->execute();
         $search = $searchCustomer->fetchAll();
