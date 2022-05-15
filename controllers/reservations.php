@@ -19,7 +19,7 @@ function listReservations()
         $deleteReservation = '<p class="bg-success text-light text-center"> Réservation numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
     
-    require_once('views/frontend/administration/reservations/listReservations.php');
+    require_once('views/administration/reservations/listReservations.php');
 }
 
 function searchReservation($search)
@@ -33,35 +33,35 @@ function searchReservation($search)
     $searchReservation = new Reservations();
     $reservations = $searchReservation->searchReservation($search);
     
-    require_once('views/frontend/administration/reservations/listReservations.php');
+    require_once('views/administration/reservations/listReservations.php');
 }
 
 function reservationRooms()
 {
-    require_once('views/backend/administration/reservations/reservationRoom.php');
+    require_once('views/administration/reservations/reservationRoom.php');
 }
 
 function reservationCustomer()
 {
-    require_once('views/backend/administration/reservations/reservationCustomer.php');
+    require_once('views/administration/reservations/reservationCustomer.php');
 }
 
 function reservationFinal()
 {
-    require_once('views/backend/administration/reservations/reservationFinal.php');
+    require_once('views/administration/reservations/reservationFinal.php');
 }
 
 function readReservation()
 {
-    require_once('views/frontend/administration/reservations/readReservation.php');
+    require_once('views/administration/reservations/readReservation.php');
 }
 
 function updateReservation()
 {
-    require_once('views/backend/administration/reservations/updateReservation.php');
+    require_once('views/administration/reservations/updateReservation.php');
 }
 
 function deleteReservation()
 {
-    require_once('views/frontend/administration/reservations/listReservations.php');
+    require_once('views/administration/reservations/listReservations.php');
 }

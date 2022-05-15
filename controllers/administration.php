@@ -4,7 +4,7 @@ require_once('models/Administration.php');
 
 function gestion()
 {
-    require_once('views/frontend/administration/gestion.php');
+    require_once('views/administration/gestion.php');
 }
 
 function countCustomers()

@@ -4,10 +4,10 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
-<h1 class="mb-5 text-center">Liste des Réservations</h1>
 
 
 <div class="container py-5">
+    <h1 class="mb-5 text-center">Liste des Réservations</h1>
 
     <form method="GET" class="mb-4">
         <div class="search position-relative w-25">

@@ -2,10 +2,10 @@
 
 function listCustomers()
 {
-    if(isset($_GET['search']) && !empty($_GET['search']))
+    if(isset($_GET['search']) && !empty($_GET['search']) && isset($_GET['filter']))
     {
         $searchCustomer = new Customers();
-        $customers = $searchCustomer->searchCustomer($_GET['search']);
+        $customers = $searchCustomer->searchCustomer($_GET['filter'], $_GET['search']);
     }
     else
     {
@@ -18,7 +18,7 @@ function listCustomers()
         $deleteCustomer = '<p class="bg-success text-light text-center"> Client numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
     
-    require_once('views/frontend/administration/customers/listCustomers.php');
+    require_once('views/administration/customers/listCustomers.php');
 }
 
 function listCustomer($id)
@@ -97,7 +97,7 @@ function createCustomer()
         }
 
     
-    require_once('views/backend/administration/customers/createCustomer.php');
+    require_once('views/administration/customers/createCustomer.php');
 }
 
 function selectCustomers($id = null)
@@ -258,7 +258,7 @@ function addACustomer()
                 }
             }   
         }
-        require_once('views/backend/administration/customers/createCustomer.php');
+        require_once('views/administration/customers/createCustomer.php');
     }
     catch(Exception $e)
     {
@@ -269,17 +269,17 @@ function addACustomer()
 
 function addSpouse()
 {
-    require_once('views/backend/administration/customers/addSpouse.php');
+    require_once('views/administration/customers/addSpouse.php');
 }
 
 function addChild()
 {
-    require_once('views/backend/administration/customers/addChild.php');
+    require_once('views/administration/customers/addChild.php');
 }
 
 function readCustomer()
 {
-    require_once('views/frontend/administration/customers/readCustomer.php');
+    require_once('views/administration/customers/readCustomer.php');
 }
 
 function selectAddress($id)
@@ -306,7 +306,7 @@ function updateACustomer()
 {
     $customer = new Customers();
     $detailsCustomer = $customer->updateACustomer();
-    require_once('views/backend/administration/customers/updateCustomer.php');
+    require_once('views/administration/customers/updateCustomer.php');
 }
 
 function updateCustomer()
@@ -473,7 +473,7 @@ function updateCustomer()
                 
             }
         }
-        require_once('views/backend/administration/customers/updateCustomer.php');
+        require_once('views/administration/customers/updateCustomer.php');
     }
     catch(Exception $e)
     {
@@ -483,7 +483,7 @@ function updateCustomer()
 
 function deleteAnCustomer()
 {
-    require_once('views/backend/administration/customers/deleteCustomer.php');
+    require_once('views/administration/customers/deleteCustomer.php');
 }
 
 function deleteCustomer()
@@ -494,6 +494,6 @@ function deleteCustomer()
         $delete = new Customers();
         $delete->deleteTheCustomer($id);
         
-        require_once('views/frontend/administration/customers/listCustomers.php');
+        require_once('views/administration/customers/listCustomers.php');
     }
 }

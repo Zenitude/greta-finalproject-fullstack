@@ -22,7 +22,9 @@ class Reservations extends DataBase
         $requestSearchReservation = "SELECT * FROM reservationshotel
                                  JOIN customers ON reservationshotel.idCustomer = customers.id
                                  JOIN invoices ON reservationshotel.idReservation = invoices.idReservationH
-                                 WHERE idReservation LIKE $search";
+                                 WHERE idReservation LIKE $search
+                                 OR lastname LIKE $search
+                                 OR firstname LIKE $search";
         $searchReservation = $db->prepare($requestSearchReservation);
         $searchReservation->execute();
         $search = $searchReservation->fetchAll();

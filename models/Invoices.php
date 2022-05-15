@@ -28,4 +28,32 @@ class Invoices extends DataBase
         $search = $searchInvoice->fetchAll();
         return $search;
     }
+
+    function selectTheInvoices()
+    {
+        $db= $this->dbConnect();
+        $requestSelectInvoices = "SELECT * FROM invoices
+                                  JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
+                                  JOIN customers ON reservationshotel.idCustomer = customers.id";
+        $selectTheInvoices = $db->prepare($requestSelectInvoices);
+        $selectTheInvoices->execute();
+        $selectInvoices = $selectTheInvoices->fetchAll();
+        return $selectInvoices;
+    }
+
+    function detailsInvoice($id)
+    {
+        $db = $this->dbConnect();
+        $requestDetailsInvoice = "SELECT * FROM invoices
+                                  JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
+                                  JOIN customers ON reservationshotel.idCustomer = customers.id
+                                  JOIN roomsbooked ON reservationshotel.idReservation = roomsbooked.idReservationH
+                                  JOIN rooms ON roomsbooked.idRoom = rooms.idChambre
+                                  WHERE idInvoice = $id";
+        $detailsInvoice = $db->prepare($requestDetailsInvoice);
+        $detailsInvoice->execute();
+        $details = $detailsInvoice->fetch();
+        return $details;
+
+    }
 }

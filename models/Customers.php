@@ -23,16 +23,48 @@ class Customers extends DataBase
         }
     }
 
-    function searchCustomer($search)
+    function searchCustomer($selectSearch, $search)
     {
+        switch($selectSearch)
+        {
+            case 'id':
+                $search = intval($search);
+                break;
+            case 'lastname' :
+                $search = strval($search);
+                break;
+            case 'firstname' :
+                $search = strval($search);
+                break;
+            case 'zipCode' :
+                $search = intval($search);
+                break;
+            case 'city' :
+                $search = strval($search);
+                break;
+            case 'vip' :
+                $search = strval($search);
+                break;
+        }
+
+        if($selectSearch == 'vip')
+        {
+            if($search == 'oui')
+            {
+                $search = 1;
+            }
+            else
+            {
+                $search = 0;
+            }
+        }
+        var_dump('select : '.$selectSearch);
+        var_dump('search : '.$search);
+
         $db = $this->dbConnect();
         $requestSearchCustomer = "SELECT * FROM customers
                                   JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress
-                                  WHERE id LIKE $search
-                                  OR lastname LIKE $search
-                                  OR firstname LIKE $search
-                                  OR zipCode LIKE $search
-                                  OR city LIKE $search";
+                                  WHERE `".$selectSearch."` LIKE ". $search;
         $searchCustomer = $db->prepare($requestSearchCustomer);
         $searchCustomer->execute();
         $search = $searchCustomer->fetchAll();

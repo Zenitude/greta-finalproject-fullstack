@@ -2,7 +2,7 @@
 
 function connexion()
 {
-    require_once('views/frontend/connexion/connexion.php');
+    require_once('views/connexion/connexion.php');
 }
 
 function login()
@@ -97,7 +97,7 @@ function login()
         }
         
     }
-    require_once('views/frontend/connexion/connexion.php');
+    require_once('views/connexion/connexion.php');
     
 }
 

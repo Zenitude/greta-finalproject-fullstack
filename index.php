@@ -14,9 +14,9 @@ try
         header('Location:index.php?page=administration&section=customers&action=deleteCustomer&id='.$_GET['selectDeleteCustomer']);
     }
 
-    if(isset($_GET['searchCustomer']))
+    if(isset($_GET['searchCustomer']) && isset($_GET['selectSearchCustomer']))
     {
-        header('Location:index.php?page=administration&section=customers&action=listCustomers&search='.$_GET['searchCustomer']);
+        header('Location:index.php?page=administration&section=customers&action=listCustomers&filter='.$_GET['selectSearchCustomer'].'&search='.$_GET['searchCustomer']);
     }
 
     if(isset($_GET['searchInvoice']))
@@ -27,6 +27,11 @@ try
     if(isset($_GET['searchReservation']))
     {
         header('Location:index.php?page=administration&section=reservations&action=listReservations&search='.$_GET['searchReservation']);
+    }
+
+    if(isset($_GET['selectInvoice']))
+    {
+        header('Location:index.php?page=administration&section=invoices&action=detailsInvoice&id='.$_GET['selectInvoice']);
     }
 
     if(isset($_GET['page']))
@@ -60,10 +65,6 @@ try
                         deleteCustomer();
                     }
 
-                    /*if(isset($_GET['search']))
-                    {
-                        listCustomers();
-                    }*/
                 }
                 elseif($_GET['action'] == 'createCustomer')
                 {
@@ -107,6 +108,10 @@ try
                 if($_GET['action'] == 'listInvoices')
                 {
                     listInvoices();
+                }
+                elseif($_GET['action'] == 'detailsInvoice')
+                {
+                    detailsInvoice();
                 }
                 elseif($_GET['action'] == 'createInvoice')
                 {
@@ -178,14 +183,6 @@ try
         {
             deconnexion();
         }
-    }
-    elseif(isset($_GET['searchInvoice']))
-    {
-        searchInvoice($_GET['searchInvoice']);
-    }
-    elseif(isset($_GET['searchReservation']))
-    {
-        searchReservation($_GET['searchReservation']);
     }
     else
     {

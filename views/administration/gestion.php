@@ -130,6 +130,10 @@
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les factures">
                 <br>Lister</a>
 
+                <a href="index.php?page=administration&section=invoices&action=detailsInvoice" class="btn-see">
+                    <img src="public/resources/images/gestion/voir.png" alt="Détails facture">
+                <br>Détails</a>
+
                 <a href="index.php?page=administration&section=invoices&action=createInvoice" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer une facture">
                 <br>Créer</a>
@@ -141,6 +145,7 @@
                 <a href="index.php?page=administration&section=invoices&action=deleteInvoice" class="btn-delete">
                     <img src="public/resources/images/gestion/supprimer.png" alt="supprimer une facture">
                 <br>Supprimer</a>
+
             </div>
 
             <hr>
