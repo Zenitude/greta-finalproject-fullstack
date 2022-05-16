@@ -57,4 +57,5 @@ class Invoices extends DataBase
         return $details;
 
     }
+
 }

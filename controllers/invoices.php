@@ -1,4 +1,6 @@
-<?php require('models/Invoices.php');
+<?php 
+
+require('models/Invoices.php');
 
 function listInvoices()
 {
@@ -38,6 +40,24 @@ function detailsInvoice()
     }
 
     require_once('views/administration/invoices/detailsInvoice.php');
+}
+
+function pdfInvoice()
+{
+    if(isset($_GET['id']))
+    {
+        $detailsInvoice = new Invoices();
+        $details = $detailsInvoice->detailsInvoice($_GET['id']);
+    
+        $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
+        $reste = $montantTotal - $details['advance'];
+        $percentRistourne = $details['discount'] * 100;
+        $ristourne = $reste * ($percentRistourne / 100);
+        $net = $reste - $ristourne;
+
+    }
+
+    require_once('views/administration/invoices/pdfInvoice.php');
 }
 
 function selectInvoices($id = null)

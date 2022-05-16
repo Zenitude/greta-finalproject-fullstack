@@ -142,10 +142,6 @@
                     <img src="public/resources/images/gestion/modifier.png" alt="Modifier une facture">
                 <br>Modifier</a>
 
-                <a href="index.php?page=administration&section=invoices&action=deleteInvoice" class="btn-delete">
-                    <img src="public/resources/images/gestion/supprimer.png" alt="supprimer une facture">
-                <br>Supprimer</a>
-
             </div>
 
             <hr>

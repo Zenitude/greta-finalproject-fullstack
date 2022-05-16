@@ -99,6 +99,13 @@
             </tbody>
         </table>
 
+        <div class="w-100">
+            <div class="w-25 ms-auto d-flex align-items-center">
+                <a href="index.php?page=administration&section=invoices&action=updateInvoice&id=<?php echo $_GET['id']; ?>" class="btn w-50"><img src="public/resources/images/gestion/modifier.png" alt="modifier facture" class="w-50"></a>
+                <a href="index.php?page=administration&section=invoices&action=pdfInvoice&id=<?php echo $_GET['id']; ?>" class="btn w-50" target="_blank"><img src="public/resources/images/gestion/pdf.png" alt="éditer en pdf" class="w-50"></a>
+            </div>
+        </div>
+
     <?php endif; ?>
 </div>
 

@@ -113,6 +113,10 @@ try
                 {
                     detailsInvoice();
                 }
+                elseif($_GET['action'] == 'pdfInvoice')
+                {
+                    pdfInvoice();
+                }
                 elseif($_GET['action'] == 'createInvoice')
                 {
                     createInvoice();

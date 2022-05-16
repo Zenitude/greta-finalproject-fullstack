@@ -50,7 +50,6 @@
                     <td><?= $net.' €'; ?></td>
                     <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=detailsInvoice&id='.$invoice['idInvoice']; ?>"<?php echo $invoice['idInvoice']; ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails facture" class="img-fluid"></a></td>
                     <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=updateInvoice&id='.$invoice['idInvoice']; ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier facture" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=deleteInvoice&id='.$invoice['idInvoice']; ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer facture" class="img-fluid"></a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>
