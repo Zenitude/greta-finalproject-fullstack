@@ -24,9 +24,18 @@ function listInvoices()
 
 function detailsInvoice()
 {
-    if(isset($_GET['id'])) { $id = $_GET['id'];}
+    if(isset($_GET['id'])) 
+    {
+
     $detailsInvoice = new Invoices();
-    $details = $detailsInvoice->detailsInvoice($id);
+    $details = $detailsInvoice->detailsInvoice($_GET['id']);
+
+    $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
+    $reste = $montantTotal - $details['advance'];
+    $percentRistourne = $details['discount'] * 100;
+    $ristourne = $reste * ($percentRistourne / 100);
+    $net = $reste - $ristourne;
+    }
 
     require_once('views/administration/invoices/detailsInvoice.php');
 }

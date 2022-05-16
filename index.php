@@ -121,14 +121,6 @@ try
                 {
                     updateInvoice();
                 }
-                elseif($_GET['action'] == 'readInvoice')
-                {
-                    readInvoice();
-                }
-                elseif($_GET['action'] == 'deleteInvoice')
-                {
-                    deleteInvoice();
-                }
                 else
                 {
                     gestion();

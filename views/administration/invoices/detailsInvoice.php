@@ -3,33 +3,25 @@
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
+
 <div class="container py-5">
 
     <?php if(!isset($_GET['id'])): ?>
 
-    
         <h1 class="mb-5 text-center">Détails d'une facture</h1>
         <form action="index.php?page=administration" method="GET" class="mb-4 d-flex flex-column">
             <div class="input-group mb-3">
                 <label for="selectInvoice" class="form-label w-25 d-none d-sm-block">Sélectionner une facture*</label>
                 <select name="selectInvoice" id="selectInvoice" class="form-select rounded">
-                    <optgroup label="Sélectionnez une facture" selected>
+                    <optgroup label="Sélectionnez une facture">
+                        <?php echo selectInvoices(); ?>
                     </optgroup>
-                    <?php echo selectInvoices(); ?>
                 </select>
             </div>
             <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
         </form>
 
     <?php else: ?>
-
-        <?php 
-            $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
-            $reste = $montantTotal - $details['advance'];
-            $percentRistourne = $details['discount'] * 100;
-            $ristourne = $reste * ($percentRistourne / 100);
-            $net = $reste - $ristourne;
-        ?>
 
         <h1 class="mb-5 text-center">Détails de la facture N°<?= $_GET['id']; ?></h1>
         
@@ -107,10 +99,9 @@
             </tbody>
         </table>
 
-
-
     <?php endif; ?>
 </div>
+
 <?php $content = ob_get_clean(); ?>
 <!-- End of content / Fin du contenu -->
 

@@ -38,6 +38,7 @@ class Invoices extends DataBase
         $selectTheInvoices = $db->prepare($requestSelectInvoices);
         $selectTheInvoices->execute();
         $selectInvoices = $selectTheInvoices->fetchAll();
+        
         return $selectInvoices;
     }
 
