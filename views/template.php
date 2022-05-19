@@ -11,7 +11,7 @@
         
         <div class="container-fluid bodySize m-0 p-0 bg-white">
 
-            <?php require('views/widgets/navbar.php'); ?>
+            <?php require('views/widgets/navbar.php'); ?> 
 
             <?= $content ?>
 

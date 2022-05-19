@@ -30,4 +30,27 @@ class Reservations extends DataBase
         $search = $searchReservation->fetchAll();
         return $search;
     }
+
+    function reservationRooms()
+    {
+        $db = $this->dbConnect();
+        $requestVerifDispoRooms = "SELECT * FROM roomsbooked
+                                  JOIN rooms ON rooms.idRoom = roomsbooked.idRoom
+                                  JOIN reservationshotel ON reservationshotel.idReservation = roomsbooked.idReservationH
+                                  WHERE startDate = :dateStart
+                                  AND endDate = :dateEnd";
+        $verifDispoRooms = $db->prepare($requestVerifDispoRooms);
+        $verifDispoRooms->bindParam(':dateStart', $_SESSION['dateStartReservation']);
+        $verifDispoRooms->bindParam(':dateEnd', $_SESSION['dateEndReservation']);
+        $verifDispoRooms->execute();
+
+        $_SESSION['verifDispoRooms'] = $verifDispoRooms->fetchAll();
+
+        $requestRoomsDispo = "SELECT * FROM rooms";
+        $roomsDispo = $db->prepare($requestRoomsDispo);
+        $roomsDispo->execute();
+        $rooms = $roomsDispo->fetchAll();
+
+        return $rooms;
+    }
 }

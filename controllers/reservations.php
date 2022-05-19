@@ -36,17 +36,33 @@ function searchReservation($search)
     require_once('views/administration/reservations/listReservations.php');
 }
 
-function reservationRooms()
-{
-    require_once('views/administration/reservations/reservationRoom.php');
-}
-
 function reservationCustomer()
 {
     require_once('views/administration/reservations/reservationCustomer.php');
 }
 
-function reservationFinal()
+function reservationDates()
+{
+    if(isset($_POST['selectReservationCustomer'])){ $_SESSION['customerReservation'] = $_POST['selectReservationCustomer']; } 
+
+    require_once('views/administration/reservations/reservationDates.php');
+}
+
+function reservationRooms()
+{
+    if(isset($_POST['dateStartReservation']) && isset($_POST['dateEndReservation']))
+    {
+        $_SESSION['startReservation'] = $_POST['dateStartReservation'];
+        $_SESSION['endReservation'] = $_POST['dateEndReservation'];
+    }
+
+    $roomsDispo = new Reservations();
+    $rooms = $roomsDispo->reservationRooms();
+
+    require_once('views/administration/reservations/reservationRooms.php');
+}
+
+function reservationFinish()
 {
     require_once('views/administration/reservations/reservationFinal.php');
 }

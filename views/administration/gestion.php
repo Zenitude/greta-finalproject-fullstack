@@ -72,7 +72,7 @@
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les réservations">
                 <br>Lister</a>
 
-                <a href="index.php?page=administration&section=reservations&action=reservationRooms" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=createReservation&option=selectCustomer" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer une réservation">
                 <br>Créer</a>
 
@@ -133,10 +133,6 @@
                 <a href="index.php?page=administration&section=invoices&action=detailsInvoice" class="btn-see">
                     <img src="public/resources/images/gestion/voir.png" alt="Détails facture">
                 <br>Détails</a>
-
-                <a href="index.php?page=administration&section=invoices&action=createInvoice" class="btn-create">
-                    <img src="public/resources/images/gestion/ajouter.png" alt="Créer une facture">
-                <br>Créer</a>
 
                 <a href="index.php?page=administration&section=invoices&action=updateInvoice" class="btn-update">
                     <img src="public/resources/images/gestion/modifier.png" alt="Modifier une facture">

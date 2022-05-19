@@ -1,65 +1,24 @@
 <!-- Page title / Titre de la page -->
-<?php $title = 'Réservation Hôtel | Créer une réservation'; ?>
+<?php $title = 'Réservation Hôtel | Créer une réservation - Sélection du Client'; ?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
-<form action="" method="post">
-    
-    <div>
-        <label for="numberBeds">Lits</label>
-        <input type="number" name="numberBeds" id="numberBeds">
-    </div>
-
-    <div>
-        <label for="childRooms">Chambre enfant</label>
-        <input type="number" name="childRoom" id="childRoom">
-    </div>
-
-    <div>
-        <label for="numberBathrooms">Salles de bain</label>
-        <input type="number" name="numberBathroom" id="numberBathroom">
-    </div>
-
-    <div>
-        <label for="numberToilets">Toilettes</label>
-        <input type="number" name="numberToilets" id="numberToilets">
-    </div>
-
-    <div>
-        <label for="numberSallons">Sallons</label>
-        <input type="number" name="numberSallon" id="numberSallon">
-    </div>   
-
-    <div>
-        <label for="numberTerraces">Terrasses</label>
-        <input type="number" name="numberTerraces" id="numberTerraces">
-    </div>
-
-    <div>
-        <label for="startDate">Date début</label>
-        <input type="date" name="startDate" id="startDate">
-    </div>
-
-    <div>
-        <label for="endDate">Date fin</label>
-        <input type="date" name="endDate" id="endDate">
-    </div>
-
-    <button class="btn btn-beige">Vérifier disponibilité</button>
-    
-    <div>
-        <label for="selectRoom">Sélectionner une chambre</label>
-        <select name="selectRoom" id="selectRoom">
-            <?php ?>
-        </select>
-    </div>
-
-    <button class="btn btn-beige">Ajouter une chambre</button>
-    
-    <button class="btn btn-beige">Continuer</button>
-
+<div class="container py-5">
+<h1 class="text-center">Sélectionner un client pour la réservation</h1>
+<form action="index.php?page=administration&section=reservations&action=createReservation&option=selectDates" method="POST" class="my-4 d-flex flex-column">
+        <div class="input-group mb-3">
+            <label for="selectReservationCustomer" class="form-label w-25 d-none d-sm-block">Sélectionner un client*</label>
+            <select name="selectReservationCustomer" id="selectReservationCustomer" class="form-select rounded">
+                <optgroup label="Sélectionnez un client" selected>
+                </optgroup>
+                <?php selectCustomers(); ?>
+            </select>
+        </div>
+        <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
 </form>
+
+</div>
 
 <?php $content = ob_get_clean(); ?>
 <!-- End of content / Fin du contenu -->
