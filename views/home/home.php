@@ -4,8 +4,8 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
-    <section id="head" class="w-100 position-relative">
-        <img src="public/resources/images/home/head/hotel.jpg" class="img-fluid position-absolute bottom-0 right-0" alt="">
+    <section id="head" class="head w-100 position-relative">
+        <img src="public/resources/images/home/head/hotel3.jpg" class="img-fluid position-absolute bottom-0 right-0" alt="">
         <img src="public/resources/images/home/head/header - bottom.png" class="img-fluid position-absolute bottom-0 right-0" alt="">
     </section>
 
@@ -68,8 +68,8 @@
 
     <section id="restaurant">
         <div id="chefs" class="bg-beige pt-4">
-        <h2 class="text-center display-5 fw-bold">Nôtre Restaurant</h2>
-        <div class="container py-5">
+            <h2 class="text-center display-5 fw-bold">Nôtre Restaurant</h2>
+            <div class="container py-5">
                 <div class="row row-cols-1 row-cols-lg-3 g-3">
                     <div class="order-3 order-lg-1">
                         <div class="card">
