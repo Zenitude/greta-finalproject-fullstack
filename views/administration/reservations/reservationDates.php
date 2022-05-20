@@ -6,7 +6,6 @@
 
 <div class="container py-5">
     <h1 class="text-center">Vérifier disponibilité des chambres</h1>
-
     <form method="POST" action="index.php?page=administration&section=reservations&action=createReservation&option=selectRooms" class="my-4 d-flex justify-content-center align-items-center">
         <div class="form-inline w-25">
             <label for="dateStartReservation">Date de début</label>

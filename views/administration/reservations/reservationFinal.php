@@ -4,6 +4,10 @@
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
 
+<div class="container">
+    
+</div>
+
 <?php $content = ob_get_clean(); ?>
 <!-- End of content / Fin du contenu -->
 

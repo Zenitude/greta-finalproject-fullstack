@@ -49,7 +49,7 @@ class Invoices extends DataBase
                                   JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
                                   JOIN customers ON reservationshotel.idCustomer = customers.id
                                   JOIN roomsbooked ON reservationshotel.idReservation = roomsbooked.idReservationH
-                                  JOIN rooms ON roomsbooked.idRoom = rooms.idChambre
+                                  JOIN rooms ON roomsbooked.idRoom = rooms.idRoom
                                   WHERE idInvoice = $id";
         $detailsInvoice = $db->prepare($requestDetailsInvoice);
         $detailsInvoice->execute();

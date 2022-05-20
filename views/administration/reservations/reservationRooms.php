@@ -8,28 +8,44 @@
 
 <div class="container py-5">
 
-<h1 class="text-center">Chambres disponibles</h1>
+<h1 class="text-center">Chambres disponibles pour la période</h1>
+<p class="text-center fs-2"><?php echo 'du '.date('d/m/Y', strtotime($_COOKIE['reservation_dateStart'])).' au '.date('d/m/Y', strtotime($_COOKIE['reservation_dateEnd'])); ?></p>
 
-<table class="table">
-    <thead class="text-center">
-        <th>Numéro</th>
-        <th>Désignation</th>
-        <th>Lits</th>
-        <th>Salle(s) de bain</th>
-        <th>Toilette(s)</th>
-        <th>Chambre(s) d'enfant</th>
-        <th>Sallon(s)</th>
-        <th>Terraces</th>
-        <th>Prix</th>
-    </thead>
-    <tbody class="text-center">
+<form action="index.php?page=administration&section=reservations&action=createReservation&option=finishReservation" method="POST">
+    <table class="table">
+        <thead class="text-center">
+            <th></th>
+            <th>Numéro</th>
+            <th>Désignation</th>
+            <th>Lits</th>
+            <th>Salle(s) de bain</th>
+            <th>Toilette(s)</th>
+            <th>Chambre(s) d'enfant</th>
+            <th>Sallon(s)</th>
+            <th>Terraces</th>
+            <th>Prix/Jour</th>
+        </thead>
+        <tbody class="text-center">
         <?php foreach($rooms as $room): ?>
-            <?php if($room['number'] != $_SESSION['verifDispoRooms']['number']): ?>
-                <!-- suite ici -->
-            <?php endif; ?>
+	        <?php if($room['number'] != $verifDispo['number']): ?>
+                <td><input type="checkbox" name="<?= str_replace(' ', '_', $room['designation']) ; ?>" value="<?= $room['idRoom']; ?>"></td>
+                <td><?= $room['number']; ?></td>
+                <td><?= $room['designation']; ?></td>
+                <td><?= $room['beds']; ?></td>
+                <td><?= $room['bathrooms']; ?></td>
+                <td><?= $room['toiletes']; ?></td>
+                <td><?= $room['childrooms']; ?></td>
+                <td><?= $room['sallons']; ?></td>
+                <td><?= $room['terraces']; ?></td>
+                <td><?= number_format($room['price'], 2).' €'; ?></td>
+	        <?php else: ?>
+		        <p>Aucune chambre disponible</p>      
+	        <?php endif; ?>	
         <?php endforeach; ?>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <button class="btn bg-beige border">Choisir</button>
+</form>
 
 </div>
 

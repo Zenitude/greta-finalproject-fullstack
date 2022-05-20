@@ -36,7 +36,7 @@
                         <div class="card bg-beige">
                             <h4 class="text-center bg-beige">Internes</h4>
                             <ul class="list-group">
-                                <li class="list-group-item">Booling</li>
+                                <li class="list-group-item">Bowling</li>
                                 <li class="list-group-item">Piscine chauffée</li>
                                 <li class="list-group-item">Billard</li>
                                 <li class="list-group-item">Arcade</li>

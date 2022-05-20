@@ -43,7 +43,7 @@ function reservationCustomer()
 
 function reservationDates()
 {
-    if(isset($_POST['selectReservationCustomer'])){ $_SESSION['customerReservation'] = $_POST['selectReservationCustomer']; } 
+    if(isset($_POST['selectReservationCustomer'])){ setCookie('reservation_customer', $_POST['selectReservationCustomer'], 0, '/', '', false, true); } 
 
     require_once('views/administration/reservations/reservationDates.php');
 }
@@ -52,18 +52,36 @@ function reservationRooms()
 {
     if(isset($_POST['dateStartReservation']) && isset($_POST['dateEndReservation']))
     {
-        $_SESSION['startReservation'] = $_POST['dateStartReservation'];
-        $_SESSION['endReservation'] = $_POST['dateEndReservation'];
+        setCookie('reservation_dateStart', $_POST['dateStartReservation'], 0, '/', '', false, true);
+        setCookie('reservation_dateEnd', $_POST['dateEndReservation'], 0, '/', '', false, true);
     }
 
     $roomsDispo = new Reservations();
-    $rooms = $roomsDispo->reservationRooms();
+    $verifDispo = $roomsDispo->reservationRooms($_COOKIE['reservation_dateStart'], $_COOKIE['reservation_dateEnd']);
+    $rooms = $roomsDispo->reservationRoomsDispo();
 
     require_once('views/administration/reservations/reservationRooms.php');
 }
 
 function reservationFinish()
 {
+    $price = 0;
+
+    $resumReservation = new Reservations();
+    $resum = $resumReservation->reservationFinish();
+
+    $numeroReservation = $resum['idReservation'];
+    $customer = $resum['lastname'].' '.$resum['firstname'];
+    $dates = $resum['startDate'].' - '.$resum['endDate'];
+
+    foreach($resum['price'] as $priceRoom)
+    {
+        $price = $price + $priceRoom;
+    }
+
+    $advance = $price * 0.5;
+    $reste = $price - $advance;
+    
     require_once('views/administration/reservations/reservationFinal.php');
 }
 

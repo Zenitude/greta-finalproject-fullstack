@@ -44,7 +44,7 @@ divsPresentation.forEach(div =>
             x:0,
             opacity: 1,
             duration: 0.5,
-            delay: 1,
+            delay: 0.5
         })
 
 });
@@ -68,8 +68,8 @@ timeLine
         {
             x: 0,
             opacity: 1,
-            duration: 1,
-            delay: 1
+            duration: 0.5,
+            delay: 0.5
         }
     )
     .fromTo(
@@ -87,8 +87,8 @@ timeLine
         {
             x: 0,
             opacity: 1,
-            duration: 1,
-            delay: 1
+            duration: 0.5,
+            delay: 0.5
         }
     )
 
@@ -113,8 +113,8 @@ chefs.forEach(chef =>
             {
                 y: 0,
                 opacity: 1,
-                duration: 1,
-                delay: 1
+                duration: 0.5,
+                delay: 0.5
             }
         )
 });
