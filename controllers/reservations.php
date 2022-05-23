@@ -67,23 +67,34 @@ function reservationFinish()
 {
     $price = 0;
 
+    $date = date('Y-m-d H:i:s');
     $resumReservation = new Reservations();
     $resum = $resumReservation->reservationFinish();
+    print_r($resum['price']);
 
-    $numeroReservation = $resum['idReservation'];
+    $numeroReservation = intval($resum['idReservation']);
     $customer = $resum['lastname'].' '.$resum['firstname'];
     $dates = $resum['startDate'].' - '.$resum['endDate'];
 
-    foreach($resum['price'] as $priceRoom)
+    /*foreach($resum['price'] as $priceRoom)
     {
-        $price = $price + $priceRoom;
-    }
+        $price = $price + intval($priceRoom);
+    }*/
 
-    $advance = $price * 0.5;
+    $price = $resum['price'];
+    $advance = $price * 0.25;
     $reste = $price - $advance;
+
+    /*createInvoice($date, $price, $advance, $numeroReservation);*/
     
     require_once('views/administration/reservations/reservationFinal.php');
 }
+
+/*function createInvoice($date, $price, $advance, $numeroReservation)
+{
+    $addInvoice = new Reservations();
+    $createInvoice = $addInvoice->createInvoice($date, $price, $advance, $numeroReservation);
+}*/
 
 function readReservation()
 {

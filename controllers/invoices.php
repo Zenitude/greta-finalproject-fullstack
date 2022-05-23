@@ -80,11 +80,6 @@ function selectInvoices($id = null)
     }
 }
 
-function createInvoice()
-{
-    require('views/administration/invoices/createInvoice.php');
-}
-
 function readInvoice()
 {
     require('views/administration/invoices/readInvoice.php');

@@ -2,7 +2,7 @@
 
 CREATE TABLE `lemontagnard`.`rooms`
 (
-    `id` INT AUTO_INCREMENT,
+    `idRoom` INT AUTO_INCREMENT,
     `number` INT NOT NULL,
     `designation` VARCHAR(255),
     `beds` INT NOT NULL DEFAULT 1,
@@ -12,16 +12,42 @@ CREATE TABLE `lemontagnard`.`rooms`
     `sallons` INT NOT NULL DEFAULT 0,
     `terraces` INT NOT NULL DEFAULT 0,
     `price` INT NOT NULL,
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`idRoom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/* Premières chambres */
+INSERT INTO `rooms`(number, designation, beds, bathrooms, toiletes, childrooms, sallons, terraces, price) VALUES
+(
+    '101',
+    'La premiere',
+    1,
+    1,
+    1,
+    0,
+    0,
+    1,
+    150
+),
+(
+    '102',
+    'La deuxieme',
+    2,
+    2,
+    1,
+    0,
+    0,
+    2,
+    300
+);
 
 /* Création de la liaison roomsBooked */
 CREATE TABLE `lemontagnard`.`roomsBooked`
 (
     `id` INT AUTO_INCREMENT,
-    `idReservationH` INT NOT NULL,
-    `idRoom` INT NOT NULL,
+    `idReservationB` INT NOT NULL,
+    `idRoomB` INT NOT NULL,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`idReservationH`) REFERENCES `reservationshotel` (`id`),
-    FOREIGN KEY (`idRoom`) REFERENCES `rooms` (`id`)
+    CONSTRAINT `FK_Booked_Reservation` FOREIGN KEY (`idReservationB`) REFERENCES `reservationshotel` (`idReservation`),
+    CONSTRAINT `FK_Booked_Room` FOREIGN KEY (`idRoomB`) REFERENCES `rooms` (`idRoom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

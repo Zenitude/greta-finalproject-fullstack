@@ -5,7 +5,14 @@
 <?php ob_start(); ?>
 
 <div class="container">
-    
+    <?php 
+        echo $numeroReservation.'<br>';
+        echo $customer.'<br>';
+        echo $dates.'<br>';
+        echo $price.' €<br>';
+        echo $advance.' €<br>';
+        echo $reste.' €<br>';
+    ?>
 </div>
 
 <?php $content = ob_get_clean(); ?>

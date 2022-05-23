@@ -28,16 +28,18 @@
         <tbody class="text-center">
         <?php foreach($rooms as $room): ?>
 	        <?php if($room['number'] != $verifDispo['number']): ?>
-                <td><input type="checkbox" name="<?= str_replace(' ', '_', $room['designation']) ; ?>" value="<?= $room['idRoom']; ?>"></td>
-                <td><?= $room['number']; ?></td>
-                <td><?= $room['designation']; ?></td>
-                <td><?= $room['beds']; ?></td>
-                <td><?= $room['bathrooms']; ?></td>
-                <td><?= $room['toiletes']; ?></td>
-                <td><?= $room['childrooms']; ?></td>
-                <td><?= $room['sallons']; ?></td>
-                <td><?= $room['terraces']; ?></td>
-                <td><?= number_format($room['price'], 2).' €'; ?></td>
+                <tr>
+                    <td><input type="checkbox" name="<?= str_replace(' ', '_', $room['designation']) ; ?>" value="<?= $room['idRoom']; ?>"></td>
+                    <td><?= $room['number']; ?></td>
+                    <td><?= $room['designation']; ?></td>
+                    <td><?= $room['beds']; ?></td>
+                    <td><?= $room['bathrooms']; ?></td>
+                    <td><?= $room['toiletes']; ?></td>
+                    <td><?= $room['childrooms']; ?></td>
+                    <td><?= $room['sallons']; ?></td>
+                    <td><?= $room['terraces']; ?></td>
+                    <td><?= number_format($room['price'], 2).' €'; ?></td>
+                </tr>
 	        <?php else: ?>
 		        <p>Aucune chambre disponible</p>      
 	        <?php endif; ?>	

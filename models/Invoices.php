@@ -8,7 +8,7 @@ class Invoices extends DataBase
     {
         $db = $this->dbConnect();
         $requestListInvoices = "SELECT * FROM invoices
-                                JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
+                                JOIN reservationshotel ON invoices.idReservation = reservationshotel.idReservation
                                 JOIN customers ON reservationshotel.idCustomer = customers.id";
         $listInvoices = $db->prepare($requestListInvoices);
         $listInvoices->execute();
@@ -20,7 +20,7 @@ class Invoices extends DataBase
     {
         $db = $this->dbConnect();
         $requestSearchInvoice = "SELECT * FROM invoices
-                                 JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
+                                 JOIN reservationshotel ON invoices.idReservation = reservationshotel.idReservation
                                  JOIN customers ON reservationshotel.idCustomer = customers.id
                                  WHERE idInvoice LIKE $search";
         $searchInvoice = $db->prepare($requestSearchInvoice);
@@ -33,7 +33,7 @@ class Invoices extends DataBase
     {
         $db= $this->dbConnect();
         $requestSelectInvoices = "SELECT * FROM invoices
-                                  JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
+                                  JOIN reservationshotel ON invoices.idReservation = reservationshotel.idReservation
                                   JOIN customers ON reservationshotel.idCustomer = customers.id";
         $selectTheInvoices = $db->prepare($requestSelectInvoices);
         $selectTheInvoices->execute();
@@ -46,9 +46,9 @@ class Invoices extends DataBase
     {
         $db = $this->dbConnect();
         $requestDetailsInvoice = "SELECT * FROM invoices
-                                  JOIN reservationshotel ON invoices.idReservationH = reservationshotel.idReservation
+                                  JOIN reservationshotel ON invoices.idReservation = reservationshotel.idReservation
                                   JOIN customers ON reservationshotel.idCustomer = customers.id
-                                  JOIN roomsbooked ON reservationshotel.idReservation = roomsbooked.idReservationH
+                                  JOIN roomsbooked ON reservationshotel.idReservation = roomsbooked.idReservation
                                   JOIN rooms ON roomsbooked.idRoom = rooms.idRoom
                                   WHERE idInvoice = $id";
         $detailsInvoice = $db->prepare($requestDetailsInvoice);

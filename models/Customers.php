@@ -9,7 +9,7 @@ class Customers extends DataBase
         try
         {
             $db = $this->dbConnect();
-            $requestListCustomers = "SELECT * FROM customers LEFT JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress";
+            $requestListCustomers = "SELECT * FROM customers LEFT JOIN addresscustomers ON customers.idAddressC = addresscustomers.idAddress";
             $ListCustomers = $db->prepare($requestListCustomers);
             $ListCustomers->execute();
             $customers = $ListCustomers->fetchAll();
@@ -63,7 +63,7 @@ class Customers extends DataBase
 
         $db = $this->dbConnect();
         $requestSearchCustomer = "SELECT * FROM customers
-                                  JOIN addresscustomers ON customers.idAddress = addresscustomers.idAddress
+                                  JOIN addresscustomers ON customers.idAddressC = addresscustomers.idAddress
                                   WHERE `".$selectSearch."` LIKE ". $search;
         $searchCustomer = $db->prepare($requestSearchCustomer);
         $searchCustomer->execute();
@@ -160,7 +160,7 @@ class Customers extends DataBase
 
                         try
                         {
-                            $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddress, vip, idConjoint) 
+                            $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddressC, vip, idConjoint) 
                                                    VALUES(:lastname, :firstname, :mail, :phone, :birthdate, :idAddress, :vip, :idConjoint)";
                             $addCustomer = $db->prepare($requestAddCustomer);
                             $addCustomer->bindParam(':lastname', $lastname);
@@ -225,14 +225,14 @@ class Customers extends DataBase
     function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
     {
 
-        var_dump('C-id : '.$id);
+        /*var_dump('C-id : '.$id);
         var_dump('C-nom : '.$lastname);
         var_dump('C-prenom : '.$firstname);
         var_dump('C-mail : '.$mail);
         var_dump('C-telephone : '.$phone);
         var_dump('C-date : '.$birthdate);
         var_dump('C-idAddress : '.$idAddress);
-        var_dump('C-idConjoint : '.$idConjoint);
+        var_dump('C-idConjoint : '.$idConjoint);*/
 
         try{
             
@@ -241,7 +241,7 @@ class Customers extends DataBase
             $requestUpdateCustomer = "UPDATE customers
                                       SET lastname = :lastname, firstname = :firstname, mail = :mail, 
                                       phone = :phone, birthdate = :birthdate, vip = :vip, 
-                                      idConjoint = :idConjoint, idAddress = :idAddress
+                                      idConjoint = :idConjoint, idAddressC = :idAddress
                                       WHERE customers.id = :idCustomer";
             $updateCustomer = $db->prepare($requestUpdateCustomer);
             $updateCustomer->bindParam(':lastname', $lastname);
