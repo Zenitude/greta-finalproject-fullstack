@@ -79,7 +79,7 @@
                 <tr>
                     <td class="fw-bold">Chambres</td>
                     <td class="border text-center"><?= number_format($details['price'], 2); ?></td>
-                    <td class="border text-center">2</td>
+                    <td class="border text-center"></td>
                     <td class="border text-center"><?= number_format($details['sumRooms'], 2); ?></td>
 
                 </tr>

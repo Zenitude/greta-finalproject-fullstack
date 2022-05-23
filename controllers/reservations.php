@@ -85,16 +85,16 @@ function reservationFinish()
     $advance = $price * 0.25;
     $reste = $price - $advance;
 
-    /*createInvoice($date, $price, $advance, $numeroReservation);*/
+    createInvoice($date, $price, $advance, $numeroReservation);
     
     require_once('views/administration/reservations/reservationFinal.php');
 }
 
-/*function createInvoice($date, $price, $advance, $numeroReservation)
+function createInvoice($date, $price, $advance, $numeroReservation)
 {
     $addInvoice = new Reservations();
     $createInvoice = $addInvoice->createInvoice($date, $price, $advance, $numeroReservation);
-}*/
+}
 
 function readReservation()
 {

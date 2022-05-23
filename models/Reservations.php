@@ -137,7 +137,7 @@ class Reservations extends DataBase
         }
     }
 
-    /*function createInvoice($date, $sumRooms, $advance, $idReservation)
+    function createInvoice($date, $sumRooms, $advance, $idReservation)
     {
         $db = $this->dbConnect();
         $requestCreateInvoice = "INSERT INTO invoices(date, sumRooms, advance, idReservationI)
@@ -148,5 +148,5 @@ class Reservations extends DataBase
         $createInvoice->bindParam(':advance', $advance);
         $createInvoice->bindParam(':idReservation', $idReservation);
         $createInvoice->execute();
-    }*/
+    }
 }
