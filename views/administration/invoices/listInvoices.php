@@ -38,7 +38,7 @@
                 <?php $net = ($total - $invoice['advance']) * (1-$invoice['discount']); ?>
                 <tr class="text-center">
                     <td><?= $invoice['idInvoice']; ?></td>
-                    <td><?= $invoice['idReservationH']; ?></td>
+                    <td><?= $invoice['idReservationI']; ?></td>
                     <td><?= date('d/m/Y', strtotime($invoice['date'])); ?></td>
                     <td><?= $invoice['lastname'].' '.$invoice['firstname']; ?></td>
                     <td><?= $invoice['sumRooms'].' €'; ?></td>

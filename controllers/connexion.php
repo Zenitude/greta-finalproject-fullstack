@@ -1,14 +1,21 @@
-<?php require('models/Connexion.php');
+<?php 
 
+/* Importing the Model | Import du Model */
+require('models/Connexion.php');
+
+/* Function displaying the login page | Fonction affichant la page de connexion */ 
 function connexion()
 {
+    /* Importing the view | Import de la vue */
     require_once('views/connexion/connexion.php');
 }
 
+/* User login function | Fonction permettant à l'utilisateur de se connecter */
 function login()
 {    
     if(isset($_GET['err']))
     {
+        /* Management of error messages to be displayed | Gestion des messages d'erreur à afficher */
         switch($_GET['err'])
         {
             case 'both':
@@ -34,8 +41,10 @@ function login()
         }
     }
     
+    /*  When sending the form | Lors de l'envoie du formulaire */
     if(isset($_POST['mailConnection']))
     {   
+        /* Redirects in case of error | Redirections en cas d'erreur */
         if(empty($_POST['mailConnection']) && empty($_POST['passwordConnection']))
         { 
             header('Location: index.php?page=connexion&err=both');
@@ -50,12 +59,14 @@ function login()
         }
         else
         {
+            /* We check that this is an email | On vérifie qu'il s'agisse bien d'un email */
             if (!filter_var($_POST["mailConnection"], FILTER_VALIDATE_EMAIL)) 
             {
                 header('Location: index.php?page=connexion&err=wrongmail');
             }
             else
             {
+                /* We try to connect the user with the data entered | On tente de connecter l'utilisateur avec les données saisient */
                 try{
                     
                     $mail = htmlspecialchars($_POST['mailConnection']);
@@ -72,9 +83,11 @@ function login()
                     }
                     else
                     {         
-                            
+                        /* If no error has been detected so far we connect the user | Si aucune erreur n'a été détecté jusque là on connecte l'utilisateur */    
                         try 
                         {
+                            /*  If the user exists, we connect him, we save his username to say hello to him on the management page and his type of authorisation to manage his access rights to certain contents
+                                Si l'utilisateur existe, on le connecte, on sauvegarde son identifiant pour lui dire bonjour sur la page de gestion et son type d'habilitation pour gérer ses droits d'accès à certains contenus */
                             if($user)
                             {
                                 $_SESSION['userAdmin'] = $user['firstname'];
@@ -97,10 +110,13 @@ function login()
         }
         
     }
+
+    /* Importing the view | Import de la vue */
     require_once('views/connexion/connexion.php');
     
 }
 
+/*  Function allowing the logged in user to log out | Fonction permettant à l'utilisateur connecté de se déconnecter */
 function deconnexion()
 {
     $deco = new Connexion;

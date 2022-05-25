@@ -22,6 +22,13 @@ function listReservations()
     require_once('views/administration/reservations/listReservations.php');
 }
 
+function listReservation($id)
+{
+    $listReservation = new Reservations();
+    $reservation = $listReservation->listReservation($id);
+    echo 'N° '.$reservation['idReservation'].' - Du '.date('d/m/Y', strtotime($reservation['startDate'])).' au '.date('d/m/Y', strtotime($reservation['endDate'])).' - '.$reservation['lastname'].' '.$reservation['firstname'];
+}
+
 function searchReservation($search)
 {
     
@@ -36,31 +43,17 @@ function searchReservation($search)
     require_once('views/administration/reservations/listReservations.php');
 }
 
-function reservationCustomer()
+function createReservation()
 {
-    require_once('views/administration/reservations/reservationCustomer.php');
-}
 
-function reservationDates()
-{
-    if(isset($_POST['selectReservationCustomer'])){ setCookie('reservation_customer', $_POST['selectReservationCustomer'], 0, '/', '', false, true); } 
-
-    require_once('views/administration/reservations/reservationDates.php');
-}
-
-function reservationRooms()
-{
     if(isset($_POST['dateStartReservation']) && isset($_POST['dateEndReservation']))
     {
-        setCookie('reservation_dateStart', $_POST['dateStartReservation'], 0, '/', '', false, true);
-        setCookie('reservation_dateEnd', $_POST['dateEndReservation'], 0, '/', '', false, true);
+        $roomsDispo = new Reservations();
+        $verifDispo = $roomsDispo->reservationRooms($_COOKIE['reservation_dateStart'], $_COOKIE['reservation_dateEnd']);
+        $rooms = $roomsDispo->reservationRoomsDispo();
     }
 
-    $roomsDispo = new Reservations();
-    $verifDispo = $roomsDispo->reservationRooms($_COOKIE['reservation_dateStart'], $_COOKIE['reservation_dateEnd']);
-    $rooms = $roomsDispo->reservationRoomsDispo();
-
-    require_once('views/administration/reservations/reservationRooms.php');
+    require_once('views/administration/reservations/createReservation.php');
 }
 
 function reservationFinish()
@@ -70,18 +63,18 @@ function reservationFinish()
     $date = date('Y-m-d H:i:s');
     $resumReservation = new Reservations();
     $resum = $resumReservation->reservationFinish();
-    print_r($resum['price']);
 
     $numeroReservation = intval($resum['idReservation']);
     $customer = $resum['lastname'].' '.$resum['firstname'];
-    $dates = $resum['startDate'].' - '.$resum['endDate'];
+    $dates = date('d/m/Y', strtotime($resum['startDate'])).' - '.date('d/m/Y', strtotime($resum['endDate']));
 
-    /*foreach($resum['price'] as $priceRoom)
+    $priceRooms = $resumReservation->priceRooms($resum['idReservation']);
+
+    foreach($priceRooms as $priceRoom)
     {
-        $price = $price + intval($priceRoom);
-    }*/
+        $price = $price + intval($priceRoom['price']);
+    }
 
-    $price = $resum['price'];
     $advance = $price * 0.25;
     $reste = $price - $advance;
 
@@ -96,9 +89,45 @@ function createInvoice($date, $price, $advance, $numeroReservation)
     $createInvoice = $addInvoice->createInvoice($date, $price, $advance, $numeroReservation);
 }
 
-function readReservation()
+function selectReservations($id = null)
 {
-    require_once('views/administration/reservations/readReservation.php');
+    $selectReservations = new Reservations();
+    $reservations = $selectReservations->selectReservations();
+    
+    foreach($reservations as $reservation)
+    {
+        if($id != $reservation['idReservation'] || $id == null)
+        {
+            $selected = '';
+        }
+        else
+        {
+            $selected = 'selected';
+        }
+        
+        echo '<option value="'.$reservation['idReservation'].'"'.$selected.'>N° '.$reservation['idReservation']
+             .' - Du '.date('d/m/Y', strtotime($reservation['startDate'])).' au '.date('d/m/Y', strtotime($reservation['endDate']))
+             .' - '.$reservation['lastname'].' '.$reservation['firstname'].'</option>';
+    }
+
+}
+
+function detailsReservation()
+{
+    if(isset($_GET['id']))
+    {
+        $detailsReservations = new Reservations();
+        $details = $detailsReservations->detailsReservation($_GET['id']);
+
+        $detailsRoomsBooked = $detailsReservations->detailsRoomsBooked($_GET['id']);
+    }
+
+    $total = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
+    $reste = $total - $details['advance'];
+    $ristourne = $reste * $details['discount'];
+    $net = $reste - $ristourne;
+
+    require_once('views/administration/reservations/detailsReservation.php');
 }
 
 function updateReservation()
@@ -108,5 +137,16 @@ function updateReservation()
 
 function deleteReservation()
 {
-    require_once('views/administration/reservations/listReservations.php');
+    require_once('views/administration/reservations/deleteReservation.php');
+}
+
+function deleteAnReservation()
+{
+    if(isset($_GET['id']))
+    {
+        $delete = new Reservations();
+        $delete->deleteAnReservation($_GET['id']);
+        
+        require_once('views/administration/customers/listReservations.php');
+    }
 }

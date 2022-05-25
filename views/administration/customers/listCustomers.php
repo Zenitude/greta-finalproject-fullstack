@@ -11,11 +11,11 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
 
 <h1 class="mb-5 text-center">Liste des clients</h1>
 
-    <form method="GET" class="mb-4 d-flex">
+    <form method="POST" action="index.php?page=administration&section=customers&action=listCustomers" class="mb-4 d-flex">
         <div class="d-flex flex-column me-1">
-            <label for="selectSearch" class="opacity-0">Sélectionner une catégorie de recherche</label>
-            <select name="selectSearchCustomer" id="selectSearch" class="rounded ps-1 border">
-                <option value="id" selected>Numéro</option>
+            <label for="selectSearchCustomer" class="opacity-0">Sélectionner une catégorie de recherche</label>
+            <select name="selectSearchCustomer" id="selectSearchCustomer" class="rounded ps-1 border">
+                <option value="id">Numéro</option>
                 <option value="lastname">Nom</option>
                 <option value="firstname">Prénom</option>
                 <option value="zipCode">Code postal</option>
@@ -24,8 +24,8 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
             </select>
         </div>
         <div class="search position-relative w-25 d-flex flex-column">
-            <label for="searchBar" class="opacity-0">Rechercher</label>
-            <input type="search" placeholder="Rechercher" id="searchBar" name="searchCustomer" class="rounded w-100 border ps-1">
+            <label for="searchCustomer" class="opacity-0">Rechercher</label>
+            <input type="search" placeholder="Rechercher" id="searchCustomer" name="searchCustomer" class="rounded w-100 border ps-1">
             <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>

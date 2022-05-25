@@ -18,6 +18,20 @@ try
         header('Location:index.php?page=administration&section=customers&action=deleteCustomer&id='.$_GET['selectDeleteCustomer']);
     }
 
+    /*  Redirects to a customer’s delete page when selecting a customer via the delete page
+        Redirige vers la page de suppression d'un client lors de la selection de celui-ci via la page de suppression */
+        if(isset($_GET['selectDeleteReservation']))
+        {
+            header('Location:index.php?page=administration&section=reservations&action=deleteReservation&id='.$_GET['selectDeleteReservation']);
+        }
+
+    /*  Redirects to the reservation display page when selecting an reservation on the display page
+        Redirige vers la page d'affichage d'une réservation lors de la selection d'une réservation sur la page d'affichage */
+        if(isset($_GET['selectReservation']))
+        {
+            header('Location:index.php?page=administration&section=reservations&action=detailsReservation&id='.$_GET['selectReservation']);
+        }
+
     /* Redirects to the customer list page when sending a search criteria to filter information
        Redirige vers la page de la liste des clients lors de l'envoie d'un critère de recherche pour filtrer les informations */
     if(isset($_GET['searchCustomer']) && isset($_GET['selectSearchCustomer']))
@@ -116,30 +130,18 @@ try
                 }
                 elseif($_GET['action'] == 'createReservation')
                 {
-                    if($_GET['option'] == 'selectCustomer')
-                    {
-                        reservationCustomer();
-                    }
-                    elseif($_GET['option'] == 'selectDates')
-                    {
-                        reservationDates();
-                    }
-                    elseif($_GET['option'] == 'selectRooms')
-                    {
-                        reservationRooms();
-                    }
-                    elseif($_GET['option'] == 'finishReservation')
+                    if($_GET['option'] == 'finishReservation')
                     {
                         reservationFinish();
                     }
                     else
                     {
-                        reservationCustomer();
+                        createReservation();
                     }
                 }
-                elseif($_GET['action'] == 'readReservation')
+                elseif($_GET['action'] == 'detailsReservation')
                 {
-                    readReservation();
+                    detailsReservation();
                 }
                 elseif($_GET['action'] == 'updateReservation')
                 {

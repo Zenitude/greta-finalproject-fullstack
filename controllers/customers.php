@@ -1,26 +1,35 @@
-<?php require('models/Customers.php');
+<?php 
 
+/* Importing the Model | Import du Model */
+require('models/Customers.php');
+
+/* Function to display the customer list | Fonction permettant d'afficher la liste des clients */
 function listCustomers()
 {
-    if(isset($_GET['search']) && !empty($_GET['search']) && isset($_GET['filter']))
+    if(isset($_POST['selectSearchCustomer']))
     {
+        /* Displays the list of customers based on a selected filter | Affiche la liste des clients en fonction d'un filtre choisi*/
         $searchCustomer = new Customers();
-        $customers = $searchCustomer->searchCustomer($_GET['filter'], $_GET['search']);
+        $customers = $searchCustomer->searchCustomer($_POST['selectSearchCustomer'], $_POST['searchCustomer']);
     }
     else
     {
+        /* Displays the list of customers without filters | Affiche la liste des clients sans filtre */
         $listCustomers = new Customers();
         $customers = $listCustomers->listCustomers();
     }
-    
+        
     if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
     {
+        /* Displays a success message when deleting a client | Affiche un message de succès lors de la suppression d'un client */
         $deleteCustomer = '<p class="bg-success text-light text-center"> Client numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
     
+    /* Importing the view | Import de la vue */
     require_once('views/administration/customers/listCustomers.php');
 }
 
+/* Feature displaying the customer’s first and last name on the delete page | Fonction affichant le nom et prénom du client sur la page de suppression */
 function listCustomer($id)
 {
     $listCustomer = new Customers();
@@ -28,6 +37,7 @@ function listCustomer($id)
     echo $customer['lastname'].' '.$customer['firstname'];
 }
 
+/* Function displaying a customer’s booking number on the customer list page | Fonction affichant le nombre de réservation d'un client sur la page de liste des clients */
 function numberOfReservations($id)
 {
     $reservations = new Customers();
@@ -36,6 +46,28 @@ function numberOfReservations($id)
     return $countReservations;
 }
 
+/* Feature to select a client for when creating, updating or deleting */
+function selectCustomers($id = null)
+{
+    $selectTheCustomers = new Customers();
+    $selectCustomers = $selectTheCustomers->selectTheCutomers();
+
+    foreach($selectCustomers as $customer)
+    {
+        if($id != $customer['id'] || $id == null)
+        {
+            $selected = '';
+        }
+        else
+        {
+            $selected = 'selected';
+        }
+        
+        echo '<option value="'.$customer['id'].'"'.$selected.'>'.$customer['id'].' - '.$customer['lastname'].' '.$customer['firstname'].'</option>';
+    }
+}
+
+/* Function displaying success or failure messages when creating a client | Fonction affichant les messages de succès ou d'échec lors de la création d'un client */
 function createCustomer()
 {
     if(isset($_GET['validation']) && $_GET['validation'] == 'ok')
@@ -100,37 +132,16 @@ function createCustomer()
     require_once('views/administration/customers/createCustomer.php');
 }
 
-function selectCustomers($id = null)
-{
-    $selectTheCustomers = new Customers();
-    $selectCustomers = $selectTheCustomers->selectTheCutomers();
-
-    
-
-    foreach($selectCustomers as $customer)
-    {
-        if($id != $customer['id'] || $id == null)
-        {
-            $selected = '';
-        }
-        else
-        {
-            $selected = 'selected';
-        }
-        
-        echo '<option value="'.$customer['id'].'"'.$selected.'>'.$customer['id'].' - '.$customer['lastname'].' '.$customer['firstname'].'</option>';
-    }
-}
-
+/* Customer creation function | Fonction de création d'un client */
 function addACustomer()
 {  
     try
     {
-        if(isset($_POST['lastnameCustomer'])) // Check if the Lastname field is submit | On vérifie si le champ Nom est envoyé
+        /* Check if the Lastname field is submit | On vérifie si le champ Nom est envoyé */
+        if(isset($_POST['lastnameCustomer'])) 
         {
-            //var_dump($_POST['lastnameCustomer']);
     
-            // Check if the fields are empty by filtering the whitespaces and html tags | On vérifie si les champs sont vide tout en filtrant les espaces blancs et les balises html
+            /* Check if the fields are empty by filtering the whitespaces and html tags | On vérifie si les champs sont vide tout en filtrant les espaces blancs et les balises html */
             if(empty(trim(htmlspecialchars($_POST['lastnameCustomer']))) && empty(trim(htmlspecialchars($_POST['firstnameCustomer']))) && empty(trim(htmlspecialchars($_POST['mailCustomer']))) 
             & empty(htmlspecialchars(trim($_POST['phoneCustomer']))) && empty(htmlspecialchars(trim($_POST['birthDateCustomer']))) && empty(htmlspecialchars(trim($_POST['streetCustomer'])))
             & empty(htmlspecialchars(trim($_POST['zipCodeCustomer']))) && empty(htmlspecialchars(trim($_POST['cityCustomer']))) && empty(htmlspecialchars(trim($_POST['vipCustomer']))))
@@ -180,7 +191,7 @@ function addACustomer()
                 {
                     try
                     {
-                        // check if the email is valid | On vérifie si l'email est valide
+                        /* check if the email is valid | On vérifie si l'email est valide */
                         if (!filter_var($_POST["mailCustomer"], FILTER_VALIDATE_EMAIL)) 
                         {
                             header('Location: index.php?page=administration&section=customers&action=createCustomer&err=mailwrong');
@@ -198,10 +209,10 @@ function addACustomer()
                             $idConjoint = trim(htmlspecialchars($_POST['selectSpouse']));
                             $vipCustomer = trim(htmlspecialchars($_POST['vipCustomer']));
 
-                            // Transfer phone data to a variable by removing unnecessary items | On transfère les données du téléphone dans une variable en supprimant les éléments inutiles
+                            /* Transfer phone data to a variable by removing unnecessary items | On transfère les données du téléphone dans une variable en supprimant les éléments inutiles */
                             $phoneCustomer = trim(htmlspecialchars($_POST['phoneCustomer']), " \-_.");
 
-                            // convert string value vip to boolean | Conversion du type chaîne de caractère de Vip en booléen
+                            /* convert string value vip to boolean | Conversion du type chaîne de caractère de Vip en booléen */
                             $vip = filter_var($vipCustomer, FILTER_VALIDATE_BOOLEAN);
                             if($vip)
                             {
@@ -212,39 +223,16 @@ function addACustomer()
                                 $vip = 0;
                             }
 
-                            // convert string value zipCode to integer | Conversion du type chaîne de caractère de Code Postal vers nombre entier
+                            /* convert string value zipCode to integer | Conversion du type chaîne de caractère de Code Postal vers nombre entier */
                             $zipCode = intval($zipCode, 10);
 
-                            
-                            // format the phone (01 to 09 + 4 pairs of digits separated by dots) | On formate le téléphone (01 à 09 + 4 paires de chiffres séparés par des points)
-                            //$regexPhone = '(0|[1-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])';
-            
-                            /*if(preg_match($regexPhone, $phoneCustomer))
-                            {
-                                // If the phone is already formatted correctly we do nothing | Si le téléphone est déjà formaté correctement on ne fait rien
-                                $phone = $phoneCustomer; 
-                            }
-                            else
-                            {*/
-                                // If the phone is not formatted correctly it is reformatted | Si le téléphone n'est pas formaté correctement on le reformate
-                                $phone = sprintf("%s.%s.%s.%s.%s",
-                                substr($phoneCustomer, 0, 2),
-                                substr($phoneCustomer, 2, 2),
-                                substr($phoneCustomer, 4, 2),
-                                substr($phoneCustomer, 6, 2),
-                                substr($phoneCustomer, 8, 2));
-                            /*}*/
-            
-                            //var_dump('c-nom : '.$lastname);
-                            //var_dump('c-prenom : '.$firstname);
-                            //var_dump('c-mail : '.$mail);
-                            //var_dump('c-phone :'.$phone);
-                            //var_dump('c-date : '.$birthDate);
-                            //var_dump('c-rue : '.$street);
-                            //var_dump('c-cp : '.$zipCode);
-                            //var_dump('c-ville : '.$city);
-                            //var_dump('c-conjoint : '.$idConjoint);
-                            //var_dump('c-vip : '.$vip);
+                            /* If the phone is not formatted correctly it is reformatted | Si le téléphone n'est pas formaté correctement on le reformate */
+                            $phone = sprintf("%s.%s.%s.%s.%s",
+                            substr($phoneCustomer, 0, 2),
+                            substr($phoneCustomer, 2, 2),
+                            substr($phoneCustomer, 4, 2),
+                            substr($phoneCustomer, 6, 2),
+                            substr($phoneCustomer, 8, 2));
             
                             $addCustomer = new Customers;
                             $addCustomer->addCustomer($lastname, $firstname, $mail, $phone, $birthDate, $street, $zipCode, $city, $vip, $idConjoint);
@@ -267,21 +255,7 @@ function addACustomer()
     
 }
 
-function addSpouse()
-{
-    require_once('views/administration/customers/addSpouse.php');
-}
-
-function addChild()
-{
-    require_once('views/administration/customers/addChild.php');
-}
-
-function readCustomer()
-{
-    require_once('views/administration/customers/readCustomer.php');
-}
-
+/* Function to select the address when updating the client | Fonction permettant la sélection de l'adresse lors de la mise à jour du client */
 function selectAddress($id)
 {
     $customers = new Customers();
@@ -302,6 +276,7 @@ function selectAddress($id)
     }
 }
 
+/* Viewing a Client Update Page | Affichage de la page de mise à jour d'un client */
 function updateACustomer()
 {
     $customer = new Customers();
@@ -309,15 +284,18 @@ function updateACustomer()
     require_once('views/administration/customers/updateCustomer.php');
 }
 
+// Client Update Function | Fonction de mise à jour du client
 function updateCustomer()
 {
     if(isset($_GET['id'])){ $id = $_GET['id'];}
 
+    // Displaying Success Messages | Affichage des messages de succès
     if(isset($_GET['validation']) && $_GET['validation'] == 'ok')
     {
         $updateCustomer = '<p class="text-warning ps-3"> Utilisateur mis à jour avec succès !</p>';
     }
 
+    // Displaying Error Messages | Affichage des messages d'erreur
     if(isset($_GET['err']))
         {
             switch($_GET['err'])
@@ -400,7 +378,7 @@ function updateCustomer()
             {
                 try
                 {
-                        // check if the email is valid | On vérifie si l'email est valide
+                    // check if the email is valid | On vérifie si l'email est valide
                     if (!filter_var($_POST["updateMailCustomer"], FILTER_VALIDATE_EMAIL)) 
                     {
                         header('Location: index.php?page=administration&section=gestion&action=updateCustomer&err=mailwrong');
@@ -431,35 +409,14 @@ function updateCustomer()
                             $updateVip = 0;
                         }
 
-                        // format the phone (01 to 09 + 4 pairs of digits separated by dots) | On formate le téléphone (01 à 09 + 4 paires de chiffres séparés par des points)
-                        //$regexPhone = '(0|[1-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])[.]([0-9]|[0-9])';
-        
-                        /*if(preg_match($regexPhone, $updatePhoneCustomer))
-                        {
-                            // If the phone is already formatted correctly we do nothing | Si le téléphone est déjà formaté correctement on ne fait rien
-                            $updatePhone = $updatePhoneCustomer; 
-                        }
-                        else
-                        {*/
-                            // If the phone is not formatted correctly it is reformatted | Si le téléphone n'est pas formaté correctement on le reformate
-                            $updatePhone = sprintf("%s.%s.%s.%s.%s",
-                            substr($updatePhoneCustomer, 0, 2),
-                            substr($updatePhoneCustomer, 2, 2),
-                            substr($updatePhoneCustomer, 4, 2),
-                            substr($updatePhoneCustomer, 6, 2),
-                            substr($updatePhoneCustomer, 8, 2));
-                        /*}*/
-        
-                        //var_dump('c-id : '.$updateId);
-                        //var_dump('c-nom : '.$updateLastname);
-                        //var_dump('c-prenom : '.$updateFirstname);
-                        //var_dump('c-mail : '.$updateMail);
-                        //var_dump('c-phone : '.$updatePhone);
-                        //var_dump('c-date : '.$updateBirthDate);
-                        //var_dump('c-idAddress : '.$updateIdAddress);
-                        //var_dump('c-idConjoint : '.$updateIdConjoint);
+                        // If the phone is not formatted correctly it is reformatted | Si le téléphone n'est pas formaté correctement on le reformate
+                        $updatePhone = sprintf("%s.%s.%s.%s.%s",
+                        substr($updatePhoneCustomer, 0, 2),
+                        substr($updatePhoneCustomer, 2, 2),
+                        substr($updatePhoneCustomer, 4, 2),
+                        substr($updatePhoneCustomer, 6, 2),
+                        substr($updatePhoneCustomer, 8, 2));
 
-        
                         $updateCustomer = new Customers;
                         $updateCustomer->updateCustomer($updateId, $updateLastname, $updateFirstname, $updateMail, $updatePhone, $updateBirthDate, $updateIdAddress, $updateVip, $updateIdConjoint);
                         
@@ -481,11 +438,13 @@ function updateCustomer()
     }
 }
 
+/* Feature displaying the delete client page | Fonction affichant la page de suppression d'un client */
 function deleteAnCustomer()
 {
     require_once('views/administration/customers/deleteCustomer.php');
 }
 
+/* Client Delete Function | Fonction de suppression d'un client */
 function deleteCustomer()
 {
     if(isset($_GET['id']))

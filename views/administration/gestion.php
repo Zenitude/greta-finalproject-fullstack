@@ -72,7 +72,11 @@
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les réservations">
                 <br>Lister</a>
 
-                <a href="index.php?page=administration&section=reservations&action=createReservation&option=selectCustomer" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=detailsReservation" class="btn-create">
+                    <img src="public/resources/images/gestion/voir.png" alt="Afficher une réservation">
+                <br>Détails</a>
+
+                <a href="index.php?page=administration&section=reservations&action=createReservation" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer une réservation">
                 <br>Créer</a>
 

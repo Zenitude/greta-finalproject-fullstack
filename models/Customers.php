@@ -25,31 +25,32 @@ class Customers extends DataBase
 
     function searchCustomer($selectSearch, $search)
     {
+
         switch($selectSearch)
         {
             case 'id':
-                $search = intval($search);
+                $search = $search;
                 break;
             case 'lastname' :
-                $search = strval($search);
+                $search = ucwords($search);
                 break;
             case 'firstname' :
-                $search = strval($search);
+                $search = ucwords($search);
                 break;
             case 'zipCode' :
                 $search = intval($search);
                 break;
             case 'city' :
-                $search = strval($search);
+                $search = ucwords($search);
                 break;
             case 'vip' :
-                $search = strval($search);
+                $search = ucwords($search);
                 break;
         }
 
         if($selectSearch == 'vip')
         {
-            if($search == 'oui')
+            if($search == 'Oui')
             {
                 $search = 1;
             }
@@ -58,14 +59,13 @@ class Customers extends DataBase
                 $search = 0;
             }
         }
-        var_dump('select : '.$selectSearch);
-        var_dump('search : '.$search);
 
         $db = $this->dbConnect();
         $requestSearchCustomer = "SELECT * FROM customers
                                   JOIN addresscustomers ON customers.idAddressC = addresscustomers.idAddress
-                                  WHERE `".$selectSearch."` LIKE ". $search;
+                                  WHERE $selectSearch = :value";
         $searchCustomer = $db->prepare($requestSearchCustomer);
+        $searchCustomer->bindParam(':value', $search);
         $searchCustomer->execute();
         $search = $searchCustomer->fetchAll();
         return $search;
@@ -224,15 +224,6 @@ class Customers extends DataBase
 
     function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
     {
-
-        /*var_dump('C-id : '.$id);
-        var_dump('C-nom : '.$lastname);
-        var_dump('C-prenom : '.$firstname);
-        var_dump('C-mail : '.$mail);
-        var_dump('C-telephone : '.$phone);
-        var_dump('C-date : '.$birthdate);
-        var_dump('C-idAddress : '.$idAddress);
-        var_dump('C-idConjoint : '.$idConjoint);*/
 
         try{
             
