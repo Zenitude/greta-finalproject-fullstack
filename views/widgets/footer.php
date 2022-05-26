@@ -54,6 +54,7 @@
                             </ul>
                             <li><a href="index.php?page=administration&section=reservations&action=listReservations">Liste des réservations</a></li>
                             <ul>
+                                <li><a href="index.php?page=administration&section=reservations&action=detailsReservation">Afficher une réservation</a></li>
                                 <li><a href="index.php?page=administration&section=reservations&action=createReservation">Créer une réservation</a></li>
                                 <li><a href="index.php?page=administration&section=reservations&action=updateReservation">Modifier une réservation</a></li>
                                 <li><a href="index.php?page=administration&section=reservations&action=deleteReservation">Supprimer une réservation</a></li>
