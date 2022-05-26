@@ -27,10 +27,18 @@ class Invoices extends DataBase
             case 'idReservationI' :
                 $search = $search;
                 break;
+            case 'lastname' :
+                $search = $search;
+                break;
+            case 'firstname' :
+                $search = $search;
+                break;
         }
 
         $db = $this->dbConnect();
         $requestSearchInvoice = "SELECT * FROM invoices
+                                 JOIN reservationshotel ON reservationshotel.idReservation = invoices.idReservationI
+                                 JOIN customers ON customers.id = reservationshotel.idCustomer
                                  WHERE $selectSearch = :value";
         $searchInvoice = $db->prepare($requestSearchInvoice);
         $searchInvoice->bindParam(':value', $search);

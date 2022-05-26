@@ -14,6 +14,8 @@
             <select name="selectSearchInvoice" id="selectSearchInvoice" class="rounded ps-1 border">
                 <option value="idInvoice">Numéro</option>
                 <option value="idReservationI">Réservation</option>
+                <option value="lastname">Nom client</option>
+                <option value="firstname">Prénom client</option>
             </select>
         </div>
         <div class="search position-relative w-25">

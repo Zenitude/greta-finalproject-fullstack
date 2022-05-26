@@ -2,14 +2,15 @@
 
 function listReservations()
 {
-
-    if(isset($_GET['search']) && !empty($_GET['search']))
+    if(isset($_POST['selectSearchInvoice']))
     {
+        /* Displays the list of customers based on a selected filter | Affiche la liste des clients en fonction d'un filtre choisi*/
         $searchReservations = new Reservations();
-        $reservations = $searchReservations->searchReservation($_GET['search']);
+        $reservations = $searchReservations->searchReservation($_POST['selectSearchReservation'], $_POST['searchReservation']);
     }
     else
     {
+        /* Displays the list of customers without filters | Affiche la liste des clients sans filtre */
         $listReservations = new Reservations();
         $reservations = $listReservations->listReservations();
     }
@@ -27,20 +28,6 @@ function listReservation($id)
     $listReservation = new Reservations();
     $reservation = $listReservation->listReservation($id);
     echo 'N° '.$reservation['idReservation'].' - Du '.date('d/m/Y', strtotime($reservation['startDate'])).' au '.date('d/m/Y', strtotime($reservation['endDate'])).' - '.$reservation['lastname'].' '.$reservation['firstname'];
-}
-
-function searchReservation($search)
-{
-    
-    if(isset($_GET['searchReservation']) && empty(htmlspecialchars(trim($_GET['searchReservation']))))
-    {
-        header('Location:index.php?page=administration&section=reservations&action=listReservations');
-    }
-
-    $searchReservation = new Reservations();
-    $reservations = $searchReservation->searchReservation($search);
-    
-    require_once('views/administration/reservations/listReservations.php');
 }
 
 function createReservation()

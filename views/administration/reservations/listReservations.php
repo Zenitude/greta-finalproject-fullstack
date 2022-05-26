@@ -9,10 +9,18 @@
 <div class="container py-5">
     <h1 class="mb-5 text-center">Liste des Réservations</h1>
 
-    <form method="GET" class="mb-4">
+    <form method="POST" action="index.php?page=administration&section=invoices&action=listReservations" class="mb-4 d-flex">
+    <div class="d-flex flex-column me-1">
+            <label for="selectSearchReservation" class="opacity-0">Sélectionner une catégorie de recherche</label>
+            <select name="selectSearchReservation" id="selectSearchReservation" class="rounded ps-1 border">
+                <option value="idReservation">Numéro</option>
+                <option value="lastname">Nom client</option>
+                <option value="firstname">Prénom client</option>
+            </select>
+        </div>
         <div class="search position-relative w-25">
-            <label for="searchBar" class="opacity-0 d-block">Rechercher</label>
-            <input type="search" placeholder="Rechercher" id="searchBar" name="searchReservation" class="rounded w-100 ps-1">
+            <label for="searchReservation" class="opacity-0 d-block">Rechercher</label>
+            <input type="search" placeholder="Rechercher" id="searchReservation" name="searchReservation" class="rounded w-100 ps-1">
             <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
     </form>
@@ -38,8 +46,9 @@
                     <td><?= date('d/m/Y', strtotime($reservation['startDate'])).' - '.date('d/m/Y', strtotime($reservation['endDate']));?></td>
                     <td><?= $montant.' €'; ?></td>
                     <td><?= $restant.' €'; ?></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=updateReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier client" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=deleteReservation&id='.$idReservation ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer client" class="img-fluid"></a></td>
+                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=detailsReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails réservation" class="img-fluid"></a></td>
+                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=updateReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier réservation" class="img-fluid"></a></td>
+                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=deleteReservation&id='.$idReservation ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer réservation" class="img-fluid"></a></td>
                 </tr>
             <?php endforeach; ?>
         </tbody>

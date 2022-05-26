@@ -32,16 +32,30 @@ class Reservations extends DataBase
     }
 
     /* Fonction de recherche pour filtrer la liste des réservations */
-    function searchReservation($search)
+    function searchReservation($selectSearch, $search)
     {
+        switch($selectSearch)
+        {
+            case 'idReservation':
+                $search = $search;
+                break;
+            case 'idReservationI' :
+                $search = $search;
+                break;
+            case 'lastname' :
+                $search = $search;
+                break;
+            case 'firstname' :
+                $search = $search;
+                break;
+        }
+
         $db = $this->dbConnect();
         $requestSearchReservation = "SELECT * FROM reservationshotel
-                                 JOIN customers ON reservationshotel.idCustomer = customers.id
-                                 JOIN invoices ON reservationshotel.idReservation = invoices.idReservationI
-                                 WHERE idReservation LIKE $search
-                                 OR lastname LIKE $search
-                                 OR firstname LIKE $search";
+                                     JOIN customers ON customers.id = reservationshotel.idCustomer
+                                     WHERE $selectSearch = :value";
         $searchReservation = $db->prepare($requestSearchReservation);
+        $searchReservation->bindParam(':value', $search);
         $searchReservation->execute();
         $search = $searchReservation->fetchAll();
         return $search;
