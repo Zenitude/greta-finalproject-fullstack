@@ -16,14 +16,24 @@ class Invoices extends DataBase
         return $invoices;
     }
 
-    function searchInvoice($search)
+
+    function searchInvoice($selectSearch, $search)
     {
+        switch($selectSearch)
+        {
+            case 'idInvoice':
+                $search = $search;
+                break;
+            case 'idReservationI' :
+                $search = $search;
+                break;
+        }
+
         $db = $this->dbConnect();
         $requestSearchInvoice = "SELECT * FROM invoices
-                                 JOIN reservationshotel ON invoices.idReservationI = reservationshotel.idReservation
-                                 JOIN customers ON reservationshotel.idCustomer = customers.id
-                                 WHERE idInvoice LIKE $search";
+                                 WHERE $selectSearch = :value";
         $searchInvoice = $db->prepare($requestSearchInvoice);
+        $searchInvoice->bindParam(':value', $search);
         $searchInvoice->execute();
         $search = $searchInvoice->fetchAll();
         return $search;

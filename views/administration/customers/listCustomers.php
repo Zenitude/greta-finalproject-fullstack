@@ -23,7 +23,7 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
                 <option value="vip">VIP</option>
             </select>
         </div>
-        <div class="search position-relative w-25 d-flex flex-column">
+        <div class="search position-relative w-25">
             <label for="searchCustomer" class="opacity-0">Rechercher</label>
             <input type="search" placeholder="Rechercher" id="searchCustomer" name="searchCustomer" class="rounded w-100 border ps-1">
             <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -80,6 +80,7 @@ $title = 'Réservation Hôtel | Liste des clients'; ?>
                     <td class="text-center"><?= $customer['mail']; ?></td>
                     <td class="text-center"><?= $vip; ?></td>
                     <td class="text-center"><?= numberOfReservations($id);?></td>
+                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=customers&action=detailsCustomer&id='.$id ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails client" class="img-fluid"></a></td>
                     <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=customers&action=updateCustomer&id='.$id ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier client" class="img-fluid"></a></td>
                     <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=customers&action=deleteCustomer&id='.$id ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer client" class="img-fluid"></a></td>
                 <tr>

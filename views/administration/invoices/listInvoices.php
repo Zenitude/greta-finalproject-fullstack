@@ -8,7 +8,14 @@
 
 <h1 class="mb-5 text-center">Liste des factures</h1>
 
-    <form method="GET" class="mb-4">
+    <form method="POST" action="index.php?page=administration&section=invoices&action=listInvoices" class="mb-4 d-flex">
+    <div class="d-flex flex-column me-1">
+            <label for="selectSearchInvoice" class="opacity-0">Sélectionner une catégorie de recherche</label>
+            <select name="selectSearchInvoice" id="selectSearchInvoice" class="rounded ps-1 border">
+                <option value="idInvoice">Numéro</option>
+                <option value="idReservationI">Réservation</option>
+            </select>
+        </div>
         <div class="search position-relative w-25">
             <label for="searchBar" class="opacity-0 d-block">Rechercher</label>
             <input type="search" placeholder="Rechercher" id="searchBar" name="searchInvoice" class="rounded w-100 ps-1">

@@ -4,21 +4,17 @@ require('models/Invoices.php');
 
 function listInvoices()
 {
-
-    if(isset($_GET['search']) && !empty($_GET['search']))
+    if(isset($_POST['selectSearchInvoice']))
     {
+        /* Displays the list of customers based on a selected filter | Affiche la liste des clients en fonction d'un filtre choisi*/
         $searchInvoices = new Invoices();
-        $invoices = $searchInvoices->searchInvoice($_GET['search']);
+        $invoices = $searchInvoices->searchInvoice($_POST['selectSearchInvoice'], $_POST['searchInvoice']);
     }
     else
     {
+        /* Displays the list of customers without filters | Affiche la liste des clients sans filtre */
         $listInvoices = new Invoices();
         $invoices = $listInvoices->listInvoices();
-    }
-
-    if(isset($_GET['delete']) && $_GET['delete'] = 'confirmed')
-    {
-        $deleteInvoice = '<p class="bg-success text-light text-center"> Facture numéro '.$_GET['id'].' supprimé avec succès ! </p>'; 
     }
     
     require_once('views/administration/invoices/listInvoices.php');
