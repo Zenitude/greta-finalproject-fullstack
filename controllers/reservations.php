@@ -144,9 +144,15 @@ function deleteAnReservation()
 {
     if(isset($_GET['id']))
     {
-        $delete = new Reservations();
-        $delete->deleteAnReservation($_GET['id']);
-        
-        require_once('views/administration/customers/listReservations.php');
+        $idReservation = $_GET['id'];
+
+        $deleteInvoice = new Reservations();
+        $deleteInvoice->deleteInvoice($idReservation);
+
+        $deleteRoomsBooked = new Reservations();
+        $deleteRoomsBooked->deleteRoomsBooked($idReservation);
+
+        $deleteReservation = new Reservations();
+        $deleteReservation->deleteReservation($idReservation);
     }
 }

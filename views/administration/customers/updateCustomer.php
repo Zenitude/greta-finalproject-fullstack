@@ -49,18 +49,18 @@
                 <optgroup label="Sélectionnez un conjoint" selected>
                     <option value="0">0 - Sans conjoint</option>
                 </optgroup>
-                <?php selectCustomers($detailsCustomer['idCustomer']); ?>
+                <?php selectCustomers($detailsCustomer['idConjoint']); ?>
             </select>
         </div>
 
         <div class="input-group mb-3">
             <span class="w-25">VIP*</span>
             <div>
-                <input type="radio" name="updateVipCustomer" id="vipYes" class="form-check-input me-1" value="true" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 1){ echo 'checked="true"'; }else{ echo 'checked="false"';}} ?>>
+                <input type="radio" name="updateVipCustomer" id="vipYes" class="form-check-input me-1" value="true" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 1){ echo 'checked'; }else{ echo '';}} ?>>
                 <label for="vipYes">Oui</label>
             </div>
             <div>
-                <input type="radio" name="updateVipCustomer" id="vipNo" class="form-check-input ms-2 me-1" value="false" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 0){ echo 'checked="true"'; }else{ echo 'checked="false"';}} ?>>
+                <input type="radio" name="updateVipCustomer" id="vipNo" class="form-check-input ms-2 me-1" value="false" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 0){ echo 'checked'; }else{ echo '';}} ?>>
                 <label for="vipNo">Non</label>
             </div>
         </div>

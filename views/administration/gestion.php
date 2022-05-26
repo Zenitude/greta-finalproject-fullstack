@@ -28,6 +28,10 @@
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les clients" class="">
                 <br>Lister</a>
 
+                <a href="index.php?page=administration&section=customers&action=detailsCustomer" class="btn-create">
+                    <img src="public/resources/images/gestion/voir.png" alt="Afficher un client">
+                <br>Détails</a>
+
                 <?php if($_SESSION['typeAdmin'] != 'adminRestaurant'): ?>
                 <a href="index.php?page=administration&section=customers&action=createCustomer" class="btn-create">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer un client">

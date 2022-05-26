@@ -58,4 +58,27 @@ class Invoices extends DataBase
 
     }
 
+    function detailsRoomsBooked($idInvoice)
+    {
+        $db = $this->dbConnect();
+        $requestFindIdReservation = "SELECT idReservationI FROM invoices
+                                     WHERE idInvoice = :idInvoice";
+        $findIdReservation = $db->prepare($requestFindIdReservation);
+        $findIdReservation->bindParam(':idInvoice', $idInvoice);
+        $findIdReservation->execute();
+        $findReservation = $findIdReservation->fetch();
+        $idReservation = $findReservation['idReservationI'];
+
+        $requestDetailsRoomsBooked = "SELECT * FROM roomsbooked
+                                      JOIN rooms ON rooms.idRoom = roomsbooked.idRoomB
+                                      WHERE idReservationB = :idReservation";
+        $detailsRoomsBooked = $db->prepare($requestDetailsRoomsBooked);
+        $detailsRoomsBooked->bindParam(':idReservation', $idReservation);
+        $detailsRoomsBooked->execute();
+        $roomsBooked = $detailsRoomsBooked->fetchAll();
+
+        return $roomsBooked;
+
+    }
+
 }

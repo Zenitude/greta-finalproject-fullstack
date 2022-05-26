@@ -96,6 +96,10 @@ try
                     }
 
                 }
+                elseif($_GET['action'] == 'detailsCustomer')
+                {
+                    detailsCustomer();
+                }
                 elseif($_GET['action'] == 'createCustomer') /* If the action parameter has the value 'updateCustomer' shows me the client creation page and the error messages when creating | Si le paramètre action a pour valeur 'updateCustomer' affiche moi la page de création d'un client et les messages d'erreur lors de la création */
                 {
                     createCustomer();
@@ -127,6 +131,11 @@ try
                 if($_GET['action'] == 'listReservations')
                 {
                     listReservations();
+
+                    if(isset($_GET['delete']) && $_GET['delete'] == 'confirmed') /* If the delete parameter exist and has value 'confirmed' | Si le paramètre delete existe et a pour valeur confirmed supprime le client */
+                    {
+                        deleteAnReservation();
+                    }
                 }
                 elseif($_GET['action'] == 'createReservation')
                 {

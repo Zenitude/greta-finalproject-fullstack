@@ -1,5 +1,5 @@
 <!-- Page title / Titre de la page -->
-<?php $title = 'Réservation Hôtel | Ajouter un conjoint'; ?>
+<?php $title = 'Réservation Hôtel | Supprimer un client'; ?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>

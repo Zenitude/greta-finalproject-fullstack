@@ -456,3 +456,14 @@ function deleteCustomer()
         require_once('views/administration/customers/listCustomers.php');
     }
 }
+
+function detailsCustomer()
+{
+    if(isset($_POST['selectDetailsCustomer']))
+    {
+        $customers = new Customers();
+        $detailsCustomer = $customers->detailsCustomer($_POST['selectDetailsCustomer']);
+        $detailsReservations = $customers->detailsReservation($_POST['selectDetailsCustomer']);
+    }
+    require_once('views/administration/customers/detailsCustomer.php');
+}

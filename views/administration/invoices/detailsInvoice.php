@@ -33,68 +33,81 @@
 
             <thead class="text-center">
                 <tr>
-                    <th rowspan="2" class="border">Détails</th>
-                    <th colspan="2" class="border">Montant</th>
-                    <th rowspan="2" class="border">Montant<br>Total</th>
+                    <th rowspan="2" class="border fs-5">Détails</th>
+                    <th colspan="2" class="border fs-5">Montant</th>
+                    <th rowspan="2" class="border fs-5">Montant<br>Total</th>
                 </tr>
                 <tr>
-                    <th class="border">Coût unitaire</th>
-                    <th class="border">Quantité</th>
+                    <th class="border fs-5">Coût unitaire</th>
+                    <th class="border fs-5">Quantité</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
                     <td colspan="3" class="border"></td>
-                    <td class="border fw-bold text-center"><?= number_format($montantTotal, 2); ?></td>
+                    <td class="border fw-bold text-center fs-5"><?= number_format($montantTotal, 2); ?></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="border"></td>
-                    <td class="border fw-bold text-center">Acompte</td>
-                    <td class="text-center"><?= number_format($details['advance'], 2); ?></td>
+                    <td class="border fw-bold text-center fs-5">Ristourne accordée</td>
+                    <td class="text-center fs-5"><?= number_format($percentRistourne, 2).' %'; ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="border fs-6 fst-italic text-center">(Ristourne basé sur le montant total des chambres, hors extras et restauant)</td>
+                    <td class="border fw-bold text-center fs-5">Ristourne</td>
+                    <td class="text-center fs-5"><?= number_format($ristourne, 2); ?></td>
+                </tr>
+                <tr>
+                    <td colspan="2" class="border fs-6 fst-italic text-center">(Acompte basé sur le montant total des chambres, hors extras et restauant)</td>
+                    <td class="border fw-bold text-center fs-5">Acompte</td>
+                    <td class="text-center fs-5"><?= number_format($details['advance'], 2); ?></td>
                 </tr>
                 <tr>
                     <td colspan="2" class="border"></td>
-                    <td class="border fw-bold text-center">Reste à payer</td>
-                    <td class="text-center fw-bold"><?= number_format($reste, 2); ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="border"></td>
-                    <td class="border fw-bold text-center">Ristourne</td>
-                    <td class="text-center"><?= number_format($percentRistourne, 2).' %'; ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="border"></td>
-                    <td class="border fw-bold text-center">Montant Ristourne</td>
-                    <td class="text-center"><?= number_format($ristourne, 2); ?></td>
-                </tr>
-                <tr>
-                    <td colspan="2" class="border"></td>
-                    <td class="border fw-bold text-center">Net à payer</td>
-                    <td class="fw-bold fs-3 text-center"><?= number_format($net, 2); ?></td>
+                    <td class="border fw-bold text-center fs-5">Net à payer</td>
+                    <td class="fw-bold fs-3 text-center fs-5"><?= number_format($net, 2); ?></td>
                 </tr>
             </tfoot>
 
             <tbody>
                 <tr>
-                    <td class="fw-bold">Chambres</td>
-                    <td class="border text-center"><?= number_format($details['price'], 2); ?></td>
+                    <td class="fw-bold fs-5">Chambres</td>
                     <td class="border text-center"></td>
-                    <td class="border text-center"><?= number_format($details['sumRooms'], 2); ?></td>
+                    <td class="border text-center fs-5"><?= count($roomsBooked); ?></td>
+                    <td class="border text-center fs-5"><?= number_format($details['sumRooms'], 2); ?></td>
 
                 </tr>
                 <tr>
-                    <td class="fw-bold">Extras</td>
+                    <td class="border">
+                        <ul>
+                            <?php foreach($roomsBooked as $roomBooked): ?>
+                                <li class="fs-6"><?= '<span class="fw-bold">'.$roomBooked['designation'].'</span> ('.$roomBooked['number'].')'; ?></li>    
+                            <?php endforeach; ?>
+                        </ul>
+                    </td>
+                    <td class="border text-center">
+                        <dl>
+                            <?php foreach($roomsBooked as $roomBooked): ?>
+                                <dd class="fs-6"><?= number_format($roomBooked['price'],2); ?></dd>
+                            <?php endforeach; ?>
+                        </dl>
+                    </td>
+                    <td class="border"></td>
+                    <td class="border"></td>
+                </tr>
+                <tr>
+                    <td class="fw-bold fs-5">Extras</td>
                     <td class="border text-center"></td>
                     <td class="border text-center"></td>
-                    <td class="border text-center"><?= number_format($details['sumExtras'], 2); ?></td>
+                    <td class="border text-center fs-5"><?= number_format($details['sumExtras'], 2); ?></td>
                     
                 </tr>
                 <tr>
-                    <td class="fw-bold">Restaurant</td>
+                    <td class="fw-bold fs-5">Restaurant</td>
                     <td class="border text-center"></td>
                     <td class="border text-center"></td>
-                    <td class="border text-center"><?= number_format($details['sumRestaurant'], 2); ?></td>
+                    <td class="border text-center fs-5"><?= number_format($details['sumRestaurant'], 2); ?></td>
                 </tr>
             </tbody>
         </table>

@@ -216,51 +216,58 @@ class Reservations extends DataBase
         return $detailsRooms;
     }
 
-    function deleteAnReservation($id)
+    function deleteInvoice($idReservation)
     {
-        $idReservation = intval($id);
-
-        $db = $this->dbConnect();
-        
         try
         {
+            $db = $this->dbConnect();
             $requestDeleteInvoice = "DELETE FROM invoices 
                                   WHERE idReservationI = :idReservation";
             $deleteInvoice = $db->prepare($requestDeleteInvoice);
             $deleteInvoice->bindParam(':idReservation', $idReservation);
             $deleteInvoice->execute();
 
-            try
-            {
-                $requestDeleteRoomsBooked = "DELETE FROM roomsbooked
-                                     WHERE idReservationB = :idReservation";
-                $deleteRoomsBooked = $db->prepare($requestDeleteRoomsBooked);
-                $deleteRoomsBooked->bindParam(':idReservation', $idReservation);
-                $deleteRoomsBooked->execute();
-
-                try
-                {
-                    $requestDeleteReservation = "DELETE FROM reservationshotel
-                                     WHERE idReservation = :idReservation";
-                    $deleteReservation = $db->prepare($requestDeleteReservation);
-                    $deleteReservation->bindParam(':idReservation', $idReservation);
-                    $deleteReservation->execute();
-
-                    header('Location:index.php?page=administration&section=reservations&action=listReservations');
-                }
-                catch(Exception $e)
-                {
-                    throw new Exception('ErreurDeleteReservation = '.$e->getMessage());
-                }
-            }
-            catch(Exception $e)
-            {
-                throw new Exception('ErreurDeleteRoomsBooked = '.$e->getMessage());
-            }
         }
         catch(Exception $e)
         {
             throw new Exception('ErreurDeleteInvoice = '.$e->getMessage());
         }
+    }
+
+    function deleteRoomsBooked($idReservation)
+    {
+        try
+        {
+            $db = $this->dbConnect();
+            $requestDeleteRoomsBooked = "DELETE FROM roomsbooked
+                                    WHERE idReservationB = :idReservation";
+            $deleteRoomsBooked = $db->prepare($requestDeleteRoomsBooked);
+            $deleteRoomsBooked->bindParam(':idReservation', $idReservation);
+            $deleteRoomsBooked->execute();
+
+        }
+        catch(Exception $e)
+        {
+            throw new Exception('ErreurDeleteRoomsBooked = '.$e->getMessage());
+        }
+    }
+
+    function deleteReservation($idReservation)
+    {
+        try
+            {
+                $db = $this->dbConnect();
+                $requestDeleteReservation = "DELETE FROM reservationshotel
+                                 WHERE idReservation = :idReservation";
+                $deleteReservation = $db->prepare($requestDeleteReservation);
+                $deleteReservation->bindParam(':idReservation', $idReservation);
+                $deleteReservation->execute();
+
+                header('Location:index.php?page=administration&section=reservations&action=listReservations');
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('ErreurDeleteReservation = '.$e->getMessage());
+            }
     }
 }

@@ -32,11 +32,14 @@ function detailsInvoice()
     $detailsInvoice = new Invoices();
     $details = $detailsInvoice->detailsInvoice($_GET['id']);
 
+    $detailsRoomsBooked = new Invoices();
+    $roomsBooked = $detailsRoomsBooked->detailsRoomsBooked($_GET['id']);
+
     $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
-    $reste = $montantTotal - $details['advance'];
     $percentRistourne = $details['discount'] * 100;
-    $ristourne = $reste * ($percentRistourne / 100);
-    $net = $reste - $ristourne;
+    $ristourne = $details['sumRooms'] * ($percentRistourne / 100);
+    $reste = $montantTotal - $ristourne ;
+    $net = $reste + $details['sumExtras'] + $details['sumRestaurant'];
     }
 
     require_once('views/administration/invoices/detailsInvoice.php');

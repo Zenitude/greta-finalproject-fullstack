@@ -9,7 +9,8 @@ class Customers extends DataBase
         try
         {
             $db = $this->dbConnect();
-            $requestListCustomers = "SELECT * FROM customers LEFT JOIN addresscustomers ON customers.idAddressC = addresscustomers.idAddress";
+            $requestListCustomers = "SELECT * FROM customers LEFT JOIN addresscustomers ON customers.idAddressC = addresscustomers.idAddress
+                                     ORDER BY id ASC";
             $ListCustomers = $db->prepare($requestListCustomers);
             $ListCustomers->execute();
             $customers = $ListCustomers->fetchAll();
@@ -271,5 +272,32 @@ class Customers extends DataBase
         $deleteCustomer->bindParam(':id', $id);
         $deleteCustomer->execute();
 
+    }
+
+    function detailsCustomer($idCustomer)
+    {
+        $db = $this->dbConnect();
+        $requestDetailsCustomer = "SELECT * FROM customers
+                                   JOIN addresscustomers ON addresscustomers.idAddress = customers.idAddressC
+                                   WHERE id = :idCustomer";
+        $detailsCustomers = $db->prepare($requestDetailsCustomer);
+        $detailsCustomers->bindParam(':idCustomer', $idCustomer);
+        $detailsCustomers->execute();
+        $detailsCustomer = $detailsCustomers->fetch();
+        return $detailsCustomer;
+    }
+
+    function detailsReservation($idCustomer)
+    {
+        $db = $this->dbConnect();
+        $requestDetailsReservations = "SELECT * FROM reservationshotel
+                                       JOIN invoices ON invoices.idReservationI = reservationshotel.idReservation
+                                       JOIN customers ON customers.id = reservationshotel.idCustomer
+                                       WHERE idCustomer = :idCustomer";
+        $detailsReservations = $db->prepare($requestDetailsReservations);
+        $detailsReservations->bindParam(':idCustomer', $idCustomer);
+        $detailsReservations->execute();
+        $detailsReservation = $detailsReservations->fetchAll();
+        return $detailsReservation;
     }
 }

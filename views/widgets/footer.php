@@ -47,6 +47,7 @@
                             <li><a href="index.php?page=administration&section=customers&action=listCustomers">Liste des clients</a></li>
                             <?php if($_SESSION['typeAdmin'] == 'adminPrincipal' || $_SESSION['typeAdmin'] == 'adminHotel'): ?>
                             <ul>
+                                <li><a href="index.php?page=administration&section=customers&action=detailsCustomer">Afficher un client</a></li>
                                 <li><a href="index.php?page=administration&section=customers&action=createCustomer">Créer un client</a></li>
                                 <li><a href="index.php?page=administration&section=customers&action=updateCustomer">Modifier un client</a></li>
                                 <li><a href="index.php?page=administration&section=customers&action=deleteCustomer">Supprimer un client</a></li>
