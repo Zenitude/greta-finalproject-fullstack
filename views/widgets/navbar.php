@@ -18,7 +18,7 @@
         </div>
         
         <div id="translate" class="position-absolute me-1 d-flex justify-content-between">
-            <a id="tradeFr"><img src="public/resources/images/translate/drapeau-francais.png" alt="Translate French - Traduire en français" class="img-fluid"></a>    
+            <a id="tradeFr"><i class="fa-solid fa-earth-americas fa-2x"></i></a>    
         </div>
     </nav>
 </div>
