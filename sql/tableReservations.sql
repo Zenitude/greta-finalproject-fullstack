@@ -1,4 +1,4 @@
-/* Création de la table reservationsHotel*/
+/* Creation of the table : reservationshotel | Création de la table : reservationshotel*/
 
 CREATE TABLE `lemontagnard`.`reservationsHotel`
 (

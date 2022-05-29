@@ -1,4 +1,4 @@
-/* Création de la table rooms */
+/*  Creation of the table : rooms | Création de la table:  rooms */
 
 CREATE TABLE `lemontagnard`.`rooms`
 (
@@ -15,7 +15,7 @@ CREATE TABLE `lemontagnard`.`rooms`
     PRIMARY KEY (`idRoom`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* Premières chambres */
+/* Creation of first rooms | Création des premières chambres */
 INSERT INTO `rooms`(number, designation, beds, bathrooms, toiletes, childrooms, sallons, terraces, price) VALUES
 (
     '101',
@@ -38,9 +38,20 @@ INSERT INTO `rooms`(number, designation, beds, bathrooms, toiletes, childrooms, 
     0,
     2,
     300
+),
+(
+    '103',
+    'La troisieme',
+    3,
+    2,
+    2,
+    1,
+    0,
+    1,
+    500
 );
 
-/* Création de la liaison roomsBooked */
+/* Creation of the table : roomsbooked | Création de la table : roomsbooked */
 CREATE TABLE `lemontagnard`.`roomsBooked`
 (
     `id` INT AUTO_INCREMENT,

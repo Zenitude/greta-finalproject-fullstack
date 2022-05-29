@@ -1,4 +1,4 @@
-/* Création de la table invoices*/
+/* Creation of the table : invoices | Création de la table : invoices*/
 CREATE TABLE `lemontagnard`.`invoices`
 (
     `idInvoice` INT AUTO_INCREMENT,

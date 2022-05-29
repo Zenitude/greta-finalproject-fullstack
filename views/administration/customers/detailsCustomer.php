@@ -6,24 +6,9 @@
 
 <div class="container py-5">
 
-    <?php if(!isset($_POST['selectDetailsCustomer'])): ?>
-        <h1 class="my-2 text-center">Détails d'un client</h1>
-
-        <form action="index.php?page=administration&section=customers&action=detailsCustomer" method="POST" class="mb-4 d-flex flex-column">
-            <div class="input-group mb-3">
-                <label for="selectDetailsCustomer" class="form-label w-25 d-none d-sm-block">Sélectionner un client*</label>
-                <select name="selectDetailsCustomer" id="selectDetailsCustomer" class="form-select rounded">
-                    <optgroup label="Sélectionnez un client">
-                        <?php echo selectCustomers(); ?>
-                    </optgroup>
-                </select>
-            </div>
-            <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
-        </form>
-
-    <?php else: ?>
-
-        <h1 class="my-2 text-center">Détails du client N° <?= $_POST['selectDetailsCustomer']; ?></h1>
+    <?php if(isset($_POST['selectDetailsCustomer']) || isset($_GET['id'])): ?>
+        
+        <h1 class="my-2 text-center">Détails du client N° <?php if(isset($_POST['selectDetailsCustomer'])){ echo $_POST['selectDetailsCustomer']; }else{ echo $_GET['id'];} ?></h1>
 
         <h2 class="text-decoration-underline">Informations</h2>
         <p class="fs-4"><span class="fw-bold">Nom : </span> <?= $detailsCustomer['lastname']; ?></p>
@@ -62,6 +47,24 @@
                 </li>
             <?php endforeach; ?>
         </ul>
+
+    <?php else: ?>
+
+        <h1 class="my-2 text-center">Détails d'un client</h1>
+
+        <form action="index.php?page=administration&section=customers&action=detailsCustomer" method="POST" class="mb-4 d-flex flex-column">
+            <div class="input-group mb-3">
+                <label for="selectDetailsCustomer" class="form-label w-25 d-none d-sm-block">Sélectionner un client*</label>
+                <select name="selectDetailsCustomer" id="selectDetailsCustomer" class="form-select rounded">
+                    <optgroup label="Sélectionnez un client">
+                        <?php echo selectCustomers(); ?>
+                    </optgroup>
+                </select>
+            </div>
+            <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
+        </form>
+
+       
     <?php endif; ?>
 
 </div>

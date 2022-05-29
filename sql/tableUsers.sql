@@ -1,4 +1,4 @@
-/* Création de la table users */
+/* Creation of the table : users | Création de la table : users */
 CREATE TABLE `lemontagnard`.`users`
 (
     `id` INT AUTO_INCREMENT,
@@ -10,7 +10,9 @@ CREATE TABLE `lemontagnard`.`users`
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-INSERT INTO `users`(lastname, firstname, mail, pass, typeAdmin) VALUES
+/* Creation of first users | Création des premiers utilisateurs */
+INSERT INTO `users`(lastname, firstname, mail, pass, typeAdmin) 
+VALUES
 (
     'Admin',
     'Principale',

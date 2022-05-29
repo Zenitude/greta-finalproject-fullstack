@@ -3,6 +3,8 @@
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>
+<?php print_r($verifDispo); ?>
+
 <div class="container py-5">
 
     <?php if(isset($_POST['selectReservationCustomer'])): ?>
@@ -27,9 +29,6 @@
 
     <?php elseif(isset($_POST['dateStartReservation']) && isset($_POST['dateEndReservation'])): ?>
         <?php 
-            //$customerId = $_POST['idCustomer'];
-            //$dateStart = $_POST['dateStartReservation'];
-            //$dateEnd = $_POST['dateEndReservation'];
             $titleSup = 'Sélection de(s) chambre(s)'; 
         ?>
 
@@ -52,7 +51,8 @@
                 </thead>
                 <tbody class="text-center">
                 <?php foreach($rooms as $room): ?>
-                    <?php if($room['number'] != $verifDispo['number']): ?>
+                    <?php //foreach($verifDispo as $dispo): ?>
+                    <?php if($room['number'] != $dispo['number']): ?>
                         <tr>
                             <td><input type="checkbox" name="<?= str_replace(' ', '_', $room['designation']) ; ?>" value="<?= $room['idRoom']; ?>"></td>
                             <td><?= $room['number']; ?></td>
@@ -67,7 +67,8 @@
                         </tr>
                     <?php else: ?>
                         <p>Aucune chambre disponible</p>      
-                    <?php endif; ?>	
+                    <?php endif; ?>
+                    <?php //endforeach; ?>	
                 <?php endforeach; ?>
                 </tbody>
             </table>

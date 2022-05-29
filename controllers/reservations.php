@@ -2,7 +2,7 @@
 
 function listReservations()
 {
-    if(isset($_POST['selectSearchInvoice']))
+    if(isset($_POST['selectSearchReservation']))
     {
         /* Displays the list of customers based on a selected filter | Affiche la liste des clients en fonction d'un filtre choisi*/
         $searchReservations = new Reservations();
@@ -36,8 +36,9 @@ function createReservation()
     if(isset($_POST['dateStartReservation']) && isset($_POST['dateEndReservation']))
     {
         $roomsDispo = new Reservations();
-        $verifDispo = $roomsDispo->reservationRooms($_COOKIE['reservation_dateStart'], $_COOKIE['reservation_dateEnd']);
+        $verifDispo = $roomsDispo->reservationRooms($_POST['dateStartReservation'], $_POST['dateEndReservation']);
         $rooms = $roomsDispo->reservationRoomsDispo();
+        
     }
 
     require_once('views/administration/reservations/createReservation.php');

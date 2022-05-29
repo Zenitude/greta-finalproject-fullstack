@@ -1,4 +1,4 @@
-/* Création de la table addressCustomers */
+/* Creation of the table : addresscustomers | Création de la table : addresscustomers */
 CREATE TABLE `lemontagnard`.`addresscustomers`
 (
     `idAddress` INT AUTO_INCREMENT,
@@ -8,7 +8,7 @@ CREATE TABLE `lemontagnard`.`addresscustomers`
     PRIMARY KEY (`idAddress`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* Création de la table customers*/
+/* Creation of the table : customers | Création de la table : customers*/
 CREATE TABLE `lemontagnard`.`customers`
 (
     `id` INT AUTO_INCREMENT,

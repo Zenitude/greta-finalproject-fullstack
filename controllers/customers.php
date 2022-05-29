@@ -461,9 +461,19 @@ function detailsCustomer()
 {
     if(isset($_POST['selectDetailsCustomer']))
     {
-        $customers = new Customers();
-        $detailsCustomer = $customers->detailsCustomer($_POST['selectDetailsCustomer']);
-        $detailsReservations = $customers->detailsReservation($_POST['selectDetailsCustomer']);
+        $id = $_POST['selectDetailsCustomer'];
     }
+    elseif(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+    }
+
+    if(isset($_POST['selectDetailsCustomer']) || isset($_GET['id']))
+    {
+        $customers = new Customers();
+        $detailsCustomer = $customers->detailsCustomer($id);
+        $detailsReservations = $customers->detailsReservation($id);
+    }
+
     require_once('views/administration/customers/detailsCustomer.php');
 }

@@ -9,13 +9,15 @@
 <div class="container py-5">
     <h1 class="mb-5 text-center">Liste des Réservations</h1>
 
-    <form method="POST" action="index.php?page=administration&section=invoices&action=listReservations" class="mb-4 d-flex">
+    <form method="POST" action="index.php?page=administration&section=reservations&action=listReservations" class="mb-4 d-flex">
     <div class="d-flex flex-column me-1">
             <label for="selectSearchReservation" class="opacity-0">Sélectionner une catégorie de recherche</label>
             <select name="selectSearchReservation" id="selectSearchReservation" class="rounded ps-1 border">
                 <option value="idReservation">Numéro</option>
                 <option value="lastname">Nom client</option>
                 <option value="firstname">Prénom client</option>
+                <option value="startDate">Date de début</option>
+                <option value="endDate">Date de fin</option>
             </select>
         </div>
         <div class="search position-relative w-25">

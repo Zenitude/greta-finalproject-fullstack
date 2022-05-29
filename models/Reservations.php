@@ -39,14 +39,17 @@ class Reservations extends DataBase
             case 'idReservation':
                 $search = $search;
                 break;
-            case 'idReservationI' :
-                $search = $search;
-                break;
             case 'lastname' :
                 $search = $search;
                 break;
             case 'firstname' :
                 $search = $search;
+                break;
+            case 'startDate' :
+                $search = implode('-', array_reverse(explode('/', $search, 3)));
+                break;
+            case 'endDate' : 
+                $search = implode('-', array_reverse(explode('/', $search, 3)));
                 break;
         }
 
@@ -71,8 +74,8 @@ class Reservations extends DataBase
                                   WHERE startDate = :dateStart
                                   AND endDate = :dateEnd";
         $verifDispoRooms = $db->prepare($requestVerifDispoRooms);
-        $verifDispoRooms->bindParam(':dateStart', $dateStart);
-        $verifDispoRooms->bindParam(':dateEnd', $dateEnd);
+        $verifDispoRooms->bindParam(':dateStart', date('Y-m-d', strtotime($dateStart)));
+        $verifDispoRooms->bindParam(':dateEnd', date('Y-m-d', strtotime($dateEnd)));
         $verifDispoRooms->execute();
         $verifDispo = $verifDispoRooms->fetchAll();
         return $verifDispo;
