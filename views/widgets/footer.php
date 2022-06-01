@@ -75,9 +75,9 @@
                     </ul>
                     </ul>
                     <?php endif; ?>
-                    <ul>
+                    <?php if(isset($_SESSION['userAdmin'])){ echo '<ul>';} ?>
                         <li><a href="index.php?page=legalNotices">Mentions légales</a></li>
-                    </ul>
+                    <?php if(isset($_SESSION['userAdmin'])){ echo '</ul>';} ?>
                 </ul>
             </nav>
         </div>

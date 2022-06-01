@@ -71,14 +71,16 @@ function login()
                     
                     $mail = htmlspecialchars($_POST['mailConnection']);
                     $password = htmlspecialchars($_POST['passwordConnection']);
-                    $password = md5($password);
+                    $password = md5($password); // Password encoding in md5 to compare it with the database | Encodage du mot de passe en md5 pour le comparer avec celui de la base de données
    
-                    $loginBD = new Connexion;
-                    $user = $loginBD->loginSite($mail, $password);
-                    $countUser = count($user);                   
+                    $loginBD = new Connexion; // Initialize a new Connexion object | On initialise un nouveau objet Connexion
+                    $user = $loginBD->loginSite($mail, $password); // Use the loginSite method of the Connexion object | On fait appel à la méthode loginSite de l'objet Connexion 
+                    $countUser = count($user); // Count the number of users found | On compte le nombre d'utilisateur trouvé
 
                     if($countUser <= 0)
                     {   
+                        /*  If no matching user is redirected to the login page with an error message
+                            Si aucun utilisateur ne correspond on redirige vers la page de connexion avec un message d'erreur */
                         header('Location: index.php?page=connexion&err=wronguser');
                     }
                     else
@@ -119,7 +121,7 @@ function login()
 /*  Function allowing the logged in user to log out | Fonction permettant à l'utilisateur connecté de se déconnecter */
 function deconnexion()
 {
-    $deco = new Connexion;
-    $decoSite = $deco->deconnectSite();
+    $deco = new Connexion; // Initialize a new Connexion object | On initialise un nouveau objet Connexion
+    $decoSite = $deco->deconnectSite(); // Use the deconnectSite method of the Connexion object | On fait appel à la méthode deconnectSite de l'objet Connexion
     return $decoSite;
 }
