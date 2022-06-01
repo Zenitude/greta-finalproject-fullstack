@@ -1,8 +1,8 @@
 <!-- Page title / Titre de la page -->
-<?php 
-    $title = 'Connexion'; 
-?>
+<?php $title = 'Connexion'; ?>
+
 <?php if(isset($_SESSION['userAdmin'])): ?>
+    
 <?php 
     header('Location: index.php?page=administration&section=gestion');
     else: 

@@ -36,8 +36,10 @@ function createReservation()
     if(isset($_POST['dateStartReservation']) && isset($_POST['dateEndReservation']))
     {
         $roomsDispo = new Reservations();
-        $verifDispo = $roomsDispo->reservationRooms($_POST['dateStartReservation'], $_POST['dateEndReservation']);
-        $rooms = $roomsDispo->reservationRoomsDispo();
+        //$verifDispo = $roomsDispo->reservationRooms($_POST['dateStartReservation'], $_POST['dateEndReservation']);
+        //$rooms = $roomsDispo->reservationRoomsDispo();
+
+        $roomsDispo = $roomsDispo->reservationRoomsDispo($_POST['dateStartReservation'], $_POST['dateEndReservation']);
         
     }
 

@@ -1,0 +1,76 @@
+Array ( 
+    [0] => Array ( 
+        [idRoom] => 1 [0] => 1 
+        [number] => 101 [1] => 101 
+        [designation] => La premiere [2] => La premiere 
+        [beds] => 1 [3] => 1 
+        [bathrooms] => 1 [4] => 1 
+        [toiletes] => 1 [5] => 1 
+        [childrooms] => 0 [6] => 0 
+        [sallons] => 0 [7] => 0 
+        [terraces] => 1 [8] => 1 
+        [price] => 150 [9] => 150 
+        [id] => 1 [10] => 1 
+        [idReservationB] => 1 [11] => 1 
+        [idRoomB] => 1 [12] => 1 
+        [idReservation] => 1 [13] => 1 
+        [startDate] => 2022-05-02 [14] => 2022-05-02 
+        [endDate] => 2022-05-06 [15] => 2022-05-06 
+        [idCustomer] => 1 [16] => 1 
+        [remarque] => [17] => ) 
+    [1] => Array ( 
+        [idRoom] => 1 [0] => 1 
+        [number] => 101 [1] => 101 
+        [designation] => La premiere [2] => La premiere 
+        [beds] => 1 [3] => 1 
+        [bathrooms] => 1 [4] => 1 
+        [toiletes] => 1 [5] => 1 
+        [childrooms] => 0 [6] => 0 
+        [sallons] => 0 [7] => 0 
+        [terraces] => 1 [8] => 1 
+        [price] => 150 [9] => 150 
+        [id] => 3 [10] => 3 
+        [idReservationB] => 2 [11] => 2 
+        [idRoomB] => 1 [12] => 1 
+        [idReservation] => 2 [13] => 2 
+        [startDate] => 2022-05-09 [14] => 2022-05-09 
+        [endDate] => 2022-05-13 [15] => 2022-05-13 
+        [idCustomer] => 2 [16] => 2 
+        [remarque] => [17] => ) 
+    [2] => Array ( 
+        [idRoom] => 2 [0] => 2 
+        [number] => 102 [1] => 102 
+        [designation] => La deuxieme [2] => La deuxieme 
+        [beds] => 2 [3] => 2 
+        [bathrooms] => 2 [4] => 2 
+        [toiletes] => 1 [5] => 1 
+        [childrooms] => 0 [6] => 0 
+        [sallons] => 0 [7] => 0 
+        [terraces] => 2 [8] => 2 
+        [price] => 300 [9] => 300 
+        [id] => 2 [10] => 2 
+        [idReservationB] => 1 [11] => 1 
+        [idRoomB] => 2 [12] => 2 
+        [idReservation] => 1 [13] => 1 
+        [startDate] => 2022-05-02 [14] => 2022-05-02 
+        [endDate] => 2022-05-06 [15] => 2022-05-06 
+        [idCustomer] => 1 [16] => 1 
+        [remarque] => [17] => ) 
+    [3] => Array ( 
+        [idRoom] => 2 [0] => 2 
+        [number] => 102 [1] => 102 
+        [designation] => La deuxieme [2] => La deuxieme 
+        [beds] => 2 [3] => 2 
+        [bathrooms] => 2 [4] => 2 
+        [toiletes] => 1 [5] => 1 
+        [childrooms] => 0 [6] => 0 
+        [sallons] => 0 [7] => 0 
+        [terraces] => 2 [8] => 2 
+        [price] => 300 [9] => 300 [id] => 4 [10] => 4 
+        [idReservationB] => 2 [11] => 2 
+        [idRoomB] => 2 [12] => 2 
+        [idReservation] => 2 [13] => 2 
+        [startDate] => 2022-05-09 [14] => 2022-05-09 
+        [endDate] => 2022-05-13 [15] => 2022-05-13 
+        [idCustomer] => 2 [16] => 2 
+        [remarque] => [17] => ) )

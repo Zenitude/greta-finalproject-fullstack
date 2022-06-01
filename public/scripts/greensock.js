@@ -1,4 +1,4 @@
-// Sélection du bâtiment
+// Sélection de l'élément
 const headHotel = document.querySelector('#head img:nth-child(2)');
 
 // Création de l'animation

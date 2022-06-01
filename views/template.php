@@ -25,7 +25,7 @@
             <?php require('views/widgets/navbar.php'); ?> 
 
             <!-- Display the content | Affichage du contenu -->
-            <?= $content ?>
+            <?= $content; ?>
 
             <!-- Importing the footer | Importation du pied de page -->
             <?php require('views/widgets/footer.php'); ?>
@@ -36,10 +36,9 @@
         <script src="public/scripts/fontawesome.js" type="text/javascript"></script>
 
         <!-- Importing the scripts for using the Greensock library | Importation des scripts pour l'utilisation de la bibliothèque Greensock -->
-        <script src="public/scripts/gsap.min.js" type="text/javascript"></script>
-        <script src="public/scripts/scrolltrigger.min.js" type="text/javascript"></script>
-
         <?php if($title == 'Accueil'): ?>
+            <script src="public/scripts/gsap.min.js" type="text/javascript"></script>
+            <script src="public/scripts/scrolltrigger.min.js" type="text/javascript"></script>
             <script src="public/scripts/greensock.js" type="text/javascript"></script>
         <?php endif; ?>
 
@@ -47,18 +46,21 @@
         <script src="public/scripts/translate.js" type="text/javascript"></script> 
 
         <!-- Using a click event on the globe for machine translation | Utilisation d'un événement au click sur le globe pour la traduction automatique -->
-        <script>            
+        <script>
+            const tradeFr = document.querySelector('#tradeFr');
             tradeFr.addEventListener('click', (e) => 
             {
                 e.preventDefault();
                 new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element'); 
             });
-            </script>
-            
+        </script>
+
         <!-- Importating the script for bootstrap 5 | Importation du script pour bootstrap 5 -->
         <script src="public/scripts/bootstrap.bundle.js" type="text/javascript"></script>
 
-       <!-- Importing the custom script | Importation du script personnalisé -->
-        <script src="public/scripts/global.js" type="text/javascript"></script>
+         <!-- Importing the custom script | Importation du script personnalisé -->
+         <script src="public/scripts/global.js" type="text/javascript"></script>
+
+       
     </body>
 </html>
