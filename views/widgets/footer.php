@@ -1,4 +1,3 @@
-
 <footer class="w-100 bg-beige p-5">
 
     <div class="row row-cols-1 row-cols-lg-4 text">
@@ -27,7 +26,12 @@
             <!-- Google Maps | Carte Google -->
             <h3 class="text-uppercase my-4 fs-4">Où sommes-nous ?</h3>
             <div>
-                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10247.988437430202!2d3.11838305!3d50.04888545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1650106996941!5m2!1sfr!2sfr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="w-75 h-100"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10247.988437430202!2d3.11838305!3d50.04888545!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sfr!2sfr!4v1650106996941!5m2!1sfr!2sfr" 
+                    width="600" height="450" 
+                    style="border:0;" allowfullscreen="" 
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade" 
+                    class="w-75 h-100">
+                </iframe>
             </div>
             
         </div>
@@ -112,8 +116,14 @@
              Liens email pour réserver une chambre d'hotel ou une table au restaurant -->
         <div class="reservation">
             <h3 class="text-uppercase mb-4">Réservation</h3>
-            <a href="mailto:lemontagnard@gmail.com" class="btn btn-light btn-lg rounded-pill fst-italic my-1 border text-darkness d-flex align-items-center justify-content-center">Réservez une chambre <i class="fa-solid fa-chevron-right ms-auto"></i></a>
-            <a href="mailto:lemontagnard@gmail.com" class="btn btn-light btn-lg rounded-pill fst-italic my-1 border text-darkness d-flex align-items-center justify-content-center">Réservez une table <i class="fa-solid fa-chevron-right ms-auto"></i></a>
+            <a href="mailto:lemontagnard@gmail.com" class="btn btn-light btn-lg rounded-pill fst-italic my-1 border text-darkness d-flex align-items-center justify-content-center">
+                Réservez une chambre 
+                <i class="fa-solid fa-chevron-right ms-auto"></i>
+            </a>
+            <a href="mailto:lemontagnard@gmail.com" class="btn btn-light btn-lg rounded-pill fst-italic my-1 border text-darkness d-flex align-items-center justify-content-center">
+                Réservez une table 
+                <i class="fa-solid fa-chevron-right ms-auto"></i>
+            </a>
         </div>
             
     </div>
