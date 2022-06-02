@@ -88,11 +88,16 @@ function login()
                         /* If no error has been detected so far we connect the user | Si aucune erreur n'a été détecté jusque là on connecte l'utilisateur */    
                         try 
                         {
-                            /*  If the user exists, we connect him, we save his username to say hello to him on the management page and his type of authorisation to manage his access rights to certain contents
-                                Si l'utilisateur existe, on le connecte, on sauvegarde son identifiant pour lui dire bonjour sur la page de gestion et son type d'habilitation pour gérer ses droits d'accès à certains contenus */
+                            /*  If the user exists, we connect him
+                                Si l'utilisateur existe, on le connecte */
                             if($user)
                             {
-                                $_SESSION['userAdmin'] = $user['firstname'];
+                                /*  we save his username to say hello to him on the management page 
+                                    On sauvegarde son identifiant pour lui dire bonjour sur la page de gestion */
+                                $_SESSION['userAdmin'] = $user['firstname']; 
+
+                                /*  And his type of authorisation to manage his access rights to certain contents
+                                    Et son type d'habilitation pour gérer ses droits d'accès à certains contenus */
                                 $_SESSION['typeAdmin'] = $user['typeAdmin'];
                                 header('Location: index.php?page=administration&section=gestion');
                             }
