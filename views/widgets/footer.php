@@ -87,16 +87,10 @@
                             </ul>
                         </ul>
                         <?php endif; ?>
-                       
-                                
-                    </ul>
-                    </ul>
+                                     
                     <?php endif; ?>
-                    <!-- If an administrator is connected, reposition this menu
-                         Si un administrateur est connecté, repositionner ce menu -->
-                    <?php if(isset($_SESSION['userAdmin'])){ echo '<ul>';} ?>
-                        <li><a href="index.php?page=legalNotices">Mentions légales</a></li>
-                    <?php if(isset($_SESSION['userAdmin'])){ echo '</ul>';} ?>
+                    <li><a href="index.php?page=legalNotices">Mentions légales</a></li>
+
                 </ul>
             </nav>
         </div>
@@ -128,6 +122,11 @@
             
     </div>
 
-    <div id="copright" class="row row-cols-12"></div>
+    <!-- Copyright -->
+    <div id="copright" class="row row-cols-12">
+        <div class="w-100 text-center">
+            &copy; 2022 Le Montagnard
+        </div>
+    </div>
 
 </footer>
