@@ -65,32 +65,60 @@ class Reservations extends DataBase
     }
 
     /* Filtrer les chambres réservés en fonction des dates de début et fin d'une réservation */
-    function reservationRooms($dateStart, $dateEnd)
+    function reservationRoomsBooked($dateStart, $dateEnd)
     {
+        $tabRoomsBooked = array();
+
         $db = $this->dbConnect();
-        $requestVerifDispoRooms = "SELECT * FROM roomsbooked
-                                  JOIN rooms ON rooms.idRoom = roomsbooked.idRoomB
+        $requestListRoomsBooked = "SELECT * FROM roomsbooked
                                   JOIN reservationshotel ON reservationshotel.idReservation = roomsbooked.idReservationB
                                   WHERE startDate = :dateStart
                                   AND endDate = :dateEnd";
-        $verifDispoRooms = $db->prepare($requestVerifDispoRooms);
-        $verifDispoRooms->bindParam(':dateStart', date('Y-m-d', strtotime($dateStart)));
-        $verifDispoRooms->bindParam(':dateEnd', date('Y-m-d', strtotime($dateEnd)));
-        $verifDispoRooms->execute();
-        $verifDispo = $verifDispoRooms->fetchAll();
-        return $verifDispo;
+        $listRoomsBooked = $db->prepare($requestListRoomsBooked);
+        $listRoomsBooked->bindParam(':dateStart', date('Y-m-d', strtotime($dateStart)));
+        $listRoomsBooked->bindParam(':dateEnd', date('Y-m-d', strtotime($dateEnd)));
+        $listRoomsBooked->execute();
+        $roomsBooked = $listRoomsBooked->fetchAll();
+
+        foreach($roomsBooked as $roomBooked) {
+              array_push($tabRoomsBooked, $roomBooked['idRoomB']);
+        }
+
+        return $tabRoomsBooked;
     }
 
     /* Sélectionner toutes les chambres existantes pour pouvoir les filtrer par disponibilité */
-    function reservationRoomsDispo()
+    function reservationRooms()
+    {
+        $tabRooms = array();
+        $db = $this->dbConnect();
+        $requestListRooms = "SELECT * FROM rooms";
+        $listRooms = $db->prepare($requestListRooms);
+        $listRooms->execute();
+        $rooms = $listRooms->fetchAll();
+ 
+        foreach($rooms as $room)
+        {
+            array_push($tabRooms, $room['idRoom']);   
+        }
+
+        return $tabRooms;
+    }
+
+    function reservationRoomsDispo($tabRoomsDispo)
     {
         $db = $this->dbConnect();
-        $requestRoomsDispo = "SELECT * FROM rooms";
-        $roomsDispo = $db->prepare($requestRoomsDispo);
-        $roomsDispo->execute();
-        $rooms = $roomsDispo->fetchAll();
-
-        return $rooms;
+        print_r($tabRoomsDispo);
+        foreach($tabRoomsDispo as $roomDispo)
+        {
+            $requestListRoomsDispo = "SELECT * FROM rooms WHERE idRoom = :idRoom";
+            $listRoomsDispo = $db->prepare($requestListRoomsDispo);
+            $listRoomsDispo->bindParam(':idRoom', $roomDispo);
+            $listRoomsDispo->execute();
+            
+        }
+        $roomsDispo = $listRoomsDispo->fetchAll();
+        return $roomsDispo;
     }
 
     /*function reservationRooms()

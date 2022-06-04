@@ -1,10 +1,13 @@
 <?php
 
+/* Importing the model : Database / Importation du modèle : Database */
 require_once('DataBase.php');
 
+/* Creation of the class/model 'Connexion' which inherits the DataBase model |Création de la classe/model 'Connexion' qui hérite du modèle DataBase */
 class Customers extends DataBase
 {
-    function listCustomers()
+    /* Function to list customers | Fonction pour lister les clients */
+    public function listCustomers()
     {
         try
         {
@@ -24,16 +27,30 @@ class Customers extends DataBase
         }
     }
 
-    function searchCustomer($selectSearch, $search)
+    /* Fonction pour connaître le nombre de réservation d'un client */
+    public function numberReservation($id)
     {
+        $db = $this->dbConnect();
+        $requestNumberReservations = "SELECT * FROM reservationshotel WHERE idCustomer = :idCustomer";
+        $numberReservations = $db->prepare($requestNumberReservations);
+        $numberReservations->bindParam(':idCustomer', $id);
+        $numberReservations->execute();
+        $reservations = $numberReservations->fetchAll();
 
+        return $reservations;
+    }
+
+    /* Function to filter the customer list | Fonction pour filtrer la liste des clients */
+    public function searchCustomer($selectSearch, $search)
+    {
+        // Selon la valeur du select
         switch($selectSearch)
         {
             case 'id':
                 $search = $search;
                 break;
             case 'lastname' :
-                $search = ucwords($search);
+                $search = ucwords($search); // ucwords > Première lettre de chaque mot en majuscule
                 break;
             case 'firstname' :
                 $search = ucwords($search);
@@ -49,18 +66,23 @@ class Customers extends DataBase
                 break;
         }
 
+        // Si select vaut 'vip'
         if($selectSearch == 'vip')
         {
+            
             if($search == 'Oui')
             {
+                // Si la valeur reçu vaut 'Oui' remplacer par 1
                 $search = 1;
             }
             else
             {
+                // Dans le cas contraire remplacer par 0
                 $search = 0;
             }
         }
 
+        // Récupérer les informations client
         $db = $this->dbConnect();
         $requestSearchCustomer = "SELECT * FROM customers
                                   JOIN addresscustomers ON customers.idAddressC = addresscustomers.idAddress
@@ -72,7 +94,8 @@ class Customers extends DataBase
         return $search;
     }
 
-    function listCustomer($id)
+    /* Fonction pour sélectionner un client */
+    public function listCustomer($id)
     {
         $db = $this->dbConnect();
         $requestListCustomer = "SELECT lastname, firstname FROM customers WHERE id = :id";
@@ -83,53 +106,36 @@ class Customers extends DataBase
         return $customer;
     }
     
-    function numberReservation($id)
+    
+
+    /* Fonction pour créer un client */
+    public function addCustomer($lastname, $firstname, $mail, $phone, $birthDate, $street, $zipCode, $city, $vip, $idConjoint)
     {
-        $db = $this->dbConnect();
-        $requestNumberReservations = "SELECT * FROM reservationshotel WHERE idCustomer = :idCustomer";
-        $numberReservations = $db->prepare($requestNumberReservations);
-        $numberReservations->bindParam(':idCustomer', $id);
-        $numberReservations->execute();
-        $reservations = $numberReservations->fetchAll();
-
-        return $reservations;
-    }
-
-    function addCustomer($lastname, $firstname, $mail, $phone, $birthDate, $street, $zipCode, $city, $vip, $idConjoint)
-    {
-
-        /*var_dump('C-nom : '.$lastname);
-        var_dump('C-prenom : '.$firstname);
-        var_dump('C-mail : '.$mail);
-        var_dump('C-phone : '.$phone);
-        var_dump('C-date : '.$birthDate);
-        var_dump('C-rue : '.$street);
-        var_dump('C-cp : '.$zipCode);
-        var_dump('C-ville : '.$city);
-        var_dump('C-conjoint : '.$idConjoint);
-        var_dump('C-vip : '.$vip);*/
 
         try{
-
+            /* Checking to see if the customer already exists or not | Vérification pour savoir si le client existe déjà ou non */
             $db = $this->dbConnect();
-            $requestSearchCustomer = "SELECT * FROM customers WHERE lastname = :lastname AND firstname = :firstname AND birthdate = :birthDate AND mail = :mail";
+            $requestSearchCustomer = "SELECT * FROM customers WHERE lastname = :lastname AND firstname = :firstname";
             $searchCustomer = $db->prepare($requestSearchCustomer);
             $searchCustomer->bindParam(':lastname', $lastname);
             $searchCustomer->bindParam(':firstname', $firstname);
-            $searchCustomer->bindParam(':birthDate', $birthDate);
-            $searchCustomer->bindParam(':mail', $mail);
             $searchCustomer->execute();
             $customerSearch = $searchCustomer->fetchAll();
             $countCustomer = count($customerSearch);
 
             if($countCustomer > 0)
             {
+                /*  If the client already exists, redirect to the creation page with an error message
+                    Si le client existe déjà on redirige vers la page de création avec un message d'erreur */
                 header('Location: index.php?page=administration&section=customers&action=createCustomer&err=customerExist');
             }
             else
             {
+                // If customer does not exist | Si le client n'existe pas
                 try
                 {
+                    /*  Check if the address entered already exists in our database
+                        On vérifie si l'adresse saisie existe déjà dans notre base de données */
                     $requestSearchAddress = "SELECT * FROM addresscustomers WHERE street = :street AND zipCode = :zipCode AND city = :city";
                     $searchAddressCustomers = $db->prepare($requestSearchAddress);
                     $searchAddressCustomers->bindParam(':street', $street);
@@ -141,6 +147,8 @@ class Customers extends DataBase
 
                     if($countAddress <= 0)
                     {
+                        /*  If the address does not exist we create it otherwise we continue the creation of our customer
+                            Si l'adresse n'existe pas on la crée dans le cas contraire on continue la création de notre client */
                         $requestAddAddress = "INSERT INTO addresscustomers(street, zipCode, city) VALUES(:street, :zipCode, :city)";
                         $addAddressCustomers = $db->prepare($requestAddAddress);
                         $addAddressCustomers->bindParam(':street', $street);
@@ -151,6 +159,8 @@ class Customers extends DataBase
 
                     try
                     {
+                        /*  After verification of the address we recover the id of this address
+                            Après vérification de l'adresse on récupère l'id de cette adresse */
                         $requestSelectAddress = "SELECT * FROM addresscustomers WHERE street = :street AND zipCode = :zipCode AND city = :city";
                         $selectAddress = $db->prepare($requestSelectAddress);
                         $selectAddress->bindParam(':street', $street);
@@ -161,6 +171,7 @@ class Customers extends DataBase
 
                         try
                         {
+                            // Customer Creation | Création du client
                             $requestAddCustomer = "INSERT INTO customers(lastname, firstname, mail, phone, birthdate, idAddressC, vip, idConjoint) 
                                                    VALUES(:lastname, :firstname, :mail, :phone, :birthdate, :idAddress, :vip, :idConjoint)";
                             $addCustomer = $db->prepare($requestAddCustomer);
@@ -197,7 +208,7 @@ class Customers extends DataBase
         }
     }
 
-    function selectTheAddress()
+    public function selectTheAddress()
     {
         $db = $this->dbConnect();
         $requestSelectAddress = "SELECT * FROM addresscustomers ORDER BY zipCode, city";
@@ -207,7 +218,7 @@ class Customers extends DataBase
         return $address;
     }
 
-    function updateACustomer()
+    public function updateACustomer()
     {
         if(isset($_GET['id']))
         {
@@ -223,7 +234,7 @@ class Customers extends DataBase
         }
     }
 
-    function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
+    public function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
     {
 
         try{
@@ -254,7 +265,7 @@ class Customers extends DataBase
         }
     }
 
-    function selectTheCutomers()
+    public function selectTheCutomers()
     {
         $db= $this->dbConnect();
         $requestSelectCustomers = "SELECT id, lastname, firstname FROM customers";
@@ -264,7 +275,7 @@ class Customers extends DataBase
         return $selectCustomers;
     }
 
-    function deleteTheCustomer($id)
+    public function deleteTheCustomer($id)
     {
         $db = $this->dbConnect();
         $requestDeleteCustomer = "DELETE FROM customers WHERE id = :id";
@@ -274,7 +285,7 @@ class Customers extends DataBase
 
     }
 
-    function detailsCustomer($idCustomer)
+    public function detailsCustomer($idCustomer)
     {
         $db = $this->dbConnect();
         $requestDetailsCustomer = "SELECT * FROM customers
@@ -287,7 +298,7 @@ class Customers extends DataBase
         return $detailsCustomer;
     }
 
-    function detailsReservation($idCustomer)
+    public function detailsReservation($idCustomer)
     {
         $db = $this->dbConnect();
         $requestDetailsReservations = "SELECT * FROM reservationshotel

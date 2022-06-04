@@ -27,34 +27,39 @@
         </div>
     </form>
 
-    <table class="table table-hover table-striped">
-        <thead>
-            <tr class="text-center bg-beige">
-                <th>Numéro</th>
-                <th>Client</th>
-                <th>Dates</th>
-                <th>Montant</th>
-                <th>Reste à payer</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($reservations as $reservation): ?>
-                <?php if(isset($reservation['idReservation'])){ $idReservation = $reservation['idReservation'];} ?>
-                <?php $montant = $reservation['sumRooms'] + $reservation['sumExtras'] + $reservation['sumRestaurant']; ?>
-                <?php $restant = ($montant - $reservation['advance']) * (1-$reservation['discount']); ?>
-                <tr class="text-center">
-                    <td><?= $idReservation; ?></td>
-                    <td><?= $reservation['lastname'].' '.$reservation['firstname']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($reservation['startDate'])).' - '.date('d/m/Y', strtotime($reservation['endDate']));?></td>
-                    <td><?= $montant.' €'; ?></td>
-                    <td><?= $restant.' €'; ?></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=detailsReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails réservation" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=updateReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier réservation" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=deleteReservation&id='.$idReservation ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer réservation" class="img-fluid"></a></td>
+    <div class="table-responsive-lg">
+        <table class="table table-hover table-striped">
+            <thead>
+                <tr class="text-center bg-beige">
+                    <th>Numéro</th>
+                    <th>Client</th>
+                    <th>Dates</th>
+                    <th>Montant</th>
+                    <th>Reste à payer</th>
+                    <th class="text-center text-white bg-white">Aperçu</th>
+                    <th class="text-center text-white bg-white">Modifier</th>
+                    <th class="text-center text-white bg-white">Supprimer</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach($reservations as $reservation): ?>
+                    <?php if(isset($reservation['idReservation'])){ $idReservation = $reservation['idReservation'];} ?>
+                    <?php $montant = $reservation['sumRooms'] + $reservation['sumExtras'] + $reservation['sumRestaurant']; ?>
+                    <?php $restant = ($montant - $reservation['advance']) * (1-$reservation['discount']); ?>
+                    <tr class="text-center">
+                        <td><?= $idReservation; ?></td>
+                        <td><?= $reservation['lastname'].' '.$reservation['firstname']; ?></td>
+                        <td><?= date('d/m/Y', strtotime($reservation['startDate'])).' - '.date('d/m/Y', strtotime($reservation['endDate']));?></td>
+                        <td><?= $montant.' €'; ?></td>
+                        <td><?= $restant.' €'; ?></td>
+                        <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=detailsReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails réservation" class="img-fluid w-100"></a></td>
+                        <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=updateReservation&id='.$idReservation ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier réservation" class="img-fluid w-75"></a></td>
+                        <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=reservations&action=deleteReservation&id='.$idReservation ?>"<?php echo $id; ?>"><img src="public/resources/images/gestion/supprimer-red.png" alt="Supprimer réservation" class="img-fluid w-75"></a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>

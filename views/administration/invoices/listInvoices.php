@@ -25,44 +25,48 @@
         </div>
     </form>
 
-    <table class="table table-hover table-striped">
-        <thead class="text-center bg-beige">
-            <tr>
-                <th>Numéro</th>
-                <th>Réservation</th>
-                <th>Date</th>
-                <th>Client</th>
-                <th>Chambres</th>
-                <th>Extras</th>
-                <th>Restaurant</th>
-                <th>Total</th>
-                <th>Acompte</th>
-                <th>Remise</th>
-                <th>Net à payer</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach($invoices as $invoice): ?>
-                <?php $total = $invoice['sumRooms'] + $invoice['sumExtras'] + $invoice['sumRestaurant']; ?>
-                <?php $net = ($total - $invoice['advance']) * (1-$invoice['discount']); ?>
-                <tr class="text-center">
-                    <td><?= $invoice['idInvoice']; ?></td>
-                    <td><?= $invoice['idReservationI']; ?></td>
-                    <td><?= date('d/m/Y', strtotime($invoice['date'])); ?></td>
-                    <td><?= $invoice['lastname'].' '.$invoice['firstname']; ?></td>
-                    <td><?= $invoice['sumRooms'].' €'; ?></td>
-                    <td><?= $invoice['sumExtras'].' €'; ?></td>
-                    <td><?= $invoice['sumRestaurant'].' €'; ?></td>
-                    <td><?= $total.' €'; ?></td>
-                    <td><?= $invoice['advance'].' €'; ?></td>
-                    <td><?= $invoice['discount'].' €'; ?></td>
-                    <td><?= $net.' €'; ?></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=detailsInvoice&id='.$invoice['idInvoice']; ?>"<?php echo $invoice['idInvoice']; ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails facture" class="img-fluid"></a></td>
-                    <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=updateInvoice&id='.$invoice['idInvoice']; ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier facture" class="img-fluid"></a></td>
+    <div class="table-responsive-lg">
+        <table class="table table-hover table-striped">
+            <thead class="text-center bg-beige">
+                <tr>
+                    <th>Numéro</th>
+                    <th>Réservation</th>
+                    <th>Date</th>
+                    <th>Client</th>
+                    <th>Chambres</th>
+                    <th>Extras</th>
+                    <th>Restaurant</th>
+                    <th>Total</th>
+                    <th>Acompte</th>
+                    <th>Ristourne</th>
+                    <th>Net à payer</th>
+                    <th class="text-center text-white bg-white">Aperçu</th>
+                    <th class="text-center text-white bg-white">Modifier</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php foreach($invoices as $invoice): ?>
+                    <?php $total = $invoice['sumRooms'] + $invoice['sumExtras'] + $invoice['sumRestaurant']; ?>
+                    <?php $net = ($total - $invoice['advance']) * (1-$invoice['discount']); ?>
+                    <tr class="text-center">
+                        <td><?= $invoice['idInvoice']; ?></td>
+                        <td><?= $invoice['idReservationI']; ?></td>
+                        <td><?= date('d/m/Y', strtotime($invoice['date'])); ?></td>
+                        <td><?= $invoice['lastname'].' '.$invoice['firstname']; ?></td>
+                        <td><?= $invoice['sumRooms'].' €'; ?></td>
+                        <td><?= $invoice['sumExtras'].' €'; ?></td>
+                        <td><?= $invoice['sumRestaurant'].' €'; ?></td>
+                        <td><?= $total.' €'; ?></td>
+                        <td><?= $invoice['advance'].' €'; ?></td>
+                        <td><?= $invoice['discount'].' €'; ?></td>
+                        <td><?= $net.' €'; ?></td>
+                        <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=detailsInvoice&id='.$invoice['idInvoice']; ?>"<?php echo $invoice['idInvoice']; ?>"><img src="public/resources/images/gestion/voir.png" alt="Détails facture" class="img-fluid w-100"></a></td>
+                        <td class="text-center" style="width:5%;"><a href="<?php echo 'index.php?page=administration&section=invoices&action=updateInvoice&id='.$invoice['idInvoice']; ?>"><img src="public/resources/images/gestion/editer.png" alt="Modifier facture" class="img-fluid w-75"></a></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <?php $content = ob_get_clean(); ?>
