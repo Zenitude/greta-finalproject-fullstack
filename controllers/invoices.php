@@ -1,7 +1,9 @@
 <?php 
 
+/* Importing the Model | Import du Model */
 require('models/Invoices.php');
 
+/* Function to display the list of invoices | Fonction pour afficher la liste des factures */
 function listInvoices()
 {
     if(isset($_POST['selectSearchInvoice']))
@@ -20,45 +22,7 @@ function listInvoices()
     require_once('views/administration/invoices/listInvoices.php');
 }
 
-function detailsInvoice()
-{
-    if(isset($_GET['id'])) 
-    {
-
-    $detailsInvoice = new Invoices();
-    $details = $detailsInvoice->detailsInvoice($_GET['id']);
-
-    $detailsRoomsBooked = new Invoices();
-    $roomsBooked = $detailsRoomsBooked->detailsRoomsBooked($_GET['id']);
-
-    $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
-    $percentRistourne = $details['discount'] * 100;
-    $ristourne = $details['sumRooms'] * ($percentRistourne / 100);
-    $reste = $montantTotal - $ristourne ;
-    $net = $reste + $details['sumExtras'] + $details['sumRestaurant'];
-    }
-
-    require_once('views/administration/invoices/detailsInvoice.php');
-}
-
-function pdfInvoice()
-{
-    if(isset($_GET['id']))
-    {
-        $detailsInvoice = new Invoices();
-        $details = $detailsInvoice->detailsInvoice($_GET['id']);
-    
-        $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
-        $reste = $montantTotal - $details['advance'];
-        $percentRistourne = $details['discount'] * 100;
-        $ristourne = $reste * ($percentRistourne / 100);
-        $net = $reste - $ristourne;
-
-    }
-
-    require_once('views/administration/invoices/pdfInvoice.php');
-}
-
+/* Fonction pour selectionner une factures lors d'une modification, affichage */
 function selectInvoices($id = null)
 {
     $selectTheInvoices = new Invoices();
@@ -75,21 +39,38 @@ function selectInvoices($id = null)
             $selected = 'selected';
         }
         
-        echo '<option value="'.$invoice['idInvoice'].'"'.$selected.'>'.'Fact N° '.$invoice['idInvoice'].' du '.date('d/m/Y', strtotime($invoice['date'])).' - '.$invoice['lastname'].' '.$invoice['firstname'].'</option>';
+        echo '<option value="'.$invoice['idInvoice'].'"'.$selected.'>'
+                .'Fact N° '.$invoice['idInvoice'].' du '.date('d/m/Y', strtotime($invoice['date'])).' - '.$invoice['lastname'].' '.$invoice['firstname']
+             .'</option>';
     }
 }
 
-function readInvoice()
+/* Function to select an invoice during a modification, display | Fonction pour afficher les détails d'une facture */
+function detailsInvoice()
 {
-    require('views/administration/invoices/readInvoice.php');
+    if(isset($_GET['id'])) 
+    {
+
+    $detailsInvoice = new Invoices();
+    $details = $detailsInvoice->detailsInvoice($_GET['id']);
+
+    $detailsRoomsBooked = new Invoices();
+    $roomsBooked = $detailsRoomsBooked->detailsRoomsBooked($_GET['id']);
+
+    $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
+    $percentRistourne = $details['discount'] * 100;
+    $ristourne = $details['sumRooms'] * ($percentRistourne / 100);
+    $reste = $montantTotal - $ristourne ;
+    $net = $reste - $details['advance'];
+    }
+
+    require_once('views/administration/invoices/detailsInvoice.php');
 }
+
+
 
 function updateInvoice()
 {
     require('views/administration/invoices/updateInvoice.php');
 }
 
-function deleteInvoice()
-{
-    require('views/administration/invoices/listInvoices.php');
-}

@@ -1,7 +1,9 @@
 <?php
 
+/* Importing the model : Database / Importation du modèle : Database */
 require_once('DataBase.php');
 
+/* Creation of the class/model 'Reservations' which inherits the DataBase model | Création de la classe/model 'Reservations' qui hérite du modèle DataBase */
 class Reservations extends DataBase
 {
     /* Afficher la liste des réservations */
@@ -121,33 +123,6 @@ class Reservations extends DataBase
         return $roomsDispo;
     }
 
-    /*function reservationRooms()
-    {
-        $db = $this->dbConnect();
-        $requestRoomsDispo = "SELECT * FROM rooms";
-        $roomsDispo = $db->prepare($requestRoomsDispo);
-        $roomsDispo->execute();
-        $rooms = $roomsDispo->fetchAll();
-
-        return $rooms;
-    }
-
-    function reservationRoomsDispo($dateStart, $dateEnd)
-    {
-        $db = $this->dbConnect();
-        $requestVerifDispoRooms = "SELECT * FROM rooms
-                                   LEFT JOIN roomsbooked ON roomsbooked.idRoomB = rooms.idRoom
-                                   LEFT JOIN reservationshotel ON reservationshotel.idReservation = roomsbooked.idReservationB
-                                   WHERE NOT startDate = :startDate
-                                   OR NOT endDate = :endDate";
-        $verifDispoRooms = $db->prepare($requestVerifDispoRooms);
-        $verifDispoRooms->bindParam(':startDate', $dateStart);
-        $verifDispoRooms->bindParam(':endDate', $dateEnd);
-        $verifDispoRooms->execute();
-        $roomsDispo = $verifDispoRooms->fetchAll();
-        return $roomsDispo;
-    }*/
-
     function reservationFinish()
     {
         if(isset($_POST))
@@ -249,6 +224,7 @@ class Reservations extends DataBase
         $createInvoice->execute();
     }
 
+    /* Function to select a booking for editing, deleting or displaying | Fonction pour sélectionner une réservation afin de la modifier, supprimer ou afficher */
     function selectReservations()
     {
         $db = $this->dbConnect();
@@ -288,6 +264,7 @@ class Reservations extends DataBase
         return $detailsRooms;
     }
 
+    /* Function to delete invoices related to a booking | Fonction pour supprimer les factures liées à une réservation */
     function deleteInvoice($idReservation)
     {
         try
@@ -306,6 +283,7 @@ class Reservations extends DataBase
         }
     }
 
+    /* Function to remove reserved rooms from a reservation | Fonction pour supprimer les chambres réservées d'une réservation */
     function deleteRoomsBooked($idReservation)
     {
         try
@@ -324,6 +302,7 @@ class Reservations extends DataBase
         }
     }
 
+    /* Function to delete a booking | Fonction pour supprimer une réservation */
     function deleteReservation($idReservation)
     {
         try
@@ -343,3 +322,4 @@ class Reservations extends DataBase
             }
     }
 }
+

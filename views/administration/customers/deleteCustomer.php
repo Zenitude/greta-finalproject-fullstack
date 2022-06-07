@@ -6,6 +6,7 @@
 
 <div class="container text-center p-5 my-5">
 
+    <!-- Si il le paramètre id n'existe pas, afficher le formulaire pour sélectionner un client -->
     <?php if(!isset($_GET['id'])) : ?>
     <h1 class="mb-5">Supprimer un client</h1>
     <form action="index.php?page=administration" method="GET" class="mb-4 d-flex flex-column">

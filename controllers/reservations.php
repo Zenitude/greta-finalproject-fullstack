@@ -1,5 +1,9 @@
-<?php require('models/Reservations.php');
+<?php 
 
+/* Importing the Model | Import du Model */
+require('models/Reservations.php');
+
+/* Function to display the booking list | Fonction permettant d'afficher la liste des réservations */
 function listReservations()
 {
     if(isset($_POST['selectSearchReservation']))
@@ -23,11 +27,16 @@ function listReservations()
     require_once('views/administration/reservations/listReservations.php');
 }
 
+/* Function to display the details of a reservation during a deletion | Fonction pour afficher les détails d'une réservation lors d'une suppression */
 function listReservation($id)
 {
     $listReservation = new Reservations();
     $reservation = $listReservation->listReservation($id);
-    echo 'N° '.$reservation['idReservation'].' - Du '.date('d/m/Y', strtotime($reservation['startDate'])).' au '.date('d/m/Y', strtotime($reservation['endDate'])).' - '.$reservation['lastname'].' '.$reservation['firstname'];
+    echo 'N° '
+        .$reservation['idReservation']
+        .' - Du '.date('d/m/Y', strtotime($reservation['startDate']))
+        .' au '.date('d/m/Y', strtotime($reservation['endDate']))
+        .' - '.$reservation['lastname'].' '.$reservation['firstname'];
 }
 
 function createReservation()
@@ -82,19 +91,25 @@ function createInvoice($date, $price, $advance, $numeroReservation)
     $createInvoice = $addInvoice->createInvoice($date, $price, $advance, $numeroReservation);
 }
 
+/* Function to select a booking for when displaying, updating or deleting | Fonction pour sélectionner une réservation afin de supprimer, mettre à jour ou afficher */
 function selectReservations($id = null)
 {
-    $selectReservations = new Reservations();
-    $reservations = $selectReservations->selectReservations();
+    $selectReservations = new Reservations(); // Création d'une nouvelle instance du model Reservation
+    $reservations = $selectReservations->selectReservations(); // Liste des réservations
     
+    /* For each booking | Pour chaque réservation */
     foreach($reservations as $reservation)
     {
+        /* If the 'id' parameter is different from the booking id or if the 'id' parameter is null
+            Si le paramètre 'id' est différent de l'id de la réservation ou si le paramètre 'id' est null */
         if($id != $reservation['idReservation'] || $id == null)
         {
+            // The selected variable is worthless | La variable selected ne vaut rien;
             $selected = '';
         }
         else
         {
+            // The selected variable is selected | La variable selected vaut selected
             $selected = 'selected';
         }
         
@@ -128,23 +143,30 @@ function updateReservation()
     require_once('views/administration/reservations/updateReservation.php');
 }
 
+/* Function to display the delete booking page | Fonction permettant d'afficher la page de suppression d'une réservation */
 function deleteReservation()
 {
     require_once('views/administration/reservations/deleteReservation.php');
 }
 
+/*  Function to delete a booking as well as the invoice and the rooms reserved related to it
+    Fonction pour supprimer une réservations ainsi que la facture et les chambres réservées qui y sont liées */
 function deleteAnReservation()
 {
+    // If parameter 'id' exist | Si le paramètre 'id' existe
     if(isset($_GET['id']))
     {
         $idReservation = $_GET['id'];
 
+        /* Delete the invoice related to this booking | Supprimer la facture liée à cette réservation */
         $deleteInvoice = new Reservations();
         $deleteInvoice->deleteInvoice($idReservation);
 
+        /* Delete rooms booked during this booking | Supprimer les chambres réservées lors de cette réservation */
         $deleteRoomsBooked = new Reservations();
         $deleteRoomsBooked->deleteRoomsBooked($idReservation);
 
+        /* Delete the reservation | Supprimer la réservation */
         $deleteReservation = new Reservations();
         $deleteReservation->deleteReservation($idReservation);
     }

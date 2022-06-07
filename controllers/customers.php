@@ -296,51 +296,51 @@ function updateCustomer()
     }
 
     // Displaying Error Messages | Affichage des messages d'erreur
-    if(isset($_GET['err']))
+    /*if(isset($_GET['err']))
+    {
+        switch($_GET['err'])
         {
-            switch($_GET['err'])
-            {
-                case 'all':
-                    $errorUpdateAll = '<span class="text-danger ps-3"> Tous les champs sont vide !</span>';
-                    break;
-                case 'lastname' :
-                    $errorUpdateLastname = '<span class="text-danger ps-3"> Le champ Nom est vide !</span>';
-                    break;
-                case 'firstname' :
-                    $errorUpdatefirstname = '<span class="text-danger ps-3"> Le champ Prénom est vide !</span>';
-                    break;
-                case 'mail':
-                    $errorUpdateMail = '<span class="text-danger ps-3"> Le champ Mail est vide !</span>';
-                    break;
-                case 'phone':
-                    $errorUpdatePhone = '<span class="text-danger ps-3"> Le champ Téléphone est vide ! </span>';
-                    break;
-                case 'wrongmail':
-                    $errorUpdateWrongMail = '<span class="text-danger ps-3"> Email invalide !</span>';
-                    break;
-                case 'birthDate' :
-                    $errorUpdatebirthDate = '<span class="text-danger ps-3"> Le champ Date de naissance est vide !</span>';
-                    break;
-                default :
-                    $errorUpdateAll = '';
-                    $errorUpdateLastname = '';
-                    $errorUpdateFirstname = '';
-                    $errorUpdateMail = '';
-                    $errorUpdatePhone = '';
-                    $errorUpdateWrongMail = '';
-                    $errorUpdateBirthDate = '';
-            }
+            case 'all':
+                $errorUpdateAll = '<span class="text-danger ps-3"> Tous les champs sont vide !</span>';
+                break;
+            case 'lastname' :
+                $errorUpdateLastname = '<span class="text-danger ps-3"> Le champ Nom est vide !</span>';
+                break;
+            case 'firstname' :
+                $errorUpdatefirstname = '<span class="text-danger ps-3"> Le champ Prénom est vide !</span>';
+                break;
+            case 'mail':
+                $errorUpdateMail = '<span class="text-danger ps-3"> Le champ Mail est vide !</span>';
+                break;
+            case 'phone':
+                $errorUpdatePhone = '<span class="text-danger ps-3"> Le champ Téléphone est vide ! </span>';
+                break;
+            case 'wrongmail':
+                $errorUpdateWrongMail = '<span class="text-danger ps-3"> Email invalide !</span>';
+                break;
+            case 'birthDate' :
+                $errorUpdatebirthDate = '<span class="text-danger ps-3"> Le champ Date de naissance est vide !</span>';
+                break;
+            default :
+                $errorUpdateAll = '';
+                $errorUpdateLastname = '';
+                $errorUpdateFirstname = '';
+                $errorUpdateMail = '';
+                $errorUpdatePhone = '';
+                $errorUpdateWrongMail = '';
+                $errorUpdateBirthDate = '';
         }
+    }*/
         
     try
     {
         if(isset($_POST['updateLastnameCustomer'])) // Check if the Lastname field is submit | On vérifie si le champ Nom est envoyé
         {
-            var_dump($_POST['updateLastnameCustomer']);
-            print($_POST['updateLastnameCustomer']);
+            //var_dump($_POST['updateLastnameCustomer']);
+            //print($_POST['updateLastnameCustomer']);
     
             // Check if the fields are empty by filtering the whitespaces and html tags | On vérifie si les champs sont vide tout en filtrant les espaces blancs et les balises html
-            if(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateMailCustomer']))) 
+            /*if(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateMailCustomer']))) 
             && empty(htmlspecialchars(trim($_POST['updatePhoneCustomer']))) && empty(htmlspecialchars(trim($_POST['updateBirthDateCustomer']))) && empty(htmlspecialchars(trim($_POST['updateIdAddress'])))
             && empty(htmlspecialchars(trim($_POST['updateVipCustomer']))))
             {
@@ -375,7 +375,7 @@ function updateCustomer()
                 header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=vip');
             }
             else
-            {
+            {*/
                 try
                 {
                     // check if the email is valid | On vérifie si l'email est valide
@@ -428,7 +428,7 @@ function updateCustomer()
                     throw new Exception('Erreur = '.$e->getMessage());
                 }
                 
-            }
+            /*}*/
         }
         require_once('views/administration/customers/updateCustomer.php');
     }

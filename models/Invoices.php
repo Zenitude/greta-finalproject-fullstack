@@ -1,9 +1,12 @@
 <?php
 
+/* Importing the model : Database / Importation du modèle : Database */
 require_once('DataBase.php');
 
+/* Creation of the class/model 'Invoices' which inherits the DataBase model |Création de la classe/model 'Invoices' qui hérite du modèle DataBase */
 class Invoices extends DataBase
 {
+    /* Function to display the list of invoices | Fonction pour afficher la liste des factures */
     function listInvoices()
     {
         $db = $this->dbConnect();
@@ -16,7 +19,7 @@ class Invoices extends DataBase
         return $invoices;
     }
 
-
+    /* Function to filter the list of invoices | Fonction pour filtrer la liste des factures */
     function searchInvoice($selectSearch, $search)
     {
         switch($selectSearch)
@@ -47,6 +50,7 @@ class Invoices extends DataBase
         return $search;
     }
 
+    /* Fonction pour selectionner une factures lors d'une modification, affichage */
     function selectTheInvoices()
     {
         $db= $this->dbConnect();
@@ -60,6 +64,7 @@ class Invoices extends DataBase
         return $selectInvoices;
     }
 
+    /* Function to select an invoice during a modification, display | Fonction pour afficher les détails d'une facture */
     function detailsInvoice($id)
     {
         $db = $this->dbConnect();
@@ -72,10 +77,12 @@ class Invoices extends DataBase
         $detailsInvoice = $db->prepare($requestDetailsInvoice);
         $detailsInvoice->execute();
         $details = $detailsInvoice->fetch();
+
         return $details;
 
     }
 
+    /* Function to display the details of the rooms of an invoice | Fonction pour afficher les détails des chambres d'une facture */
     function detailsRoomsBooked($idInvoice)
     {
         $db = $this->dbConnect();
@@ -100,3 +107,4 @@ class Invoices extends DataBase
     }
 
 }
+

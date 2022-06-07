@@ -106,8 +106,6 @@ class Customers extends DataBase
         return $customer;
     }
     
-    
-
     /* Fonction pour créer un client */
     public function addCustomer($lastname, $firstname, $mail, $phone, $birthDate, $street, $zipCode, $city, $vip, $idConjoint)
     {
