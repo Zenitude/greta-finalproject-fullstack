@@ -6,7 +6,7 @@ require_once('DataBase.php');
 /* Creation of the class/model 'Reservations' which inherits the DataBase model | Création de la classe/model 'Reservations' qui hérite du modèle DataBase */
 class Reservations extends DataBase
 {
-    /* Afficher la liste des réservations */
+    /* Function to display the list of reservations | Fonction pour afficher la liste des réservations */
     function listReservations()
     {
         $db = $this->dbConnect();
@@ -17,20 +17,6 @@ class Reservations extends DataBase
         $listReservations->execute();
         $list = $listReservations->fetchAll();
         return $list;
-    }
-
-    function listReservation($id)
-    {
-        $db = $this->dbConnect();
-        $requestListReservation = "SELECT idReservation, startDate, endDate, lastname, firstname 
-                                   FROM reservationshotel
-                                   JOIN customers ON customers.id = reservationshotel.idCustomer
-                                   WHERE idReservation = :idReservation";
-        $listReservation = $db->prepare($requestListReservation);
-        $listReservation->bindParam(':idReservation', $id);
-        $listReservation->execute();
-        $reservation = $listReservation->fetch();
-        return $reservation;
     }
 
     /* Fonction de recherche pour filtrer la liste des réservations */
@@ -66,7 +52,7 @@ class Reservations extends DataBase
         return $search;
     }
 
-    /* Filtrer les chambres réservés en fonction des dates de début et fin d'une réservation */
+    /* Function to retrieve the IDs of the reserved rooms | Fonction pour récupérer les id des chambres réservées */
     function reservationRoomsBooked($dateStart, $dateEnd)
     {
         $tabRoomsBooked = array();
@@ -89,7 +75,7 @@ class Reservations extends DataBase
         return $tabRoomsBooked;
     }
 
-    /* Sélectionner toutes les chambres existantes pour pouvoir les filtrer par disponibilité */
+    /* Function to retrieve the IDs of all rooms | Fonction pour récupérer les id de toutes les chambres */
     function reservationRooms()
     {
         $tabRooms = array();
@@ -109,26 +95,29 @@ class Reservations extends DataBase
 
     function reservationRoomsDispo($tabRoomsDispo)
     {
-        $db = $this->dbConnect();
         print_r($tabRoomsDispo);
-        foreach($tabRoomsDispo as $roomDispo)
+        echo '<br>';
+
+        if(count($tabRoomsDispo) > 0)
         {
-            $requestListRoomsDispo = "SELECT * FROM rooms WHERE idRoom = :idRoom";
+            $db = $this->dbConnect();
+
+            $requestListRoomsDispo = 'SELECT * FROM rooms WHERE idRoom IN ('. implode(',', array_map('intval', $tabRoomsDispo)).')';
             $listRoomsDispo = $db->prepare($requestListRoomsDispo);
-            $listRoomsDispo->bindParam(':idRoom', $roomDispo);
             $listRoomsDispo->execute();
-            
+            $roomsDispo = $listRoomsDispo->fetchAll();
+            return $roomsDispo;
         }
-        $roomsDispo = $listRoomsDispo->fetchAll();
-        return $roomsDispo;
+        
     }
 
+    /* Function to finalize a booking | Fonction pour finaliser une réservation */
     function reservationFinish()
     {
         if(isset($_POST))
         {
             try{
-
+                /* Create a booking with start date, end date and customer id | Création d'une réservation avec la date de début, date de fin et l'id du client */
                 $db = $this->dbConnect();
                 $requestCreateReservation = "INSERT INTO reservationshotel(startDate, endDate, idCustomer) VALUES(:startDate, :endDate, :idCustomer)";
                 $createReservation = $db->prepare($requestCreateReservation);
@@ -139,6 +128,7 @@ class Reservations extends DataBase
 
                 try
                 {
+                    /* Selecting the id of the last created booking | Sélection de l'id de la dernière réservation créée */
                     $requestLastReservation = "SELECT idReservation FROM reservationshotel ORDER BY idReservation DESC LIMIT 1";
                     $lastReservation = $db->prepare($requestLastReservation);
                     $lastReservation->execute();
@@ -146,11 +136,12 @@ class Reservations extends DataBase
 
                     try
                     {
+                        /* Remove Start Date, End Date and Client ID from POST variable | Suppression des date de début, date de fin et de l'id du client de la variable POST */
                         unset($_POST['dateStart']);
                         unset($_POST['dateEnd']);
                         unset($_POST['idCustomer']);
-                        $lastReserv = $last['idReservation'];
 
+                        /* Booking of selected rooms | Réservation des chambres sélectionnées */
                         foreach($_POST as $key)
                         {
                             $requestBookRoom = "INSERT INTO roomsbooked(idReservationB, idRoomB) VALUES(:idReservation, :idRoom)";
@@ -162,6 +153,8 @@ class Reservations extends DataBase
 
                         try
                         {
+                            /*  Retrieving all booking information to display on the summary page
+                                Récupération de toutes les informations concernant la réservation pour les afficher sur la page de résumé */
                             $requestResumReservation = "SELECT * FROM reservationshotel
                                                         JOIN customers ON customers.id = reservationshotel.idCustomer
                                                         JOIN roomsbooked ON roomsbooked.idReservationB = reservationshotel.idReservation
@@ -236,6 +229,7 @@ class Reservations extends DataBase
         return $selectReservation;
     }
 
+    /* Function to display the details of a resetting on the details page | Fonction pour afficher les détails d'une réseravtion sur la page des détails */
     function detailsReservation($id)
     {
         $db = $this->dbConnect();
@@ -250,6 +244,7 @@ class Reservations extends DataBase
         return $details;
     }
 
+    /*  Function to display details of rooms linked to a booking on the details page | Fonction pour afficher les détails des chambres liées à une réservation sur la page des détails */
     function detailsRoomsBooked($id)
     {
         $db = $this->dbConnect();
@@ -262,6 +257,21 @@ class Reservations extends DataBase
         $detailsRoomsBooked->execute();
         $detailsRooms = $detailsRoomsBooked->fetchAll();
         return $detailsRooms;
+    }
+
+    /* Function to display the details of a reservation during a deletion | Fonction pour afficher les détails d'une réservation lors d'une suppression */
+    function listReservation($id)
+    {
+        $db = $this->dbConnect();
+        $requestListReservation = "SELECT idReservation, startDate, endDate, lastname, firstname 
+                                    FROM reservationshotel
+                                    JOIN customers ON customers.id = reservationshotel.idCustomer
+                                    WHERE idReservation = :idReservation";
+        $listReservation = $db->prepare($requestListReservation);
+        $listReservation->bindParam(':idReservation', $id);
+        $listReservation->execute();
+        $reservation = $listReservation->fetch();
+        return $reservation;
     }
 
     /* Function to delete invoices related to a booking | Fonction pour supprimer les factures liées à une réservation */

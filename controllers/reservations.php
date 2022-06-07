@@ -39,6 +39,7 @@ function listReservation($id)
         .' - '.$reservation['lastname'].' '.$reservation['firstname'];
 }
 
+/* Feature displaying non-reserved rooms when creating a reservation | Fonction affichant les chambres non réservées lors de la création d'une réservation */
 function createReservation()
 {
 
@@ -58,6 +59,7 @@ function createReservation()
     require_once('views/administration/reservations/createReservation.php');
 }
 
+/* Function displaying details when finalizing a booking | Fonction affichant les détails lors de la finalisation d'une réservation */
 function reservationFinish()
 {
     $price = 0;
@@ -85,6 +87,7 @@ function reservationFinish()
     require_once('views/administration/reservations/reservationFinal.php');
 }
 
+/* Function to create the invoice corresponding to a booking | Fonction pour créer la facture correspondant à une réservation */
 function createInvoice($date, $price, $advance, $numeroReservation)
 {
     $addInvoice = new Reservations();
@@ -120,6 +123,7 @@ function selectReservations($id = null)
 
 }
 
+/* Function displaying booking details | Fonction affichant les détails d'une réservation */
 function detailsReservation()
 {
     if(isset($_GET['id']))
@@ -138,6 +142,7 @@ function detailsReservation()
     require_once('views/administration/reservations/detailsReservation.php');
 }
 
+/* Function displaying the update page of a booking | Fonction affichant la page de mise à jour d'une réservation */
 function updateReservation()
 {
     require_once('views/administration/reservations/updateReservation.php');
