@@ -47,13 +47,18 @@ function createReservation()
     {
         $tabRoomsDispo = [];
         $roomsDispo = new Reservations();
+
+        /* Retrieval of room IDs booked according to certain dates in a table | Récupération des id des chambres réservées selon certaines dates dans un tableau */
         $roomsBooked = $roomsDispo->reservationRoomsBooked($_POST['dateStartReservation'], $_POST['dateEndReservation']);
+
+        /* Retrieving IDs from all existing chambers in a table | Récupération des id de toutes les chambres existantes dans un tableau */
         $rooms = $roomsDispo->reservationRooms();
+
+        /* Comparison of the two tables to keep only the ids of the non-reserved rooms | Comparaison des deux tableaux pour ne garder que les ids des chambres non réservées */
         $tabRoomsDispo = array_diff($rooms, $roomsBooked);
-        $roomsDispo = $roomsDispo->reservationRoomsDispo($tabRoomsDispo);
-        
-        //$roomsDispo = $roomsDispo->reservationRoomsDispo($_POST['dateStartReservation'], $_POST['dateEndReservation']);
-        
+
+        /* Retrieving details of non-reserved rooms | Récupération des détails des chambres non réservées */
+        $roomsDispo = $roomsDispo->reservationRoomsDispo($tabRoomsDispo);   
     }
 
     require_once('views/administration/reservations/createReservation.php');
@@ -62,26 +67,41 @@ function createReservation()
 /* Function displaying details when finalizing a booking | Fonction affichant les détails lors de la finalisation d'une réservation */
 function reservationFinish()
 {
-    $price = 0;
 
-    $date = date('Y-m-d H:i:s');
+    /* Retrieval of booking information | Récupération des informations de la réservation */
     $resumReservation = new Reservations();
     $resum = $resumReservation->reservationFinish();
 
+    /* Booking Number | Numéro de la réservation */
     $numeroReservation = intval($resum['idReservation']);
+
+    /* customer information | Informations du Client */
     $customer = $resum['lastname'].' '.$resum['firstname'];
+
+    /* Dates of booking | Dates de la réservation */
     $dates = date('d/m/Y', strtotime($resum['startDate'])).' - '.date('d/m/Y', strtotime($resum['endDate']));
 
+    /* Retrieval of room information | Récupération des informations des chambres */
     $priceRooms = $resumReservation->priceRooms($resum['idReservation']);
+
+    /* Total amount of rooms | Cumul du montant total des chambres */
+    $price = 0;
 
     foreach($priceRooms as $priceRoom)
     {
         $price = $price + intval($priceRoom['price']);
     }
 
+    /* Calculation of the deposit | Calcul de l'acompte */
     $advance = $price * 0.25;
+
+    /* Calcul restant à payer */
     $reste = $price - $advance;
 
+    /* Date de la facture */
+    $date = date('Y-m-d H:i:s');
+
+    /* Creating the Invoice | Création de la facture */
     createInvoice($date, $price, $advance, $numeroReservation);
     
     require_once('views/administration/reservations/reservationFinal.php');

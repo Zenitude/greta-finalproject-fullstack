@@ -6,6 +6,7 @@ require_once('DataBase.php');
 /* Creation of the class/model 'Reservations' which inherits the DataBase model | Création de la classe/model 'Reservations' qui hérite du modèle DataBase */
 class Reservations extends DataBase
 {
+
     /* Function to display the list of reservations | Fonction pour afficher la liste des réservations */
     function listReservations()
     {
@@ -57,6 +58,7 @@ class Reservations extends DataBase
     {
         $tabRoomsBooked = array();
 
+        /* Retrieving information from reserved rooms | Récupération des informations des chambres réservées */
         $db = $this->dbConnect();
         $requestListRoomsBooked = "SELECT * FROM roomsbooked
                                   JOIN reservationshotel ON reservationshotel.idReservation = roomsbooked.idReservationB
@@ -68,6 +70,7 @@ class Reservations extends DataBase
         $listRoomsBooked->execute();
         $roomsBooked = $listRoomsBooked->fetchAll();
 
+        /* Storing IDs in a table | Stockage des id dans un tableau */
         foreach($roomsBooked as $roomBooked) {
               array_push($tabRoomsBooked, $roomBooked['idRoomB']);
         }
@@ -79,12 +82,15 @@ class Reservations extends DataBase
     function reservationRooms()
     {
         $tabRooms = array();
+
+        /* Retrieval of information from all existing rooms | Récupération des informations de toutes les chambres existantes */
         $db = $this->dbConnect();
         $requestListRooms = "SELECT * FROM rooms";
         $listRooms = $db->prepare($requestListRooms);
         $listRooms->execute();
         $rooms = $listRooms->fetchAll();
  
+        /* Storing IDs in a table | Stockage des id dans un tableau */
         foreach($rooms as $room)
         {
             array_push($tabRooms, $room['idRoom']);   
@@ -93,11 +99,9 @@ class Reservations extends DataBase
         return $tabRooms;
     }
 
+    /* Function to display non-reserved rooms | Fonction pour afficher les chambres non réservées */
     function reservationRoomsDispo($tabRoomsDispo)
     {
-        print_r($tabRoomsDispo);
-        echo '<br>';
-
         if(count($tabRoomsDispo) > 0)
         {
             $db = $this->dbConnect();
@@ -108,7 +112,6 @@ class Reservations extends DataBase
             $roomsDispo = $listRoomsDispo->fetchAll();
             return $roomsDispo;
         }
-        
     }
 
     /* Function to finalize a booking | Fonction pour finaliser une réservation */
@@ -190,6 +193,7 @@ class Reservations extends DataBase
         }
     }
 
+    /* Function to display room prices on the booking creation summary page | Fonction pour afficher les prix des chambres sur la page de résumé de la création d'une réservation */
     function priceRooms($idReservation)
     {
         $db = $this->dbConnect();
@@ -203,6 +207,7 @@ class Reservations extends DataBase
         return $price;
     }
 
+    /* Function to create an invoice when creating a booking | Fonction de création d'une facture lors de la création d'une réservation */
     function createInvoice($date, $sumRooms, $advance, $idReservation)
     {
 
