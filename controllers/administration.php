@@ -1,11 +1,9 @@
 <?php
 
-/*  Importing the Model
-    Import du Model */
+/*  Importing the Model | Import du Model */
 require_once('models/Administration.php');
 
-/*  Function displaying the management page
-    Fonction affichant la page de gestion */
+/*  Function displaying the management page | Fonction affichant la page de gestion */
 function gestion()
 {
     /* Importing the view | Import de la vue */

@@ -1,9 +1,12 @@
 <?php
 
+/* Importing the model : Database / Importation du modèle : Database */
 require_once('models/DataBase.php');
 
+/* Creation of the class/model 'Administration' which inherits the DataBase model | Création de la classe/model 'Administration' qui hérite du modèle DataBase */
 class Administration extends DataBase
 {
+    /* Fonction pour récupérer tous les clients */
     public function countTheCustomers()
     {
         $db = $this->dbConnect();
@@ -15,6 +18,7 @@ class Administration extends DataBase
         return $customers;
     }
 
+    /* Fonction pour récupérer toutes les Reservations */
     public function countTheReservations()
     {
         $db = $this->dbConnect();
@@ -26,6 +30,7 @@ class Administration extends DataBase
         return $reservations;
     }
 
+    /* Fonction pour récupérer toutes les factures */
     public function countTheInvoices()
     {
         $db = $this->dbConnect();
