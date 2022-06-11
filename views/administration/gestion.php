@@ -201,4 +201,3 @@
     // If no admin session is active redirect to login page | Si aucune session admin n'est active rediriger vers la page de connexion
     else: header('Location: index.php?page=connexion');
     endif;
-    

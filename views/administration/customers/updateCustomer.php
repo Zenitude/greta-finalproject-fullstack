@@ -7,7 +7,7 @@
 
 <div class="container">
     <h1 class="text-center my-5">Modifier un client</h1>
-    <p class="fs-6 fst-italic">* : champs obligatoires</p>
+    <p id="updateOblig"class="fs-6 fst-italic">* : champs obligatoires</p>
 
     <?php if(!isset($_GET['id'])) : ?>
     <form action="index.php?page=administration" method="GET" class="mb-4 d-flex flex-column">
@@ -22,7 +22,7 @@
         <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>
     </form>
     <?php else: ?>
-    <form action="index.php?page=administration&section=customers&action=updateACustomer" method="post" class="mb-4">
+    <form id="formUpdateCustomer" action="index.php?page=administration&section=customers&action=updateACustomer" method="post" class="mb-4">
         <div class="input-group mb-3 d-none">
             <label for="updateIdCustomer" class="form-label w-25">Nom*</label>
             <input type="text" name="updateIdCustomer" id="updateIdCustomer" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $_GET['id'];} ?>">
@@ -80,7 +80,7 @@
 
         <div class="input-group mb-3">
             <label for="updatePhoneCustomer" class="form-label w-25">Téléphone*</label>
-            <input type="text" name="updatePhoneCustomer" id="updatePhoneCustomer" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['phone'];} ?>">
+            <input type="text" name="updatePhoneCustomer" id="updatePhoneCustomer" maxlength="14" class="form-control rounded" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['phone'];} ?>">
         </div>
 
         <div class="input-group mb-3">
