@@ -206,6 +206,7 @@ class Customers extends DataBase
         }
     }
 
+    /* Function to select an address | Fonction pour sélectionner une adresse */
     public function selectTheAddress()
     {
         $db = $this->dbConnect();
@@ -216,6 +217,7 @@ class Customers extends DataBase
         return $address;
     }
 
+    /* Function to display a customer’s current information for the update | Fonction pour afficher les informations actuelles d'un client pour la mise à jour */
     public function updateACustomer()
     {
         if(isset($_GET['id']))
@@ -232,7 +234,8 @@ class Customers extends DataBase
         }
     }
 
-    public function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $idConjoint)
+    /* Function to update the customer with new information | Fonction pour mettre à jour le client avec les nouvelles informations */
+    public function updateCustomer($id, $lastname, $firstname, $mail, $phone, $birthdate, $idAddress, $vip, $idConjoint)
     {
 
         try{
@@ -241,8 +244,8 @@ class Customers extends DataBase
 
             $requestUpdateCustomer = "UPDATE customers
                                       SET lastname = :lastname, firstname = :firstname, mail = :mail, 
-                                      phone = :phone, birthdate = :birthdate, vip = :vip, 
-                                      idConjoint = :idConjoint, idAddressC = :idAddress
+                                      phone = :phone, birthdate = :birthdate, idAddressC = :idAddressC, 
+                                      vip = :vip, idConjoint = :idConjoint
                                       WHERE customers.id = :idCustomer";
             $updateCustomer = $db->prepare($requestUpdateCustomer);
             $updateCustomer->bindParam(':lastname', $lastname);
@@ -250,19 +253,20 @@ class Customers extends DataBase
             $updateCustomer->bindParam(':mail', $mail);
             $updateCustomer->bindParam(':phone', $phone);
             $updateCustomer->bindParam(':birthdate', $birthdate);
+            $updateCustomer->bindParam(':idAddressC', $idAddress);
             $updateCustomer->bindParam(':vip', $vip);
             $updateCustomer->bindParam(':idConjoint', $idConjoint);
-            $updateCustomer->bindParam(':idAddress', $idAddress);
             $updateCustomer->bindParam(':idCustomer', $id);
             $updateCustomer->execute();
-            
+
         }
         catch(Exception $e)
         {
-            throw new Exception('Erreur = '.$e->getMessage());
+            throw new Exception('Erreur Mise à jour = '.$e->getMessage());
         }
     }
 
+    /* Function to select a client, during updates or deletion | Fonction pour sélectionner un client, lors des mises à jour ou suppression */
     public function selectTheCutomers()
     {
         $db= $this->dbConnect();
@@ -273,6 +277,7 @@ class Customers extends DataBase
         return $selectCustomers;
     }
 
+    /* Fonction pour supprimer un client */
     public function deleteTheCustomer($id)
     {
         $db = $this->dbConnect();
@@ -283,6 +288,7 @@ class Customers extends DataBase
 
     }
 
+    /* Fonction qui affiche les détails d'un client */
     public function detailsCustomer($idCustomer)
     {
         $db = $this->dbConnect();
@@ -296,6 +302,7 @@ class Customers extends DataBase
         return $detailsCustomer;
     }
 
+    /* Fonction qui affiche les détails des réservations d'un client dans sa fiche */
     public function detailsReservation($idCustomer)
     {
         $db = $this->dbConnect();
@@ -310,3 +317,4 @@ class Customers extends DataBase
         return $detailsReservation;
     }
 }
+

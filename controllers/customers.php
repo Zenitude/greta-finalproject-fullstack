@@ -54,7 +54,7 @@ function selectCustomers($id = null)
 
     foreach($selectCustomers as $customer)
     {
-        if($id != $customer['id'] || $id == null)
+        if($id != $customer['id'])
         {
             $selected = '';
         }
@@ -288,153 +288,57 @@ function updateACustomer()
 function updateCustomer()
 {
     if(isset($_GET['id'])){ $id = $_GET['id'];}
-
-    // Displaying Success Messages | Affichage des messages de succès
-    if(isset($_GET['validation']) && $_GET['validation'] == 'ok')
-    {
-        $updateCustomer = '<p class="text-warning ps-3"> Utilisateur mis à jour avec succès !</p>';
-    }
-
-    // Displaying Error Messages | Affichage des messages d'erreur
-    /*if(isset($_GET['err']))
-    {
-        switch($_GET['err'])
-        {
-            case 'all':
-                $errorUpdateAll = '<span class="text-danger ps-3"> Tous les champs sont vide !</span>';
-                break;
-            case 'lastname' :
-                $errorUpdateLastname = '<span class="text-danger ps-3"> Le champ Nom est vide !</span>';
-                break;
-            case 'firstname' :
-                $errorUpdatefirstname = '<span class="text-danger ps-3"> Le champ Prénom est vide !</span>';
-                break;
-            case 'mail':
-                $errorUpdateMail = '<span class="text-danger ps-3"> Le champ Mail est vide !</span>';
-                break;
-            case 'phone':
-                $errorUpdatePhone = '<span class="text-danger ps-3"> Le champ Téléphone est vide ! </span>';
-                break;
-            case 'wrongmail':
-                $errorUpdateWrongMail = '<span class="text-danger ps-3"> Email invalide !</span>';
-                break;
-            case 'birthDate' :
-                $errorUpdatebirthDate = '<span class="text-danger ps-3"> Le champ Date de naissance est vide !</span>';
-                break;
-            default :
-                $errorUpdateAll = '';
-                $errorUpdateLastname = '';
-                $errorUpdateFirstname = '';
-                $errorUpdateMail = '';
-                $errorUpdatePhone = '';
-                $errorUpdateWrongMail = '';
-                $errorUpdateBirthDate = '';
-        }
-    }*/
         
     try
     {
         if(isset($_POST['updateLastnameCustomer'])) // Check if the Lastname field is submit | On vérifie si le champ Nom est envoyé
         {
-            //var_dump($_POST['updateLastnameCustomer']);
-            //print($_POST['updateLastnameCustomer']);
     
-            // Check if the fields are empty by filtering the whitespaces and html tags | On vérifie si les champs sont vide tout en filtrant les espaces blancs et les balises html
-            /*if(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))) && empty(trim(htmlspecialchars($_POST['updateMailCustomer']))) 
-            && empty(htmlspecialchars(trim($_POST['updatePhoneCustomer']))) && empty(htmlspecialchars(trim($_POST['updateBirthDateCustomer']))) && empty(htmlspecialchars(trim($_POST['updateIdAddress'])))
-            && empty(htmlspecialchars(trim($_POST['updateVipCustomer']))))
+            try
             {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=all');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updateLastnameCustomer']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=lastname');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updateFirstnameCustomer']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=firstname');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updateMailCustomer']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=mail');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updateIdAddress']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=address');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updatePhoneCustomer']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=phone');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updateBirthDateCustomer']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=birthDate');
-            }
-            elseif(empty(trim(htmlspecialchars($_POST['updateVipCustomer']))))
-            {
-                header('Location: index.php?page=administration&section=customers&action=updateCustomer&err=vip');
-            }
-            else
-            {*/
-                try
+                // check if the email is valid | On vérifie si l'email est valide
+                if (!filter_var($_POST["updateMailCustomer"], FILTER_VALIDATE_EMAIL)) 
                 {
-                    // check if the email is valid | On vérifie si l'email est valide
-                    if (!filter_var($_POST["updateMailCustomer"], FILTER_VALIDATE_EMAIL)) 
+                    header('Location: index.php?page=administration&section=gestion&action=updateCustomer&err=mailwrong');
+                }
+                else
+                {
+                    // Field data is transferred to variables
+                    $updateId = $_POST['updateIdCustomer'];
+                    $updateLastname = trim(htmlspecialchars($_POST['updateLastnameCustomer']));
+                    $updateFirstname = trim(htmlspecialchars($_POST['updateFirstnameCustomer']));
+                    $updateMail = trim(htmlspecialchars($_POST['updateMailCustomer']));
+                    $updatePhone = trim(htmlspecialchars($_POST['updatePhoneCustomer']), " \-_.");
+                    $updateBirthDate = trim(htmlspecialchars($_POST['updateBirthDateCustomer']));
+                    $updateIdAddress = trim(htmlspecialchars($_POST['updateIdAddress']));
+                    $updateVipCustomer = trim(htmlspecialchars($_POST['updateVipCustomer']));
+                    $updateIdConjoint = trim(htmlspecialchars($_POST['updateSelectSpouse']));
+
+                    if($updateVipCustomer == 'true')
                     {
-                        header('Location: index.php?page=administration&section=gestion&action=updateCustomer&err=mailwrong');
+                        $updateVip = 1;
                     }
                     else
                     {
-                        // Field data is transferred to variables
-                        $updateId = $_POST['updateIdCustomer'];
-                        $updateLastname = trim(htmlspecialchars($_POST['updateLastnameCustomer']));
-                        $updateFirstname = trim(htmlspecialchars($_POST['updateFirstnameCustomer']));
-                        $updateMail = trim(htmlspecialchars($_POST['updateMailCustomer']));
-                        $updateBirthDate = trim(htmlspecialchars($_POST['updateBirthDateCustomer']));
-                        $updateIdAddress = trim(htmlspecialchars($_POST['updateIdAddress']));
-                        $updateVipCustomer = trim(htmlspecialchars($_POST['updateVipCustomer']));
-                        $updateIdConjoint = trim(htmlspecialchars($_POST['updateSelectSpouse']));
-        
-                        // Transfer phone data to a variable by removing unnecessary items | On transfère les données du téléphone dans une variable en supprimant les éléments inutiles
-                        $updatePhoneCustomer = trim(htmlspecialchars($_POST['updatePhoneCustomer']), " \-_.");
-
-                        $updateVip = filter_var($updateVipCustomer, FILTER_VALIDATE_BOOLEAN);
-
-                        if($updateVip)
-                        {
-                            $updateVip = 1;
-                        }
-                        else
-                        {
-                            $updateVip = 0;
-                        }
-
-                        // If the phone is not formatted correctly it is reformatted | Si le téléphone n'est pas formaté correctement on le reformate
-                        $updatePhone = sprintf("%s.%s.%s.%s.%s",
-                        substr($updatePhoneCustomer, 0, 2),
-                        substr($updatePhoneCustomer, 2, 2),
-                        substr($updatePhoneCustomer, 4, 2),
-                        substr($updatePhoneCustomer, 6, 2),
-                        substr($updatePhoneCustomer, 8, 2));
-
-                        $updateCustomer = new Customers;
-                        $updateCustomer->updateCustomer($updateId, $updateLastname, $updateFirstname, $updateMail, $updatePhone, $updateBirthDate, $updateIdAddress, $updateVip, $updateIdConjoint);
-                        
-                        header('Location: index.php?page=administration&section=customers&action=updateCustomer&validation=ok');
+                        $updateVip = 0;
                     }
+
+                    $updateCustomer = new Customers;
+                    $updateCustomer->updateCustomer($updateId, $updateLastname, $updateFirstname, $updateMail, $updatePhone, $updateBirthDate, $updateIdAddress, $updateVip, $updateIdConjoint);
+                    
+                    header('Location: index.php?page=administration&section=customers&action=updateCustomer&id='.$updateId.'&validation=ok');
                 }
-                catch(Exception $e)
-                {
-                    throw new Exception('Erreur = '.$e->getMessage());
-                }
-                
-            /*}*/
+            }
+            catch(Exception $e)
+            {
+                throw new Exception('Erreur ici = '.$e->getMessage());
+            }
         }
         require_once('views/administration/customers/updateCustomer.php');
     }
     catch(Exception $e)
     {
-        throw new Exception('Erreur = '.$e->getMessage());
+        throw new Exception('Erreur là = '.$e->getMessage());
     }
 }
 
@@ -473,6 +377,7 @@ function detailsCustomer()
         $customers = new Customers();
         $detailsCustomer = $customers->detailsCustomer($id);
         $detailsReservations = $customers->detailsReservation($id);
+        $detailsConjoint = $customers->detailsCustomer($detailsCustomer['idConjoint']);
     }
 
     require_once('views/administration/customers/detailsCustomer.php');

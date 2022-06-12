@@ -14,7 +14,7 @@
         <p class="fs-4"><span class="fw-bold">Nom : </span> <?= $detailsCustomer['lastname']; ?></p>
         <p class="fs-4"><span class="fw-bold">Prénom : </span> <?= $detailsCustomer['firstname']; ?></p>
         <p class="fs-4"><span class="fw-bold">Date de naissance : </span> <?= date('d/m/Y', strtotime($detailsCustomer['birthdate'])); ?></p>
-        <?php if($detailsCustomer['idConjoint'] != 0): ?>
+        <?php if($detailsCustomer['idConjoint'] > 0): ?>
             <p class="fs-4"><span class="fw-bold">Conjoint : </span><a href="index.php?administration&section=customers&action=detailsCustomer&id=<?= $detailsCustomer['idConjoint']; ?>"><?= $detailsConjoint['lastname'].' '.$detailsConjoint['firstname']; ?></a></p>
         <?php endif; ?>
         <p class="fs-4"><span class="fw-bold">VIP : </span><?php if($detailsCustomer['vip'] == 0){ echo 'Non'; } else { echo 'Oui'; } ?></p>
