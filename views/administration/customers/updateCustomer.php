@@ -45,19 +45,22 @@
             <!-- Lastname | Nom -->
             <div class="input-group mb-3">
                 <label for="updateLastnameCustomer" class="form-label w-25">Nom*</label>
-                <input type="text" name="updateLastnameCustomer" id="updateLastnameCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['lastname'];} ?>">
+                <input type="text" name="updateLastnameCustomer" id="updateLastnameCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id']))
+                { echo $detailsCustomer['lastname'];} ?>">
             </div>
 
             <!-- Firstname | Prénom -->
             <div class="input-group mb-3">
                 <label for="updateFirstnameCustomer" class="form-label w-25">Prénom*</label>
-                <input type="text" name="updateFirstnameCustomer" id="updateFirstnameCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['firstname'];} ?>">
+                <input type="text" name="updateFirstnameCustomer" id="updateFirstnameCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id']))
+                { echo $detailsCustomer['firstname'];} ?>">
             </div>
 
             <!-- Birth Date | Date de naissance -->
             <div class="input-group mb-3">
                 <label for="updateBirthDateCustomer" class="form-labe w-25">Date de naissance*</label>
-                <input type="date" name="updateBirthDateCustomer" id="updateBirthDateCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['birthdate'];} ?>">
+                <input type="date" name="updateBirthDateCustomer" id="updateBirthDateCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id']))
+                { echo $detailsCustomer['birthdate'];} ?>">
             </div>
 
             <!-- Select Spouse | Sélection du conjoint -->
@@ -76,11 +79,13 @@
             <div class="input-group mb-3">
                 <span class="w-25">VIP*</span>
                 <div>
-                    <input type="radio" name="updateVipCustomer" id="vipYes" class="form-check-input me-1" value="true" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 1){ echo 'checked'; }else{ echo '';}} ?>>
+                    <input type="radio" name="updateVipCustomer" id="vipYes" class="form-check-input me-1" value="true" <?php if(isset($_GET['id'])){ 
+                        if($detailsCustomer['vip'] == 1){ echo 'checked'; }else{ echo '';}} ?>>
                     <label for="vipYes">Oui</label>
                 </div>
                 <div>
-                    <input type="radio" name="updateVipCustomer" id="vipNo" class="form-check-input ms-2 me-1" value="false" <?php if(isset($_GET['id'])){ if($detailsCustomer['vip'] == 0){ echo 'checked'; }else{ echo '';}} ?>>
+                    <input type="radio" name="updateVipCustomer" id="vipNo" class="form-check-input ms-2 me-1" value="false" <?php if(isset($_GET['id'])){ 
+                        if($detailsCustomer['vip'] == 0){ echo 'checked'; }else{ echo '';}} ?>>
                     <label for="vipNo">Non</label>
                 </div>
             </div>
@@ -102,13 +107,15 @@
             <!-- Phone | Téléphone -->
             <div class="input-group mb-3">
                 <label for="updatePhoneCustomer" class="form-label w-25">Téléphone*</label>
-                <input type="text" name="updatePhoneCustomer" id="updatePhoneCustomer" maxlength="14" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['phone'];} ?>">
+                <input type="text" name="updatePhoneCustomer" id="updatePhoneCustomer" maxlength="14" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ 
+                    echo $detailsCustomer['phone'];} ?>">
             </div>
 
             <!-- Mail | Email -->
             <div class="input-group mb-3">
                 <label for="updateMailCustomer" class="form-label w-25">Email*</label>
-                <input type="mail" name="updateMailCustomer" id="updateMailCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ echo $detailsCustomer['mail'];} ?>">
+                <input type="mail" name="updateMailCustomer" id="updateMailCustomer" class="form-control rounded w-75" value="<?php if(isset($_GET['id'])){ 
+                    echo $detailsCustomer['mail'];} ?>">
             </div>
 
             <!-- Submit button | Bouton d'envoie -->
