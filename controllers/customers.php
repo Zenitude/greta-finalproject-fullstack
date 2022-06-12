@@ -54,12 +54,14 @@ function selectCustomers($id = null)
 
     foreach($selectCustomers as $customer)
     {
-        if($id != $customer['id'])
+        if($id != $customer['id'] || $id = null)
         {
+            // If the client id is different from the received id display nothing | Si l'id du client est différent de l'id reçu ne rien afficher
             $selected = '';
         }
         else
         {
+            // If the client id is the same as the received id display the selected attribute | Si l'id du client est identique à l'id reçu afficher l'attribut selected
             $selected = 'selected';
         }
         
@@ -265,10 +267,12 @@ function selectAddress($id)
     {
         if($id == $address['idAddress'])
         {
+            // If the address id is the same as the received id display the selected attribute | Si l'id de l'adresse est identique à l'id reçu afficher l'attribut selected
             $selected = "selected";
         }
         else
         {
+            // If the address id is different from the received id display nothing | Si l'id de l'adresse est différent de l'id reçu ne rien afficher
             $selected = "";
         }
 
@@ -276,7 +280,7 @@ function selectAddress($id)
     }
 }
 
-/* Viewing a Client Update Page | Affichage de la page de mise à jour d'un client */
+/* Displaying a customer’s update page with their current information | Affichage de la page de mise à jour d'un client avec ses informations actuelles */
 function updateACustomer()
 {
     $customer = new Customers();
@@ -303,7 +307,7 @@ function updateCustomer()
                 }
                 else
                 {
-                    // Field data is transferred to variables
+                    // Data is transferred to variables | Les données sont transférées dans des variables
                     $updateId = $_POST['updateIdCustomer'];
                     $updateLastname = trim(htmlspecialchars($_POST['updateLastnameCustomer']));
                     $updateFirstname = trim(htmlspecialchars($_POST['updateFirstnameCustomer']));
@@ -316,29 +320,36 @@ function updateCustomer()
 
                     if($updateVipCustomer == 'true')
                     {
+                        // If vip is 'true' it is set to 1 | Si vip vaut 'true' on lui donne la valeur de 1
                         $updateVip = 1;
                     }
                     else
                     {
+                        // Otherwise we give it the value of 0 | Sinon on lui donne la valeur de 0
                         $updateVip = 0;
                     }
 
                     $updateCustomer = new Customers;
-                    $updateCustomer->updateCustomer($updateId, $updateLastname, $updateFirstname, $updateMail, $updatePhone, $updateBirthDate, $updateIdAddress, $updateVip, $updateIdConjoint);
+                    $updateCustomer->updateCustomer(
+                        $updateId, $updateLastname, $updateFirstname, 
+                        $updateMail, $updatePhone, $updateBirthDate, 
+                        $updateIdAddress, $updateVip, $updateIdConjoint);
                     
+                    /*  If the update is successful, redirect to the update page and display a message
+                        En cas de succès de la mise à jour on redirige sur la page de mise à jour et on affiche un message */
                     header('Location: index.php?page=administration&section=customers&action=updateCustomer&id='.$updateId.'&validation=ok');
                 }
             }
             catch(Exception $e)
             {
-                throw new Exception('Erreur ici = '.$e->getMessage());
+                throw new Exception('Erreur = '.$e->getMessage());
             }
         }
         require_once('views/administration/customers/updateCustomer.php');
     }
     catch(Exception $e)
     {
-        throw new Exception('Erreur là = '.$e->getMessage());
+        throw new Exception('Erreur = '.$e->getMessage());
     }
 }
 
