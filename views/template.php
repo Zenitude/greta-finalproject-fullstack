@@ -5,7 +5,8 @@
         <!-- Encoding meta tag | Balise meta d'encodage -->
         <meta charset="UTF-8">
 
-        <!-- Meta tag to display content in the highest available mode for Internet Explorer | Balise meta pour afficher le contenu dans le mode le plus élevé disponible pour Internet Explorer -->
+        <!-- Meta tag to display content in the highest available mode for Internet Explorer
+             Balise meta pour afficher le contenu dans le mode le plus élevé disponible pour Internet Explorer -->
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
         <!-- Meta tag to control the layout on mobile | Balise meta pour contrôler la mise en page sur mobile -->

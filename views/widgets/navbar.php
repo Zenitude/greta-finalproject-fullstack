@@ -7,7 +7,8 @@
 
         <!-- Burger Button | Bouton Hamburger -->
         <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navMain" aria-controls="navMain" aria-expanded="false" aria-label="Afficher/Masquer menu">
-            <span class="navbar-toggler-icon text-black"></span>
+            <!-- <span class="navbar-toggler-icon text-black"></span> -->
+            <i class="fa-solid fa-bars fa-2x"></i>
         </button>
 
         <!-- Navigation menu | Menu de Navigation -->

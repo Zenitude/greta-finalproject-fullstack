@@ -1,19 +1,23 @@
-/* choice of colors of the custom palette / choix des couleurs de la palette personnalisée*/
+/*  Choice of colors of the custom palette
+    Choix des couleurs de la palette personnalisée*/
 $beige: beige;
 $darkness: #333;
 $whiteness: #f1f1f1;
 
-/* Creating the Custom Palette / Création de la palette personnalisée*/
+/*  Creating the Custom Palette
+    Création de la palette personnalisée*/
 $custom-palette: (
     "beige": $beige,
     "darkness": $darkness,
     "whiteness": $whiteness
 );
 
-/* Merge custom palette with bootstrap palette / Fusion de la palette personnalisée avec la palette de bootstrap */
+/*  Merge custom palette with bootstrap palette 
+    Fusion de la palette personnalisée avec la palette de bootstrap */
 $theme-colors: map.merge($custom-palette, $theme-colors);
 
-/* Fixed bug for background and text / Correction du bug pour les background et les textes */ 
+/*  Fixed bug for background and text
+    Correction du bug pour les background et les textes */ 
 @each $key, $val in $custom-palette
 {
     .bg-#{$key}
