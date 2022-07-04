@@ -1,0 +1,23 @@
+@mixin vhWidth($vh, $width)
+{
+    width: $width;
+    height: $vh;
+}
+
+@mixin media-height($maxWidth, $height)
+{
+    @media screen and (max-width : $maxWidth)
+    {
+        height: $height;
+    }
+}
+
+@mixin border-radius($radius)
+{
+    border-radius: $radius;
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -ms-border-radius: $radius;
+    -o-border-radius: $radius;
+}
+

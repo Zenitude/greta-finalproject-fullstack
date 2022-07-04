@@ -4,6 +4,12 @@
 {
     max-width: 1980px;
     margin: 0 auto;
+    z-index: auto;
+}
+
+#navHeader
+{
+  z-index: 5;
 }
 
 .container-fluid
@@ -14,67 +20,27 @@
 /* Home first section*/
 #head
 {
-    height: 80vh;
-    width: 100%;
-}
+  @include vhWidth(80vh, 100%);
 
-#head img
-{
-    width: 100%;
-    height: 80vh;
+  @for $i from 1 through length($listeSize)
+  {
+    @include media-height(nth($listeSize, $i), nth($mediaHeight, $i));
+  }
+
+ /* @include media-height(780px, 40vh);
+  @include media-height(550px, 20vh);
+  @include media-height(320px, 10vh);*/
+  
+  img 
+  {
+    @include vhWidth(80vh, 100%);
     transform: translate(0px, 0px);
-}
 
-@media screen and (max-width: 1050px)
-{
-  #head
-  {
-      height: 60vh;
+    @for $i from 1 through length($listeSize)
+    {
+      @include media-height(nth($listeSize, $i), nth($mediaHeight, $i));
+    }
   }
-
-  #head img
-  {
-      height: 60vh;
-  } 
-}
-
-@media screen and (max-width: 780px)
-{
-  #head
-  {
-      height: 40vh;
-  }
-
-  #head img
-  {
-      height: 40vh;
-  } 
-}
-
-@media screen and (max-width: 550px)
-{
-  #head
-  {
-      height: 20vh;
-  }
-
-  #head img
-  {
-      height: 20vh;
-  } 
-}
-
-@media screen and (max-width: 320px)
-{
-  #head
-  {
-      height: 10vh;
-  }
-
-  #head img
-  {
-      height: 10vh;
-  } 
 }
 
 /* Flag for translate */
@@ -107,38 +73,10 @@ div.skiptranslate
 #carouselHome
 {
   height: 60vh;
-}
-
-@media screen and (max-width: 1050px)
-{
-  #carouselHome
+  @for $i from 1 through length($listeSize)
   {
-    height: 60vh;
-  }  
-}
-
-@media screen and (max-width: 780px)
-{
-  #carouselHome
-  {
-    height: 40vh;
-  }  
-}
-
-@media screen and (max-width: 550px)
-{
-  #carouselHome
-  {
-    height: 20vh;
-  }  
-}
-
-@media screen and (max-width: 320px)
-{
-  #carouselHome
-  {
-    height: 10vh;
-  }  
+    @include media-height(nth($listeSize, $i), nth($mediaHeight, $i));
+  }
 }
 
 /* Gestion */
@@ -148,13 +86,9 @@ div.skiptranslate
     .sectionGestion
     {
         width: 95%;
-        background: beige;
+        background: $beige;
         border: 1px solid #2e5b89;
-        border-radius: 15px;
-        -webkit-border-radius: 15px;
-        -moz-border-radius: 15px;
-        -ms-border-radius: 15px;
-        -o-border-radius: 15px;
+        @include border-radius(15px);
         margin: 15px auto;
         color: rgb(0, 0, 0);
     }

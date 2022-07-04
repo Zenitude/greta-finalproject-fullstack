@@ -11154,6 +11154,11 @@ textarea.form-control-lg {
 .bodySize {
   max-width: 1980px;
   margin: 0 auto;
+  z-index: auto;
+}
+
+#navHeader {
+  z-index: 5;
 }
 
 .container-fluid, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
@@ -11162,22 +11167,14 @@ textarea.form-control-lg {
 
 /* Home first section*/
 #head {
-  height: 80vh;
-  width: 100%;
-}
-
-#head img {
   width: 100%;
   height: 80vh;
-  transform: translate(0px, 0px);
+  /* @include media-height(780px, 40vh);
+   @include media-height(550px, 20vh);
+   @include media-height(320px, 10vh);*/
 }
-
 @media screen and (max-width: 1050px) {
   #head {
-    height: 60vh;
-  }
-
-  #head img {
     height: 60vh;
   }
 }
@@ -11185,17 +11182,9 @@ textarea.form-control-lg {
   #head {
     height: 40vh;
   }
-
-  #head img {
-    height: 40vh;
-  }
 }
 @media screen and (max-width: 550px) {
   #head {
-    height: 20vh;
-  }
-
-  #head img {
     height: 20vh;
   }
 }
@@ -11203,11 +11192,33 @@ textarea.form-control-lg {
   #head {
     height: 10vh;
   }
-
+}
+#head img {
+  width: 100%;
+  height: 80vh;
+  transform: translate(0px, 0px);
+}
+@media screen and (max-width: 1050px) {
+  #head img {
+    height: 60vh;
+  }
+}
+@media screen and (max-width: 780px) {
+  #head img {
+    height: 40vh;
+  }
+}
+@media screen and (max-width: 550px) {
+  #head img {
+    height: 20vh;
+  }
+}
+@media screen and (max-width: 320px) {
   #head img {
     height: 10vh;
   }
 }
+
 /* Flag for translate */
 #translate {
   top: 10px;
@@ -11234,7 +11245,6 @@ div.skiptranslate {
 #carouselHome {
   height: 60vh;
 }
-
 @media screen and (max-width: 1050px) {
   #carouselHome {
     height: 60vh;
@@ -11255,6 +11265,7 @@ div.skiptranslate {
     height: 10vh;
   }
 }
+
 /* Gestion */
 /* Global */
 .sectionGestion {
