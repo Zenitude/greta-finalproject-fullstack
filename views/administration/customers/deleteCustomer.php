@@ -13,9 +13,9 @@
         <div class="input-group mb-3">
             <label for="selectDeleteCustomer" class="form-label w-25 d-none d-sm-block">Sélectionner un client*</label>
             <select name="selectDeleteCustomer" id="selectDeleteCustomer" class="form-select rounded">
-                <optgroup label="Sélectionnez un client" selected>
+                <optgroup label="Sélectionnez un client">
+                    <?php selectCustomers(); ?>
                 </optgroup>
-                <?php selectCustomers(); ?>
             </select>
         </div>
         <button class="btn bg-beige fs-sm-4 mx-auto border w-50 h-50">Sélectionner</button>

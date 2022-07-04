@@ -80,6 +80,9 @@ function reservationFinish()
 
     /* Dates of booking | Dates de la réservation */
     $dates = date('d/m/Y', strtotime($resum['startDate'])).' - '.date('d/m/Y', strtotime($resum['endDate']));
+    $firstDay = explode('-', $resum['startDate']);
+    $lastDay = explode('-', $resum['endDate']);
+    $countDay =  intval($lastDay[2]) - intval($firstDay[2]);
 
     /* Retrieval of room information | Récupération des informations des chambres */
     $priceRooms = $resumReservation->priceRooms($resum['idReservation']);
@@ -89,7 +92,7 @@ function reservationFinish()
 
     foreach($priceRooms as $priceRoom)
     {
-        $price = $price + intval($priceRoom['price']);
+        $price = $price + (intval($priceRoom['price']) * $countDay);
     }
 
     /* Calculation of the deposit | Calcul de l'acompte */

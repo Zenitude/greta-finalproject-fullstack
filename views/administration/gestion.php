@@ -25,28 +25,28 @@
             <div class="containerBtns">
 
                 <!-- List | Lister -->
-                <a href="index.php?page=administration&section=customers&action=listCustomers" class="btn-listing">
-                    <img src="public/resources/images/gestion/lister.png" alt="Lister les clients" class="">
+                <a href="index.php?page=administration&section=customers&action=listCustomers">
+                    <img src="public/resources/images/gestion/lister.png" alt="Lister les clients">
                 <br>Lister</a>
 
                 <!-- Details | Détails -->
-                <a href="index.php?page=administration&section=customers&action=detailsCustomer" class="btn-create">
+                <a href="index.php?page=administration&section=customers&action=detailsCustomer">
                     <img src="public/resources/images/gestion/voir.png" alt="Afficher un client">
                 <br>Détails</a>
 
                 <!-- Create | Créer -->
                 <?php if($_SESSION['typeAdmin'] != 'adminRestaurant'): ?>
-                <a href="index.php?page=administration&section=customers&action=createCustomer" class="btn-create">
+                <a href="index.php?page=administration&section=customers&action=createCustomer">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer un client">
                 <br>Créer</a>
 
                 <!-- Update | Modifier -->
-                <a href="index.php?page=administration&section=customers&action=updateCustomer" class="btn-update">
+                <a href="index.php?page=administration&section=customers&action=updateCustomer">
                     <img src="public/resources/images/gestion/modifier.png" alt="Modifier un client">
                 <br>Modifier</a>
 
                 <!-- Delete | Supprimer -->
-                <a href="index.php?page=administration&section=customers&action=deleteCustomer" class="btn-delete">
+                <a href="index.php?page=administration&section=customers&action=deleteCustomer">
                     <img src="public/resources/images/gestion/supprimer.png" alt="supprimer un client">
                 <br>Supprimer</a>
                 <?php endif; ?>
@@ -85,32 +85,32 @@
                 <?php if($_SESSION['typeAdmin'] != 'adminRestaurant'): ?>
                 
                 <!-- List | Lister -->
-                <a href="index.php?page=administration&section=reservations&action=listReservations" class="btn-listing">
+                <a href="index.php?page=administration&section=reservations&action=listReservations">
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les réservations">
                 <br>Lister</a>
 
                 <!-- Details | Détails -->
-                <a href="index.php?page=administration&section=reservations&action=detailsReservation" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=detailsReservation">
                     <img src="public/resources/images/gestion/voir.png" alt="Afficher une réservation">
                 <br>Détails</a>
 
                 <!-- Create | Créer -->
-                <a href="index.php?page=administration&section=reservations&action=createReservation" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=createReservation">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Créer une réservation">
                 <br>Créer</a>
 
                 <!-- Update | Modifier -->
-                <a href="index.php?page=administration&section=reservations&action=updateReservation" class="btn-update">
+                <a href="index.php?page=administration&section=reservations&action=updateReservation">
                     <img src="public/resources/images/gestion/modifier.png" alt="Modifier une réservation">
                 <br>Modifier</a>
 
                 <!-- Delete | Supprimer -->
-                <a href="index.php?page=administration&section=reservations&action=deleteReservation" class="btn-delete">
+                <a href="index.php?page=administration&section=reservations&action=deleteReservation">
                     <img src="public/resources/images/gestion/supprimer.png" alt="supprimer une réservation">
                 <br>Supprimer</a>
 
                 <!-- Extras | Extras -->
-                <a href="index.php?page=administration&section=reservations&action=addExtras" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=addExtras">
                     <img src="public/resources/images/gestion/ajouter.png" alt="Ajouter des extras">
                 <br>Extras</a>
                 <?php endif; ?>
@@ -118,12 +118,12 @@
                 <!-- Tables | Tables -->
                 <!-- If the admin is different from the Hotel admin | Si l'admin est différent de l'admin Hotel -->
                 <?php if($_SESSION['typeAdmin'] != 'adminHotel'): ?>
-                <a href="index.php?page=administration&section=reservations&action=reserveTable" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=reserveTable">
                     <img src="public/resources/images/gestion/table.png" alt="Réserver une table">
                 <br>Tables</a>
 
                 <!-- Menus | Menus -->
-                <a href="index.php?page=administration&section=reservations&action=choiceMenus" class="btn-create">
+                <a href="index.php?page=administration&section=reservations&action=choiceMenus">
                     <img src="public/resources/images/gestion/menus.png" alt="Choisir les menus">
                 <br>Menus</a>
                 <?php endif; ?>
@@ -160,17 +160,17 @@
             <div class="containerBtns">
 
                 <!-- List | Lister -->
-                <a href="index.php?page=administration&section=invoices&action=listInvoices" class="btn-listing">
+                <a href="index.php?page=administration&section=invoices&action=listInvoices">
                     <img src="public/resources/images/gestion/lister.png" alt="Lister les factures">
                 <br>Lister</a>
 
                 <!-- Details | Détails -->
-                <a href="index.php?page=administration&section=invoices&action=detailsInvoice" class="btn-see">
+                <a href="index.php?page=administration&section=invoices&action=detailsInvoice">
                     <img src="public/resources/images/gestion/voir.png" alt="Détails facture">
                 <br>Détails</a>
 
                 <!-- Update | Modifier -->
-                <a href="index.php?page=administration&section=invoices&action=updateInvoice" class="btn-update">
+                <a href="index.php?page=administration&section=invoices&action=updateInvoice">
                     <img src="public/resources/images/gestion/modifier.png" alt="Modifier une facture">
                 <br>Modifier</a>
 

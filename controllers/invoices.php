@@ -59,7 +59,7 @@ function detailsInvoice()
 
     $montantTotal = $details['sumRooms'] + $details['sumExtras'] + $details['sumRestaurant'];
     $percentRistourne = $details['discount'] * 100;
-    $ristourne = $details['sumRooms'] * ($percentRistourne / 100);
+    $ristourne = $details['sumRooms'] * $details['discount'];
     $reste = $montantTotal - $ristourne ;
     $net = $reste - $details['advance'];
     }
@@ -67,10 +67,33 @@ function detailsInvoice()
     require_once('views/administration/invoices/detailsInvoice.php');
 }
 
-
-
 function updateInvoice()
 {
-    require('views/administration/invoices/updateInvoice.php');
+    require_once('views/administration/invoices/updateInvoice.php');
 }
 
+function updateTheInvoice()
+{ 
+    if(isset($_POST['updateDiscountInvoice'])) // Check if the Lastname field is submit | On vérifie si le champ Nom est envoyé
+    {
+        try
+        {
+            // Data is transferred to variables | Les données sont transférées dans des variables
+            $updateId = $_POST['updateIdInvoice'];
+            $updateDiscount = trim(htmlspecialchars($_POST['updateDiscountInvoice']));
+            $discount = floatval($updateDiscount) / 100;
+
+            $updateTheInvoice = new Invoices();
+            $updateInvoice = $updateTheInvoice->updateInvoice($updateId, $discount);
+            
+            /*  If the update is successful, redirect to the update page and display a message
+                En cas de succès de la mise à jour on redirige sur la page de mise à jour et on affiche un message */
+            header('Location: index.php?page=administration&section=invoices&action=updateInvoice&id='.$updateId.'&validation=ok');
+        }
+        catch(Exception $e)
+        {
+            throw new Exception('Erreur = '.$e->getMessage());
+        }
+    }
+    
+}

@@ -10,9 +10,10 @@
     <h1 class="mb-5 text-center">Liste des Réservations</h1>
 
     <form method="POST" action="index.php?page=administration&section=reservations&action=listReservations" class="mb-4 d-flex">
-    <div class="d-flex flex-column me-1">
-            <label for="selectSearchReservation" class="opacity-0">Sélectionner une catégorie de recherche</label>
-            <select name="selectSearchReservation" id="selectSearchReservation" class="rounded ps-1 border">
+    <div class="d-flex flex-column flex-md-row align-items-center">
+        <div class="d-flex flex-column w-100 w-sm-50 me-sm-1">
+            <label for="selectSearchReservation" class="opacity-0">Filtre recherche</label>
+            <select name="selectSearchReservation" id="selectSearchReservation" class="rounded w-100 ps-1 border">
                 <option value="idReservation">Numéro</option>
                 <option value="lastname">Nom client</option>
                 <option value="firstname">Prénom client</option>
@@ -20,11 +21,12 @@
                 <option value="endDate">Date de fin</option>
             </select>
         </div>
-        <div class="search position-relative w-25">
-            <label for="searchReservation" class="opacity-0 d-block">Rechercher</label>
-            <input type="search" placeholder="Rechercher" id="searchReservation" name="searchReservation" class="rounded w-100 ps-1">
+        <div class="search position-relative w-100 w-sm-25">
+            <label for="searchReservation" class="opacity-0">Rechercher</label>
+            <input type="search" placeholder="Rechercher" id="searchReservation" name="searchReservation" class="rounded w-100 border ps-1">
             <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
         </div>
+    </div>
     </form>
 
     <div class="table-responsive-lg">

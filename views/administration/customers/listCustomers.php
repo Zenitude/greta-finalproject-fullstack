@@ -13,25 +13,28 @@
 
     <!-- Filter search | Recherche par filtre -->
     <form method="POST" action="index.php?page=administration&section=customers&action=listCustomers" class="mb-4 d-flex">
-        <div class="d-flex flex-column me-1">
-            <label for="selectSearchCustomer" class="opacity-0">Sélectionner une catégorie de recherche</label>
+        <div class="d-flex flex-column flex-md-row align-items-center">
 
-            <!-- Select to select the filter | Select pour choisir le filtre -->
-            <select name="selectSearchCustomer" id="selectSearchCustomer" class="rounded ps-1 border">
-                <option value="id">Numéro</option>
-                <option value="lastname">Nom</option>
-                <option value="firstname">Prénom</option>
-                <option value="zipCode">Code postal</option>
-                <option value="city">Ville</option>
-                <option value="vip">VIP</option>
-            </select>
-        </div>
-
-        <!-- input to enter the search | Input pour saisir la recherche -->
-        <div class="search position-relative w-25">
-            <label for="searchCustomer" class="opacity-0">Rechercher</label>
-            <input type="search" placeholder="Rechercher" id="searchCustomer" name="searchCustomer" class="rounded w-100 border ps-1">
-            <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
+            <div class="d-flex flex-column w-100 w-sm-50 me-sm-1">
+                <label for="selectSearchCustomer" class="opacity-0">Filtre Recherche</label>
+                
+                <!-- Select to select the filter | Select pour choisir le filtre -->
+                <select name="selectSearchCustomer" id="selectSearchCustomer" class="rounded w-100 ps-1 border">
+                    <option value="id">Numéro</option>
+                    <option value="lastname">Nom</option>
+                    <option value="firstname">Prénom</option>
+                    <option value="zipCode">Code postal</option>
+                    <option value="city">Ville</option>
+                    <option value="vip">VIP</option>
+                </select>
+            </div>
+            
+            <!-- input to enter the search | Input pour saisir la recherche -->
+            <div class="search position-relative w-100 w-sm-25">
+                <label for="searchCustomer" class="opacity-0">Rechercher</label>
+                <input type="search" placeholder="Rechercher" id="searchCustomer" name="searchCustomer" class="rounded w-100 border ps-1">
+                <button class="btn-search position-absolute"><i class="fa-solid fa-magnifying-glass"></i></button>
+            </div>
         </div>
     </form>
 

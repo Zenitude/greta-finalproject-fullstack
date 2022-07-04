@@ -1,4 +1,5 @@
-/* Creation of the table : invoices | Création de la table : invoices*/
+/*  Creation of the table : invoices
+    Création de la table : invoices */
 CREATE TABLE `lemontagnard`.`invoices`
 (
     `idInvoice` INT AUTO_INCREMENT,
@@ -10,6 +11,8 @@ CREATE TABLE `lemontagnard`.`invoices`
     `discournt` DOUBLE NOT NULL DEFAULT 0,
     `idReservationI` INT NOT NULL,
     PRIMARY KEY (`idInvoice`),
-    CONSTRAINT `FK_Invoice_Reservation` FOREIGN KEY (`idReservationI`) REFERENCES `reservationshotel` (`idReservation`)
+    CONSTRAINT `FK_Invoice_Reservation` 
+        FOREIGN KEY (`idReservationI`) 
+        REFERENCES `reservationshotel` (`idReservation`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

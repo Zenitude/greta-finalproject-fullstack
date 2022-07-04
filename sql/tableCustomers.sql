@@ -1,4 +1,5 @@
-/* Creation of the table : addresscustomers | Création de la table : addresscustomers */
+/*  Creation of the table : addresscustomers
+    Création de la table : addresscustomers */
 CREATE TABLE `lemontagnard`.`addresscustomers`
 (
     `idAddress` INT AUTO_INCREMENT,
@@ -8,7 +9,8 @@ CREATE TABLE `lemontagnard`.`addresscustomers`
     PRIMARY KEY (`idAddress`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-/* Creation of the table : customers | Création de la table : customers*/
+/*  Creation of the table : customers
+    Création de la table : customers*/
 CREATE TABLE `lemontagnard`.`customers`
 (
     `id` INT AUTO_INCREMENT,
@@ -21,7 +23,8 @@ CREATE TABLE `lemontagnard`.`customers`
     `vip` BOOLEAN,
     `idConjoint` INT,
     PRIMARY KEY (`id`),
-    CONSTRAINT `FK_Customer_Address` FOREIGN KEY (`idAddressC`) REFERENCES `addresscustomers` (`idAddress`)
+    CONSTRAINT `FK_Customer_Address` FOREIGN KEY (`idAddressC`) 
+        REFERENCES `addresscustomers` (`idAddress`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

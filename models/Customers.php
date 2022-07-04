@@ -19,7 +19,6 @@ class Customers extends DataBase
             $customers = $ListCustomers->fetchAll();
             
             return $customers;
-            
         }
         catch(Exception $e)
         {

@@ -189,12 +189,6 @@ try
                         Si le paramètre action a pour valeur 'detailsReservation' affiche la page de détails d'une réservation */
                     detailsReservation();
                 }
-                elseif($_GET['action'] == 'updateReservation')
-                {
-                    /*  If the action parameter has value 'updateReservation' displays the update reservation page*
-                        Si le paramètre action a pour valeur 'updateReservation' affiche la page de mise à jour d'une réservation */
-                    updateReservation();
-                }
                 elseif($_GET['action'] == 'deleteReservation')
                 {
                     /*  If the action parameter has value 'deleteReservation' displays the delete reservation page
@@ -227,6 +221,12 @@ try
                     /*  If the action parameter has value 'updateInvoice' displays the update invoice page*
                         Si le paramètre action a pour valeur 'updateInvoice' affiche la page de mise à jour d'une facture */
                     updateInvoice();
+                }
+                elseif($_GET['action'] == 'updateTheInvoice')
+                {
+                    /*  If the action parameter has value 'updateInvoice' displays the update invoice page*
+                        Si le paramètre action a pour valeur 'updateInvoice' affiche la page de mise à jour d'une facture */
+                    updateTheInvoice();
                 }
                 else
                 {

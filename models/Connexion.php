@@ -8,17 +8,16 @@ class Connexion extends DataBase
 {
 
     /*  Function allowing the admin user to log in | Fonction permettant à l'utilisateur admin de se connecter */
-    public function loginSite($identify, $password)
+    public function loginSite($identify)
     {
         try{
             $db = $this->dbConnect(); // We connect to the database | On se connecte à la base de donnée
 
-            $requestConnexion = "SELECT * FROM users WHERE mail =:mail AND pass=:pass"; 
+            $requestConnexion = "SELECT * FROM users WHERE mail =:mail"; 
             
             $loginSite = $db->prepare($requestConnexion); // Prepare the request before it is executed | On prépare la requête avant son execution
 
             $loginSite->bindValue(':mail', $identify); // bindValue will replace in the query the parameter with the value of the variable associated with it
-            $loginSite->bindValue(':pass',$password);  // bindValue va remplacer dans la requête le paramètre par la valeur de la variable qu'on lui associe
 
             try{
                 if($loginSite->execute()) // Execute the request after it is received all its parameters | On execute la requête après qu'elle est reçue tout ses paramètres

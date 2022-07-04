@@ -70,11 +70,10 @@ function login()
                 try{
                     
                     $mail = htmlspecialchars($_POST['mailConnection']);
-                    $password = htmlspecialchars($_POST['passwordConnection']);
-                    $password = md5($password); // Password encoding in md5 to compare it with the database | Encodage du mot de passe en md5 pour le comparer avec celui de la base de données
+                    $pass = htmlspecialchars($_POST['passwordConnection']);
    
                     $loginBD = new Connexion; // Initialize a new Connexion object | On initialise un nouveau objet Connexion
-                    $user = $loginBD->loginSite($mail, $password); // Use the loginSite method of the Connexion object | On fait appel à la méthode loginSite de l'objet Connexion 
+                    $user = $loginBD->loginSite($mail); // Use the loginSite method of the Connexion object | On fait appel à la méthode loginSite de l'objet Connexion 
                     $countUser = count($user); // Count the number of users found | On compte le nombre d'utilisateur trouvé
 
                     if($countUser <= 0)
@@ -89,8 +88,8 @@ function login()
                         try 
                         {
                             /*  If the user exists, we connect him
-                                Si l'utilisateur existe, on le connecte */
-                            if($user)
+                                Si l'utilisateur existe, on vérifie son mot de passe */
+                            if(password_verify($pass, $user['pass']))
                             {
                                 /*  we save his username to say hello to him on the management page 
                                     On sauvegarde son identifiant pour lui dire bonjour sur la page de gestion */

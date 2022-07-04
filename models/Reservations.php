@@ -13,7 +13,8 @@ class Reservations extends DataBase
         $db = $this->dbConnect();
         $requestListReservations = "SELECT * FROM reservationshotel 
                                     JOIN customers ON reservationshotel.idCustomer = customers.id
-                                    JOIN invoices ON reservationshotel.idReservation = invoices.idReservationI";
+                                    JOIN invoices ON reservationshotel.idReservation = invoices.idReservationI
+                                    ORDER BY idReservation";
         $listReservations = $db->prepare($requestListReservations);
         $listReservations->execute();
         $list = $listReservations->fetchAll();
@@ -45,7 +46,8 @@ class Reservations extends DataBase
         $db = $this->dbConnect();
         $requestSearchReservation = "SELECT * FROM reservationshotel
                                      JOIN customers ON customers.id = reservationshotel.idCustomer
-                                     WHERE $selectSearch = :value";
+                                     WHERE $selectSearch = :value
+                                     ORDER BY idReservation";
         $searchReservation = $db->prepare($requestSearchReservation);
         $searchReservation->bindParam(':value', $search);
         $searchReservation->execute();

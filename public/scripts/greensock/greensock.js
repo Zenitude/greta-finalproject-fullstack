@@ -32,19 +32,13 @@ divsPresentation.forEach(div =>
             y:100,
             x:50,
             opacity: 0,
-            scrollTrigger:
-            {
-                trigger: '#presentation',
-                start: "top middle",
-                scrub: true
-            }
         },
         {
             y: 5,
             x:0,
             opacity: 1,
             duration: 0.5,
-            delay: 0.5
+            delay: 0.1
         })
 
 });
@@ -58,37 +52,27 @@ timeLine
         {
             x: -200,
             opacity: 0,
-            scrollTrigger:
-            {
-                trigger: '#activities',
-                start: "top 30%",
-                scrub: true
-            }
         }, 
         {
             x: 0,
             opacity: 1,
             duration: 0.5,
-            delay: 0.5
+            delay: 0.1
         }
     )
+
+timeLine
     .fromTo(
         divsActivities[1],
         {
             x: 100,
             opacity: 0,
-            scrollTrigger:
-            {
-                trigger: '#activities',
-                start: "top middle",
-                scrub: true
-            }
         }, 
         {
             x: 0,
             opacity: 1,
             duration: 0.5,
-            delay: 0.5
+            delay: 0.1
         }
     )
 
@@ -103,18 +87,12 @@ chefs.forEach(chef =>
             {
                 y: -50,
                 opacity: 0,
-                scrollTrigger:
-                {
-                    trigger: '#activities',
-                    start: "top middle",
-                    scrub: true
-                }
             },
             {
                 y: 0,
                 opacity: 1,
                 duration: 0.5,
-                delay: 0.5
+                delay: 0.1
             }
         )
 });

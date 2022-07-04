@@ -1,5 +1,11 @@
 <!-- Page title / Titre de la page -->
 <?php $title = 'Accueil'; ?>
+<?php 
+    /*$password = 'admin';
+    $pass = password_hash($password, PASSWORD_DEFAULT);
+    echo 'Hachage généré : '.$pass; 
+    if(password_verify($password, $pass)) { echo '<br>ok';} else { echo '<br>pas ok';}*/
+?>
 
 <!-- Start of content / Début du contenu -->
 <?php ob_start(); ?>

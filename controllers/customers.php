@@ -29,7 +29,8 @@ function listCustomers()
     require_once('views/administration/customers/listCustomers.php');
 }
 
-/* Feature displaying the customer’s first and last name on the delete page | Fonction affichant le nom et prénom du client sur la page de suppression */
+/*  Feature displaying the customer’s first and last name on the delete page
+    Fonction affichant le nom et prénom du client sur la page de suppression */
 function listCustomer($id)
 {
     $listCustomer = new Customers();
@@ -37,7 +38,8 @@ function listCustomer($id)
     echo $customer['lastname'].' '.$customer['firstname'];
 }
 
-/* Function displaying a customer’s booking number on the customer list page | Fonction affichant le nombre de réservation d'un client sur la page de liste des clients */
+/*  Function displaying a customer’s booking number on the customer list page
+    Fonction affichant le nombre de réservation d'un client sur la page de liste des clients */
 function numberOfReservations($id)
 {
     $reservations = new Customers();

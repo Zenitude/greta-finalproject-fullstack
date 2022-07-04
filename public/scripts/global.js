@@ -21,7 +21,8 @@ if(formUpdate)
     /* Adding each field to the table | Ajout de chaque champ dans le tableau */
     inputsUpdate.forEach(input => { inputs.push(input)});
 
-    /* Removal of invisible fields or with default values (radio) | Suppression des champs invisible ou avec des valeurs par défaut (radio) */
+    /*  Removal of invisible fields or with default values (radio)
+        Suppression des champs invisible ou avec des valeurs par défaut (radio) */
     inputs.splice(0,1);
     inputs.splice(3,2);
     
@@ -31,11 +32,13 @@ if(formUpdate)
         /* We get the label of the field | On récupère le label du champ */
         let label = input.parentNode.children[0];
 
-        /* Create a paragraph that will contain the error messages | On crée une paragraphe qui contiendra les messages d'erreur */
+        /*  Create a paragraph that will contain the error messages
+            On crée une paragraphe qui contiendra les messages d'erreur */
         let msgErrUpdate = document.createElement('span');
         msgErrUpdate.style.color = "red";
 
-        /* A real-time input event is added to the | On ajoute un événement de saisie en temps réel sur le champ */
+        /*  A real-time input event is added to the
+            On ajoute un événement de saisie en temps réel sur le champ */
         input.addEventListener('input', () => 
         {
             if(input.value.length <= 0)

@@ -11118,10 +11118,14 @@ textarea.form-control-lg {
     display: none !important;
   }
 }
-/* choice of colors of the custom palette / choix des couleurs de la palette personnalisée*/
-/* Creating the Custom Palette / Création de la palette personnalisée*/
-/* Merge custom palette with bootstrap palette / Fusion de la palette personnalisée avec la palette de bootstrap */
-/* Fixed bug for background and text / Correction du bug pour les background et les textes */
+/*  Choice of colors of the custom palette
+    Choix des couleurs de la palette personnalisée*/
+/*  Creating the Custom Palette
+    Création de la palette personnalisée*/
+/*  Merge custom palette with bootstrap palette 
+    Fusion de la palette personnalisée avec la palette de bootstrap */
+/*  Fixed bug for background and text
+    Correction du bug pour les background et les textes */
 .bg-beige {
   background-color: beige;
 }

@@ -106,5 +106,16 @@ class Invoices extends DataBase
 
     }
 
+    function updateInvoice($id, $discount)
+    {
+        $db = $this->dbConnect();
+        $requestUpdateInvoice = "UPDATE invoices SET discount = :discount WHERE idInvoice = :idInvoice";
+        $updateInvoice = $db->prepare($requestUpdateInvoice);
+        $updateInvoice->bindParam(':discount', $discount);
+        $updateInvoice->bindParam(':idInvoice', $id);
+        $updateInvoice->execute();
+        $update = $updateInvoice->fetch();
+    }
+
 }
 

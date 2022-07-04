@@ -1,4 +1,5 @@
-/* Creation of the table : reservationshotel | Création de la table : reservationshotel*/
+/*  Creation of the table : reservationshotel
+    Création de la table : reservationshotel*/
 
 CREATE TABLE `lemontagnard`.`reservationsHotel`
 (
@@ -8,6 +9,8 @@ CREATE TABLE `lemontagnard`.`reservationsHotel`
     `idCustomer` INT NOT NULL,
     `remarque` TEXT,
     PRIMARY KEY (`idReservation`),
-    CONSTRAINT `FK_Reservation_Customer` FOREIGN KEY (`idCustomer`) REFERENCES `customers` (`id`)
+    CONSTRAINT `FK_Reservation_Customer` 
+        FOREIGN KEY (`idCustomer`) 
+        REFERENCES `customers` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
