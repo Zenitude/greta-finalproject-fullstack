@@ -97,7 +97,7 @@
                     </div>
                     <div class="order-1 order-lg-3">
                         <div class="card">
-                            <img src="public/resources/images/home/restaurant/chefPatissier.png" alt="le chef patissier">
+                            <img src="public/resources/images/home/restaurant/chefPatissier.jpg" alt="le chef patissier">
                             <div class="p-3 p-lg-5">
                                 <h4 class="mb-4">Chef pâtissier</h4>
                                 <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa nam dolorum vero beatae accusantium debitis modi, ut incidunt tempore? Suscipit.</p>
@@ -131,7 +131,7 @@
                     </div>
                 </div>
                 <div class="carousel-item h-100">
-                    <img src="public/resources/images/home/carousel/tartiflette.png" class="d-block w-100 h-100" alt="Tartiflette artisanale">
+                    <img src="public/resources/images/home/carousel/tartiflette.jpg" class="d-block w-100 h-100" alt="Tartiflette artisanale">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Tartiflette artisanale</h5>
                         <p>Préparé par notre chef spécialisé dans les repas savoyards avec des produits fabriqués localement.</p>

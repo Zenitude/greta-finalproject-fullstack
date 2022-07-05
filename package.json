@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "sass": "sass public/styles/scss/global.scss public/styles/css/raw/main.css --watch",
-    "purgecss": "purgecss -css public/styles/css/raw/main.css --content views/backend/*.php views/frontend/*.php public/scripts/*.js -o public/styles/css/cleaned/main.css"
+    "purgecss": "purgecss -css public/styles/css/raw/main.css --content views/*.php views/widgets/*.php views/home/*.php views/connexion/*.php views/administration/*.php views/administration/customers/*.php views/administration/invoices/*.php views/administration/reservations/*.php public/scripts/*.js -o public/styles/css/cleaned/main.css"
   },
   "author": "",
   "license": "ISC",

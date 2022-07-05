@@ -12,8 +12,11 @@
         <!-- Meta tag to control the layout on mobile | Balise meta pour contrôler la mise en page sur mobile -->
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+        <!-- Brief description of the site for SEO | Brève description du site pour le référencement -->
+        <meta name="description" content="Hôtel Restaurant Le Montagnard, Ski, Snowboard, Handiski, Téléphérique, Randonné, Ascension, Bain nordique, Bowling, Billard, Arcade, Sauna ">
+
         <!-- Importing Custom Style | Importation du style personnalisé -->
-        <link rel="stylesheet" href="public/styles/css/raw/main.css">
+        <link rel="stylesheet" href="public/styles/css/cleaned/main.css">
 
         <!-- Icône de l'onglet -->
         <link rel="icon" href="public/resources/images/home/favicon.ico" />

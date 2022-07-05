@@ -1,9 +1,0 @@
-Array ( 
-    [SERVER_NAME] => localhost 
-    [QUERY_STRING] => page=home 
-    [REQUEST_URI] => /sites-php/greta-finalproject-fullstack/index.php?page=home 
-    [SCRIPT_NAME] => /sites-php/greta-finalproject-fullstack/index.php 
-    [PHP_SELF] => /sites-php/greta-finalproject-fullstack/index.php 
-    [REQUEST_TIME_FLOAT] => 1656753349.6638 
-    [REQUEST_TIME] => 1656753349 
-)
