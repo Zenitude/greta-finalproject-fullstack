@@ -18,7 +18,7 @@
         </ul>
 </ul>
 
-## functionalities
+## Fonctionnalités
 <ul>
     <li>Customers
         <ul>
@@ -39,6 +39,9 @@
                     <li>In order to delete a customer, they must no longer have an existing reservation in their name.</li>
                 </ul>
         </ul>
+</ul>
+
+<ul>
     <li>Booking Hotel</li>
         <ul>
             <li>Create : Administrator Hotel and General.</li>
@@ -54,6 +57,9 @@
                     <li>By deleting a reservation, the administrator deletes at the same time the rooms reserved as well as the invoices related to this reservation.</li>
                 </ul>
         </ul>
+</ul>
+
+<ul>
     <li>Invoices</li>
         <ul>
             <li>Create : Administrator Hotel and General.</li>
