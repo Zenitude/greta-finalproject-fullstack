@@ -4,6 +4,7 @@
 
 ## User Types
 * Customers
+
 ** Can only see home page
 * Administrators
 ** Can see home page
