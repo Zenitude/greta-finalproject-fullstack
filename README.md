@@ -1,4 +1,4 @@
-# GRETA - Projet Final -FullStack
+# GRETA - Final Project -FullStack
 * Chosen subject: Hotel Restaurant in the mountains
 
 ## User Types
