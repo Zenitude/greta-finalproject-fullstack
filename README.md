@@ -4,7 +4,7 @@
 
 ## User Types
 <ul>
-    <li>Customers
+    <li>'''Customers'''
         <ul><li>Can only see home page</li></ul>
     <li>Administrators
         <ul>
