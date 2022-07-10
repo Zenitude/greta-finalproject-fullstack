@@ -16,7 +16,8 @@
         <li>Hotel Administrator : Can’t handle the restaurant part</li>
         <li>Restaurant Administrator : Can’t handle the hotel part</li>
       </ul>
-    <ul>
+    </ul>
+</ul>
 
 ## Fonctionnalités
 * Customers
