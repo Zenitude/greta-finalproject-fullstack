@@ -3,16 +3,20 @@
 * Sujet choisi : Hotel Restaurant en montagne
 
 ## User Types
-* Customers
-
-** Can only see home page
-* Administrators
-** Can see home page
-** has access to the management page after logging in
-** Three types of administrator
-*** General Administrator : Can access anything
-*** Hotel Administrator : Can’t handle the restaurant part
-*** Restaurant Administrator : Can’t handle the hotel part
+<ul>
+  <li>Customers
+    <ul><li>Can only see home page</li></ul>
+  <li>Administrators
+    <ul>
+      <li>Can see home page</li>
+      <li>has access to the management page after logging in</li>
+      <li>Three types of administrator</li>
+      <ul>
+        <li>General Administrator : Can access anything</li>
+        <li>Hotel Administrator : Can’t handle the restaurant part</li>
+        <li>Restaurant Administrator : Can’t handle the hotel part</li>
+      </ul>
+    <ul>
 
 ## Fonctionnalités
 * Customers
