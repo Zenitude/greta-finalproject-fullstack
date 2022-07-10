@@ -1,6 +1,5 @@
 # GRETA - Projet Final -FullStack
 * Chosen subject: Hotel Restaurant in the mountains
-* Sujet choisi : Hotel Restaurant en montagne
 
 ## User Types
 <ul>
@@ -19,7 +18,7 @@
         </ul>
 </ul>
 
-## Fonctionnalités
+## functionalities
 <ul>
     <li>Customers
         <ul>
